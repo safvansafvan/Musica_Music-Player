@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionplaylist.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class Playlistsongdisplayscreen extends StatefulWidget {

@@ -16,7 +16,10 @@ class Allsongs extends StatefulWidget {
 }
 
 class _AllsongsState extends State<Allsongs> {
+  
   GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
+
+
   int bottomnavindexnum = 0;
   List tabbarwidget =const [Allsongswidget(), Mostplayed(),  Explorescreen()];
 
@@ -51,7 +54,8 @@ class _AllsongsState extends State<Allsongs> {
           ),
         ],
       ),
-      body: Stack(
+      body:
+       Stack(
         children: [
           tabbarwidget[bottomnavindexnum],
           Positioned(
@@ -92,6 +96,8 @@ class _AllsongsState extends State<Allsongs> {
       drawer: const Drawer(
           backgroundColor:  Color.fromARGB(255, 39, 33, 55),
           child: Drawerwidget()),
+
+    
       
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,

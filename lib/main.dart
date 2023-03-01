@@ -4,6 +4,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:musica/components/splash/splashscreen.dart';
 import 'package:musica/provider/songmodelprovider.dart';
 import 'package:provider/provider.dart';
+import 'DB/Fuctionprofile/model/model.dart';
 import 'DB/model/model.dart';
 
 Future<void> main() async {
@@ -12,8 +13,8 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox<int>('favoritesDB');
   await Hive.openBox<Playermodel>('playlistdata');
-  await Hive.openBox<String>('namedata');
-
+  await Hive.openBox<Profilemodel>('people');
+  
 
   await JustAudioBackground.init(
     androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',

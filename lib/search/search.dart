@@ -34,7 +34,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                   color: Color.fromARGB(255, 39, 33, 55),
                 )),
             title: TextField(
-              onChanged: (value) => update(value),
+              onChanged: (value) => textupdatetextfield(value),
               decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.blue[100],
@@ -57,24 +57,22 @@ class _SearchwidgetState extends State<Searchwidget> {
             ? const Center(
                 child: Text(
                 'No Songs ',
-                style: TextStyle(fontSize: 25, color: Colors.white60),
+                style: TextStyle(fontSize: 20, color: Colors.white60),
               ))
             : Allmusiclisttile(
                 songmodel: stillsongs,
               ));
   }
 
-  update(String text) {
+  textupdatetextfield(String text) {
     List<SongModel> result = [];
     if (text.isEmpty) {
       result = totalsongs;
     } else {
       result = totalsongs
-          .where((element) => element.displayNameWOExt
-              .toLowerCase()
-              .contains(text.toLowerCase()))
+          .where((element) => element.displayNameWOExt.toLowerCase().trim()
+              .contains(text.toLowerCase().trim()))
           .toList();
-          
     }
     setState(() {
       stillsongs = result;

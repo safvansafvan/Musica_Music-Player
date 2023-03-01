@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:musica/explorescreen/playlist/playlist.dart';
-import 'package:musica/widget/recently.dart';
+import '../widget/recently.dart';
 
 class Explorescreen extends StatefulWidget {
   const Explorescreen({super.key});
@@ -15,7 +14,7 @@ class _ExplorescreenState extends State<Explorescreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 39, 33, 55),
-      body: Column(
+      body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),

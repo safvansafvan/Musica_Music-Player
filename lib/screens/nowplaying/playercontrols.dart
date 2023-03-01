@@ -130,9 +130,9 @@ class _PlayercontrolerState extends State<Playercontroler> {
               builder: (context, snapshot) {
                 final loopmode = snapshot.data;
                 if (LoopMode.one == loopmode) {
-                  return const Icon(
+                  return  Icon(
                     Icons.repeat_on_outlined,
-                    color: Colors.blue,
+                    color: Colors.blue[300],
                   );
                 } else {
                   return const Icon(

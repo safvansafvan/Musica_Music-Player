@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
+import 'package:musica/DB/Functions/functionmostlyplayed.dart';
 import 'package:musica/DB/Functions/recentlyplayed.dart';
 import 'package:musica/controller/getallsongcontroller.dart';
 
@@ -46,7 +47,9 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
               artworkBorder: BorderRadius.circular(10),
               artworkFit: BoxFit.cover,
             ),
-            title: Text(widget.songmodel[index].displayNameWOExt,
+           title: Text(widget.songmodel[index].displayNameWOExt,
+            // .substring(0,1).toLowerCase()+ widget.songmodel[index].displayNameWOExt.substring(1),
+           
                 maxLines: 1, style: const TextStyle(color: Colors.white70)),
             subtitle: Text(
               '${widget.songmodel[index].artist}',
@@ -60,7 +63,7 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                     context: context,
                     builder: (context) {
                       return SizedBox(
-                          height: 230,
+                          height: 180,
                           child: Column(
                             children: [
                               ListTile(
@@ -74,8 +77,6 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                                 ),
                                 onTap: () {
                                  shoplaylistdialog(context,widget.songmodel[index],);
-
-                                
                                   
                                 },
                               ),
@@ -167,18 +168,7 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                                 onTap: () {},
                               ),
                               //4
-                              ListTile(
-                                leading: const Icon(Icons.share,
-                                    color: Color.fromARGB(255, 39, 33, 55)),
-                                title: const Text(
-                                  'Share',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 39, 33, 55),
-                                  ),
-                                ),
-                                onTap: () {},
-                              ),
-                              //5
+                              
                               
                             ],
                           ));
@@ -190,6 +180,9 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                   color: Colors.white60,
                 )),
             onTap: () {
+              Mostlyplayedctl.addmostlyplayed(widget.songmodel[index].id);
+
+
               Recentcontroller.addrecentlyplayed(widget.songmodel[index].id);
 
               Getallsongs.audioPlayer.setAudioSource(

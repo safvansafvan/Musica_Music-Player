@@ -57,11 +57,12 @@ class _RecentwidgetState extends State<Recentwidget> {
                       const CircularProgressIndicator();
                     }
                  else if (items.data!.isEmpty) {
-                    return const Center(
-                      child: Text('No songs in your internal'),
+                     const Center(
+                      child: Center(child: Text('No songs in your internal')),
                     );
                   }
                   return ListView.builder(
+                    // controller: ScrollController(keepScrollOffset:true ),
                     shrinkWrap: true,
                     itemCount: recent.length,
                     itemBuilder: (context, index) => ListTile(
