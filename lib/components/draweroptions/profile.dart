@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:musica/DB/Fuctionprofile/function.dart';
+import 'package:musica/DB/Fuctionprofile/func.dart';
 import 'package:musica/DB/Fuctionprofile/model/model.dart';
 
 class Profiewidget extends StatefulWidget {
@@ -15,29 +13,28 @@ class Profiewidget extends StatefulWidget {
 
 class _ProfiewidgetState extends State<Profiewidget> {
   final namecontroller = TextEditingController();
-  bool imagealert = false;
+
   final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 42, 35, 58),
-      appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 42, 35, 58),
-        elevation: 15,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_ios)),
-        title: const Text(
-          'Profile',
-          style: TextStyle(fontSize: 20, color: Colors.white60),
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 42, 35, 58),
+          elevation: 15,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios)),
+          title: const Text(
+            'Profile',
+            style: TextStyle(fontSize: 20, color: Colors.white60),
+          ),
         ),
-      ),
-      body: SafeArea(
-          child: ListView(
-        children: [
+        body: SafeArea(
+            child: ListView(children: [
           Padding(
             padding: const EdgeInsets.only(
               left: 15,
@@ -84,13 +81,14 @@ class _ProfiewidgetState extends State<Profiewidget> {
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
                   child: TextFormField(
+                    style: const TextStyle(color: Colors.white60),
                     controller: namecontroller,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                             borderSide: const BorderSide(
-                              color: Color.fromARGB(111, 33, 149, 243),
-                            )),
+                                color: Color.fromARGB(111, 33, 149, 243),
+                                width: 1.5)),
                         label: const Text(
                           'Enter Name',
                           style: TextStyle(color: Colors.white60),
@@ -109,9 +107,9 @@ class _ProfiewidgetState extends State<Profiewidget> {
                 ElevatedButton.icon(
                     onPressed: (() {
                       if (photo != null) {
+                        Navigator.pop(context);
                         savebuttonclick();
-                      } else {
-                        imagealert = true;
+                        
                       }
                     }),
                     icon: const Icon(Icons.save_outlined),
@@ -119,9 +117,7 @@ class _ProfiewidgetState extends State<Profiewidget> {
               ],
             ),
           )
-        ],
-      )),
-    );
+        ])));
   }
 
   Future<void> savebuttonclick() async {
@@ -130,29 +126,23 @@ class _ProfiewidgetState extends State<Profiewidget> {
       return;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          backgroundColor: Colors.indigo,
+       
+          backgroundColor: Color.fromARGB(222, 38, 46, 67),
           behavior: SnackBarBehavior.floating,
+          
           content: Text(
             'Profile Updated',
             style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white),
           )));
     }
     final userprofile = Profilemodel(username: name, userimage: photo!.path);
-    
-  
-    void adddatabase( userprofile) async {
-      final box = await Hive.openBox('people');
-      final person = Profilemodel(userimage: photo!.path, username: name);
-      box.add(person);
-    }
-    adddatabase(userprofile);  
-    print('passing$userprofile');
+    // print(userprofile.username);
+    adddetails(userprofile);
   }
 
   File? photo;
   void getphoto() async {
-    // ignore: deprecated_member_use
-    final photos = await ImagePicker().getImage(source: ImageSource.gallery);
+    final photos = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (photos == null) {
       return;
     } else {

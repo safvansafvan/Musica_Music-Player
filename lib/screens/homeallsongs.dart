@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:musica/components/drawer.dart';
 import 'package:musica/controller/getallsongcontroller.dart';
-import 'package:musica/explorescreen/explore.dart';
+import 'package:musica/explorescreen/explore/explore.dart';
 import 'package:musica/search/search.dart';
-import 'package:musica/widget/mniplayer.dart';
 import 'package:musica/widget/mostplayed.dart';
+import '../widget/mniplayer.dart';
 import 'allmusic/allmusic.dart';
 
 class Allsongs extends StatefulWidget {
@@ -94,7 +94,7 @@ class _AllsongsState extends State<Allsongs> {
       // ),
       // ),
       drawer: const Drawer(
-          backgroundColor:  Color.fromARGB(255, 39, 33, 55),
+          backgroundColor:  Color.fromARGB(201, 25, 21, 36),
           child: Drawerwidget()),
 
     

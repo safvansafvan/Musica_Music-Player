@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/recentlyplayed.dart';
+import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class Recentwidget extends StatefulWidget {
@@ -53,18 +55,19 @@ class _RecentwidgetState extends State<Recentwidget> {
                     uriType: UriType.EXTERNAL,
                     ignoreCase: true),
                 builder: (context, items) {
-                    if (items.data==null) {
-                      const CircularProgressIndicator();
-                    }
-                 else if (items.data!.isEmpty) {
-                     const Center(
+                  if (items.data == null) {
+                    const CircularProgressIndicator();
+                  } else if (items.data!.isEmpty) {
+                    const Center(
                       child: Center(child: Text('No songs in your internal')),
                     );
                   }
                   return ListView.builder(
-                    // controller: ScrollController(keepScrollOffset:true ),
+                    controller: ScrollController(keepScrollOffset:true ),
                     shrinkWrap: true,
-                    itemCount: recent.length,
+                    itemCount: recent.length>10
+                    ?10
+                    :recent.length,
                     itemBuilder: (context, index) => ListTile(
                       leading: QueryArtworkWidget(
                         id: recent[index].id,
@@ -92,6 +95,17 @@ class _RecentwidgetState extends State<Recentwidget> {
                         style: const TextStyle(color: Colors.white70),
                         maxLines: 1,
                       ),
+                      onTap: () {
+                        Getallsongs.audioPlayer.setAudioSource(
+                            Getallsongs.createsongslist(recent));
+                        Getallsongs.audioPlayer.play();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  Nowplaying(songModel: Getallsongs.playsong),
+                            ));
+                      },
                     ),
                   );
                 },

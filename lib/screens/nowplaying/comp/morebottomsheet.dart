@@ -15,7 +15,7 @@ void showbottomsheet(BuildContext context, SongModel songModel) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
-            height: 180,
+            height: 60,
             child: Column(
               children: [
                 ListTile(
@@ -35,22 +35,15 @@ void showbottomsheet(BuildContext context, SongModel songModel) {
                    
                   },
                 ),
-                const ListTile(
-                  leading: Icon(Icons.info_outline,
-                      color: Color.fromARGB(255, 37, 37, 54)),
-                  title: Text(
-                    'Song Info',
-                    style: TextStyle(color: Color.fromARGB(255, 37, 37, 54)),
-                  ),
-                ),
-               const ListTile(
-                  leading:
-                      Icon(Icons.share, color: Color.fromARGB(255, 37, 37, 54)),
-                  title: Text(
-                    'Share',
-                    style: TextStyle(color: Color.fromARGB(255, 37, 37, 54)),
-                  ),
-                ),
+                // const ListTile(
+                //   leading: Icon(Icons.info_outline,
+                //       color: Color.fromARGB(255, 37, 37, 54)),
+                //   title: Text(
+                //     'Song Info',
+                //     style: TextStyle(color: Color.fromARGB(255, 37, 37, 54)),
+                //   ),
+                // ),
+               
              
               ],
             ),

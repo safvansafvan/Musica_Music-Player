@@ -65,7 +65,6 @@ flutter:
   assets:
     - assets/images/band.avif
     - assets/images/playlist.jpeg
-    
     - assets/images/playlistss.png
     - assets/images/settings.webp
     - assets/images/contact.avif
@@ -73,6 +72,7 @@ flutter:
     - assets/images/profile.jpg
     - assets/images/contact.jpg
     - assets/images/profileq.jpeg
+    - assets/images/splash2.webp
 
 
   #   - images/a_dot_ham.jpeg

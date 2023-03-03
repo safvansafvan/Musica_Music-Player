@@ -10,11 +10,15 @@ import '../../provider/songmodelprovider.dart';
 import '../nowplaying/comp/morebottomsheet.dart';
 import '../nowplaying/nowplaying.dart';
 
+
+// ignore: must_be_immutable
 class Allmusiclisttile extends StatefulWidget {
-  Allmusiclisttile({super.key, required this.songmodel,});
+  Allmusiclisttile({
+    super.key,
+    required this.songmodel,
+  });
   List<SongModel> songmodel = [];
 
- 
   @override
   State<Allmusiclisttile> createState() => _AllmusiclisttileState();
 }
@@ -25,7 +29,7 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-       songs.addAll(widget.songmodel);
+        songs.addAll(widget.songmodel);
         return SizedBox(
           height: 65,
           child: ListTile(
@@ -47,12 +51,13 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
               artworkBorder: BorderRadius.circular(10),
               artworkFit: BoxFit.cover,
             ),
-           title: Text(widget.songmodel[index].displayNameWOExt,
-            // .substring(0,1).toLowerCase()+ widget.songmodel[index].displayNameWOExt.substring(1),
-           
-                maxLines: 1, style: const TextStyle(color: Colors.white70)),
+            title: Text(widget.songmodel[index].displayNameWOExt,
+                // .substring(0,1).toLowerCase()+ widget.songmodel[index].displayNameWOExt.substring(1),
+
+                maxLines: 1,
+                style: const TextStyle(color: Colors.white70)),
             subtitle: Text(
-              '${widget.songmodel[index].artist}',
+              '${widget.songmodel[index].artist.toString() == "<unknown>" ? "Unknown Artist" : widget.songmodel[index].artist}',
               style: const TextStyle(color: Colors.white70),
               maxLines: 1,
             ),
@@ -63,7 +68,7 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                     context: context,
                     builder: (context) {
                       return SizedBox(
-                          height: 180,
+                          height: 120,
                           child: Column(
                             children: [
                               ListTile(
@@ -76,8 +81,10 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                                   ),
                                 ),
                                 onTap: () {
-                                 shoplaylistdialog(context,widget.songmodel[index],);
-                                  
+                                  shoplaylistdialog(
+                                    context,
+                                    widget.songmodel[index],
+                                  );
                                 },
                               ),
                               //2
@@ -139,6 +146,7 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                                             .showSnackBar(add);
                                       }
                                       FavoriteDB.favoitessongs
+                                       // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
                                           .notifyListeners();
 
                                       Navigator.pop(context);
@@ -155,21 +163,6 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                                   );
                                 },
                               ),
-                              //3
-                              ListTile(
-                                leading: const Icon(Icons.info_outline,
-                                    color: Color.fromARGB(255, 39, 33, 55)),
-                                title: const Text(
-                                  'Song info',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 39, 33, 55),
-                                  ),
-                                ),
-                                onTap: () {},
-                              ),
-                              //4
-                              
-                              
                             ],
                           ));
                     },
@@ -181,7 +174,6 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                 )),
             onTap: () {
               Mostlyplayedctl.addmostlyplayed(widget.songmodel[index].id);
-
 
               Recentcontroller.addrecentlyplayed(widget.songmodel[index].id);
 

@@ -11,13 +11,15 @@ class Mostlyplayedctl {
     final mostlyDB = await Hive.openBox('mostlyplayeddb');
     mostlyDB.add(item);
     getmostlyplayed();
+    // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
     mostlyplayednotifier.notifyListeners();
   }
 
   static Future<void> getmostlyplayed() async {
     final mostlyDB = await Hive.openBox('mostlyplayeddb');
-    // final mostlyplayed = mostlyDB.values.toList();
+    final mostlyplayed = mostlyDB.values.toList();
     displaymostlyplayedsongs();
+     // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
     mostlyplayednotifier.notifyListeners();
   }
 

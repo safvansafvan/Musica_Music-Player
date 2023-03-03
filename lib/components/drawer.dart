@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:musica/DB/Fuctionprofile/model/model.dart';
+import 'package:musica/DB/Fuctionprofile/func.dart';
 import 'package:musica/components/draweroptions/profile.dart';
 import 'package:musica/explorescreen/favourites/favorites.dart';
+import 'package:musica/explorescreen/playlist/playlist.dart';
 import 'package:musica/widget/settings/set/settings.dart';
+import '../DB/Fuctionprofile/model/model.dart';
 
 class Drawerwidget extends StatefulWidget {
   const Drawerwidget({super.key});
@@ -14,61 +15,52 @@ class Drawerwidget extends StatefulWidget {
 }
 
 class _DrawerwidgetState extends State<Drawerwidget> {
+  Profilemodel? user;
+  @override
+  void initState() {
+    super.initState();
+    getdetails();
+  }
 
-
- getPersonFromDatabase(int index) async {
-  final box = await Hive.openBox('people');
- final  person = box.getAt(index) as Profilemodel;
- print(person.username);
-return person.username;
-}
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Column(children: [
-      Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: ListTile(
-            leading: CircleAvatar(
-              radius: 33,
-              backgroundImage: FileImage(File('')),
-            ),
-            title: FutureBuilder<dynamic>(
-              
-            future: getPersonFromDatabase(0),
-            
-              builder:(context, snapshot) {
-                if (snapshot.hasData) {
-                  print(snapshot.data.toString());
-                  return Text(snapshot.data!,style: TextStyle(color: Colors.amber),);
-
-                }else{
-                  return Text('');
-                }
-                
-
-              //   return Text(
-                 
-              //   style: TextStyle(
-              //       fontSize: 20,
-              //       fontWeight: FontWeight.w500,
-              //       color: Colors.white70),
-              // ),
-              },
-              
-            ),
-            subtitle: const Text(
-              'Musica player',
-              style: TextStyle(color: Colors.white70),
-            ),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) {
-                  return const Profiewidget();
+      ValueListenableBuilder(
+        valueListenable: profilenotifier,
+        builder: (context, userdata, child) {
+          for (final x in userdata) {
+            user = x;
+          }
+          return Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: 
+              ListTile(
+                leading: CircleAvatar(
+                  
+                  radius: 33,
+                  backgroundImage:
+                      FileImage(File(user?.userimage ?? '')),
+                      child:const  Icon(Icons.person,color: Colors.white60,),
+                ),
+                title: Text(
+                  user?.username ?? 'Update Profile',
+                  style: const TextStyle(color: Colors.white60, fontSize: 15),
+                ),
+                // subtitle: const Text(
+                //   'Musica player',
+                //   style: TextStyle(color: Colors.white70),
+                // ),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return const Profiewidget();
+                    },
+                  ));
                 },
               ));
-            },
-          )),
+        },
+      ),
 
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 17),
@@ -80,7 +72,6 @@ return person.username;
       const SizedBox(
         height: 5,
       ),
-
       Container(
         width: 285,
         decoration: BoxDecoration(
@@ -168,20 +159,27 @@ return person.username;
         decoration: BoxDecoration(
             image: const DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/images/contact.jpg')),
+                image: AssetImage('assets/images/playlist.jpeg')),
             color: Colors.blue[200],
             border: Border.all(color: Colors.white60),
             borderRadius: BorderRadius.circular(15)),
-        child: const ListTile(
-          leading: Icon(
-            Icons.contact_page,
+        child: ListTile(
+          leading: const Icon(
+            Icons.playlist_play_rounded,
             size: 27,
             color: Colors.white,
           ),
-          title: Text(
-            'Contact us',
+          title: const Text(
+            'Playlist',
             style: TextStyle(fontSize: 17, color: Colors.white),
           ),
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Playlistwidget(),
+                ));
+          },
         ),
       ),
       const SizedBox(
@@ -196,23 +194,27 @@ return person.username;
             color: Colors.blue[200],
             border: Border.all(color: Colors.white60),
             borderRadius: BorderRadius.circular(15)),
-        child:  ListTile(
-          leading:const Icon(
+        child: ListTile(
+          leading: const Icon(
             Icons.settings,
             size: 27,
             color: Colors.white,
           ),
-          title:const Text(
+          title: const Text(
             'Settings',
             style: TextStyle(fontSize: 17, color: Colors.white),
           ),
-          onTap: (){
-           Navigator.push(context, MaterialPageRoute(builder: (context) =>const Settigs(),));
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Settigs(),
+                ));
           },
         ),
       ),
       const SizedBox(
-        height: 350,
+        height: 370,
       ),
       const Text(
         'Version ',
@@ -224,6 +226,4 @@ return person.username;
       )
     ]));
   }
-  
 }
-

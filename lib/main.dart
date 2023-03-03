@@ -9,13 +9,14 @@ import 'DB/model/model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Hive.registerAdapter(ProfilemodelAdapter());
   Hive.registerAdapter(PlayermodelAdapter());
+  
   await Hive.initFlutter();
   await Hive.openBox<int>('favoritesDB');
   await Hive.openBox<Playermodel>('playlistdata');
-  await Hive.openBox<Profilemodel>('people');
+  await Hive.openBox<Profilemodel>('profiledata');
   
-
   await JustAudioBackground.init(
     androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
     androidNotificationChannelName: 'Audio playback',
@@ -30,10 +31,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       theme: ThemeData(
-         primarySwatch: Colors.blueGrey,
-    
+        primarySwatch: Colors.blueGrey,
       ),
       title: 'Music Player',
       debugShowCheckedModeBanner: false,

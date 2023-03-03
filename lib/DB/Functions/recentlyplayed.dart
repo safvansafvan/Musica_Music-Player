@@ -11,6 +11,7 @@ class Recentcontroller {
     final recentdatabase = await Hive.openBox('recenlylistnotifier');
     recentdatabase.add(item);
     getallrecently();
+     // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
     recenlylistnotifier.notifyListeners();
   }
 
@@ -18,6 +19,7 @@ class Recentcontroller {
     final recentdatabase = await Hive.openBox('recenlylistnotifier');
     final recentlyplayedsong = recentdatabase.values.toList();
     displaydrecent();
+     // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
     recenlylistnotifier.notifyListeners();
   }
 

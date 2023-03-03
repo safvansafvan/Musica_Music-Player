@@ -28,12 +28,21 @@ class _SplashscreemwidgetState extends State<Splashscreemwidget> {
     return  Scaffold(
           body:Container(
             width:double.infinity,
-            color:const Color.fromARGB(255, 39, 33, 55),
+            decoration: const BoxDecoration(
+              color:Color.fromARGB(255, 39, 33, 55),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/splash2.webp'))
+            ),
+            
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
              children:const [
-              Icon(Icons.music_note,size: 150,color: Colors.white54,),
-              Text('Musica',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white54,),)
+              SizedBox(height: 550,),
+              // Icon(Icons.music_note,size: 150,color: Colors.white54,),
+              Text('Musica',style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold,color:Colors.white60),),
+              SizedBox(height: 150,),
+              Text('Music Is My Life .The Lyrics Are My Story',style: TextStyle(fontSize: 10,color:Colors.white60))
              ],
             ),
           ),

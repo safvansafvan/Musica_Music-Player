@@ -31,64 +31,64 @@ class Settigs extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                  border: Border.all(color: Color.fromARGB(154, 33, 149, 243)),
+                  border: Border.all(color: const Color.fromARGB(154, 33, 149, 243)),
                   borderRadius: BorderRadius.circular(8)),
               child: ListTile(
-                leading: Icon(
+                leading:const Icon(
                   Icons.error_outline,
                   color: Colors.white60,
                 ),
-                title: Text(
+                title:const Text(
                   'About Musica',
                   style: TextStyle(
                       color: Colors.white60, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Aboutmus(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const Aboutmus(),));
                 },
               ),
             ),
-            SizedBox(
+           const SizedBox(
               height: 8,
             ),
             Container(
               decoration: BoxDecoration(
-                  border: Border.all(color: Color.fromARGB(154, 33, 149, 243)),
+                  border: Border.all(color:const Color.fromARGB(154, 33, 149, 243)),
                   borderRadius: BorderRadius.circular(8)),
               child: ListTile(
-                leading: Icon(
+                leading:const Icon(
                   Icons.build_circle_outlined,
                   color: Colors.white60,
                 ),
-                title: Text(
+                title:const Text(
                   'Terms And Conditions',
                   style: TextStyle(
                       color: Colors.white60, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Termsandconditions(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const Termsandconditions(),));
                 },
               ),
             ),
-            SizedBox(
+           const SizedBox(
               height: 8,
             ),
             Container(
               decoration: BoxDecoration(
-                  border: Border.all(color: Color.fromARGB(154, 33, 149, 243)),
+                  border: Border.all(color:const Color.fromARGB(154, 33, 149, 243)),
                   borderRadius: BorderRadius.circular(8)),
               child: ListTile(
-                leading: Icon(
+                leading:const Icon(
                   Icons.gpp_maybe_outlined,
                   color: Colors.white60,
                 ),
-                title: Text(
+                title:const Text(
                   'Privacy And Policy',
                   style: TextStyle(
                       color: Colors.white60, fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Privacyandpolicy(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const Privacyandpolicy(),));
                 },
               ),
             )

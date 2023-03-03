@@ -17,6 +17,7 @@ class Playlistdatabase {
     final playlistdata = Hive.box<Playermodel>('playlistdata');
     playlistnotifier.value.clear();
     playlistnotifier.value.addAll(playlistdata.values);
+     // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
     playlistnotifier.notifyListeners();
   }
 

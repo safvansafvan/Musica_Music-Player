@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:musica/DB/Functions/functionfav.dart';
 import 'package:musica/controller/getallsongcontroller.dart';
 import 'package:musica/screens/allmusic/allmusiclisttile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -30,7 +31,7 @@ class _AllsongswidgetState extends State<Allsongswidget> {
     Permission.storage.request();
   }
 
-  final audioqury = OnAudioQuery();
+  final OnAudioQuery audioqury = OnAudioQuery();
   final AudioPlayer audioPlayer = AudioPlayer();
 
   @override
@@ -42,6 +43,7 @@ class _AllsongswidgetState extends State<Allsongswidget> {
             uriType: UriType.EXTERNAL,
             ignoreCase: true
             ),
+
 
         builder: (context, item) {
           if (item.data == null) {
@@ -62,6 +64,10 @@ class _AllsongswidgetState extends State<Allsongswidget> {
 
           // playlist
           Getallsongs.copysong = item.data!;
+
+          if (!FavoriteDB.isinitialized) {
+            FavoriteDB.init(item.data!);
+          }
 
           return Allmusiclisttile(
             songmodel: item.data!,

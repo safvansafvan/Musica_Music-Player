@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:musica/explorescreen/playlist/playlist.dart';
-import '../widget/recently.dart';
+
+import '../../widget/recently.dart';
+
 
 class Explorescreen extends StatefulWidget {
   const Explorescreen({super.key});
@@ -71,11 +73,7 @@ class _ExplorescreenState extends State<Explorescreen> {
                   color: Colors.white60),
             ),
           ),
-          const SizedBox(
-            height: 360,
-            width: double.infinity,
-            child: Recentwidget(),
-          )
+          const Recentwidget()
         ],
       ),
     );

@@ -8,7 +8,7 @@ part of 'model.dart';
 
 class ProfilemodelAdapter extends TypeAdapter<Profilemodel> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
   Profilemodel read(BinaryReader reader) {
@@ -17,8 +17,8 @@ class ProfilemodelAdapter extends TypeAdapter<Profilemodel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Profilemodel(
-      userimage: fields[1] as dynamic,
-      username: fields[0] as dynamic,
+      userimage: fields[1] as String,
+      username: fields[0] as String,
     );
   }
 

@@ -38,150 +38,98 @@ class _PlaylistwidgetState extends State<Playlistwidget> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
+        child: Center(
+            child: Expanded(
                 child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: ValueListenableBuilder(
-                  valueListenable:
-                      Hive.box<Playermodel>('playlistdata').listenable(),
-                  builder: (BuildContext context, Box<Playermodel> musiclist,
-                      Widget? child) {
-                    return ListView.builder(
-                      itemCount: musiclist.length,
-                      itemBuilder: (context, index) {
-                        final data = musiclist.values.toList()[index];
-                        return Slidable(
-                          endActionPane:
-                              ActionPane(motion: const BehindMotion(), children: [
-                            SlidableAction(
-                              onPressed: (context) {
-                                deleteplaylist(context, musiclist, index);
-                              },
-                              
-                              icon: Icons.delete_outline,
-                              foregroundColor: Colors.red,
-                              backgroundColor: const Color.fromARGB(255, 37, 37, 54),
-                            ),
-                            SlidableAction(
-                              onPressed: (context) {
-                                editplaylistname(context, data, index);
-                              },
-                              icon: Icons.edit,
-                              backgroundColor: const Color.fromARGB(255, 37, 37, 54),
-                            ),
-                            
-                          ]),
-                          child: Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      image: const DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage(
-                                              'assets/images/playlistss.png')),
-                                      color: const Color.fromARGB(255, 29, 29, 45),
-                                      borderRadius: BorderRadius.circular(15),
-                                      border:
-                                          Border.all(color: Colors.white30)),
-                                  child: ListTile(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                Playlisttoaddsong(
-                                                    sindex: index,
-                                                    playlist: data),
-                                          ));
-                                    },
-                                    leading: const Icon(
-                                      Icons.music_note_outlined,
-                                      color: Color.fromARGB(255, 29, 29, 45),
-                                    ),
-                                    title: Text(
-                                      data.name,
-                                      textAlign: TextAlign.left,
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                        color: Color.fromARGB(255, 29, 29, 45),
-                                      ),
-                                    ),
-                                    trailing: IconButton( tooltip: 'Drag Left', icon: const Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,), onPressed: () { 
-                                      
-                                     },),
-                                    // trailing: PopupMenuButton(
-                                    //   color: Colors.white60,
-                                    //   icon: const Icon(Icons.more_vert),
-                                    //   itemBuilder: (context) {
-                                    //     return [
-                                    //       PopupMenuItem(
-                                    //           value: 1,
-                                    //           child: Row(
-                                    //             children: const [
-                                    //               Icon(
-                                    //                 Icons.delete_outlined,
-                                    //                 color: Color.fromARGB(
-                                    //                     255, 39, 33, 55),
-                                    //               ),
-                                    //               Text(
-                                    //                 'Delete',
-                                    //                 style: TextStyle(
-                                    //                   color: Color.fromARGB(
-                                    //                       255, 39, 33, 55),
-                                    //                 ),
-                                    //               ),
-                                    //             ],
-                                    //           )),
-                                    //       PopupMenuItem(
-                                    //           value: 2,
-                                    //           child: Row(
-                                    //             children: const [
-                                    //               Icon(
-                                    //                 Icons.edit,
-                                    //                 color: Color.fromARGB(
-                                    //                     255, 39, 33, 55),
-                                    //               ),
-                                    //               Text('Edit',
-                                    //                   style: TextStyle(
-                                    //                     color: Color.fromARGB(
-                                    //                         255, 39, 33, 55),
-                                    //                   )),
-                                    //             ],
-                                    //           )),
-                                    //     ];
-                                    //   },
-                                    //   onSelected: (value) {
-                                    //     if (value == 1) {
-                                    //       deleteplaylist(
-                                    //           context, musiclist, index);
-                                    //     } else if (value == 2) {
-                                    //       editplaylistname(
-                                    //           context, data, index);
-                                    //     }
-                                    //   },
-                                    // )
-                                  ))),
-                        );
-                      },
+          padding: const EdgeInsets.all(10.0),
+          child: SizedBox(
+            width: double.infinity,
+            child: ValueListenableBuilder(
+              valueListenable:
+                  Hive.box<Playermodel>('playlistdata').listenable(),
+              builder: (BuildContext context, Box<Playermodel> musiclist,
+                  Widget? child) {
+                return ListView.builder(
+                  itemCount: musiclist.length,
+                  itemBuilder: (context, index) {
+                    final data = musiclist.values.toList()[index];
+                    return Slidable(
+                      endActionPane:
+                          ActionPane(motion: const BehindMotion(), children: [
+                        SlidableAction(
+                          onPressed: (context) {
+                            deleteplaylist(context, musiclist, index);
+                          },
+                          icon: Icons.delete_outline,
+                          foregroundColor: Colors.red,
+                          backgroundColor:
+                              const Color.fromARGB(255, 37, 37, 54),
+                        ),
+                        SlidableAction(
+                          onPressed: (context) {
+                            editplaylistname(context, data, index);
+                          },
+                          icon: Icons.edit,
+                          backgroundColor:
+                              const Color.fromARGB(255, 37, 37, 54),
+                        ),
+                      ]),
+                      child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: AssetImage(
+                                          'assets/images/playlistss.png')),
+                                  color: const Color.fromARGB(255, 29, 29, 45),
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(color: Colors.white30)),
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Addplaylist(
+                                            sindex: index, playlist: data),
+                                      ));
+                                },
+                                leading: const Icon(
+                                  Icons.music_note_outlined,
+                                  color: Color.fromARGB(255, 29, 29, 45),
+                                ),
+                                title: Text(
+                                  data.name,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromARGB(255, 29, 29, 45),
+                                  ),
+                                ),
+                                trailing: IconButton(
+                                  tooltip: 'Drag Left',
+                                  icon: const Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ))),
                     );
                   },
-                ),
-              ),
-            ))
-          ],
-        ),
+                );
+              },
+            ),
+          ),
+        ))),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           newplaylist(context, formkey);
         },
         tooltip: 'Add New Playlist',
-        child:const  Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -217,7 +165,7 @@ void newplaylist(BuildContext context, formkey) {
                 key: formkey,
                 child: TextFormField(
                   controller: playlistnamecontroller,
-                  maxLength: 10,
+                  maxLength: 20,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: const BorderSide(color: Colors.black),
@@ -375,7 +323,7 @@ Future<dynamic> editplaylistname(
           style: const TextStyle(
               fontWeight: FontWeight.bold, color: Colors.white60),
           textAlign: TextAlign.center,
-          maxLength: 10,
+          maxLength: 20,
         )),
         const SizedBox(
           height: 5,

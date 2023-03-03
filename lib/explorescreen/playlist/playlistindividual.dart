@@ -9,17 +9,17 @@ import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
-class Playlisttoaddsong extends StatefulWidget {
-  const Playlisttoaddsong(
+class Addplaylist extends StatefulWidget {
+  const Addplaylist(
       {super.key, required this.sindex, required this.playlist});
   final int sindex;
   final Playermodel playlist;
 
   @override
-  State<Playlisttoaddsong> createState() => _PlaylisttoaddsongState();
+  State<Addplaylist> createState() => _PlaylisttoaddsongState();
 }
 
-class _PlaylisttoaddsongState extends State<Playlisttoaddsong> {
+class _PlaylisttoaddsongState extends State<Addplaylist> {
   @override
   Widget build(BuildContext context) {
     late List<SongModel> songplaylist;
