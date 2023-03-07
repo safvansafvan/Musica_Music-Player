@@ -40,17 +40,12 @@ class _DrawerwidgetState extends State<Drawerwidget> {
                   
                   radius: 33,
                   backgroundImage:
-                      FileImage(File(user?.userimage ?? '')),
-                      child:const  Icon(Icons.person,color: Colors.white60,),
+                      FileImage(File(user?.userimage ?? '${const Icon(Icons.person,color: Colors.white60,)}')),
                 ),
                 title: Text(
                   user?.username ?? 'Update Profile',
                   style: const TextStyle(color: Colors.white60, fontSize: 15),
                 ),
-                // subtitle: const Text(
-                //   'Musica player',
-                //   style: TextStyle(color: Colors.white70),
-                // ),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
@@ -132,25 +127,6 @@ class _DrawerwidgetState extends State<Drawerwidget> {
           },
         ),
       ),
-      // const SizedBox(
-      //   height: 5,
-      // ),
-      // Container(
-      //    width:285,
-      //   decoration: BoxDecoration(
-      //       color: Colors.blue[200], borderRadius: BorderRadius.circular(15)),
-      //   child: const ListTile(
-      //     leading: Icon(
-      //       Icons.language,
-      //       size: 27,
-      //       color: Colors.white,
-      //     ),
-      //     title: Text(
-      //       'Language',
-      //       style: TextStyle(fontSize: 17, color: Colors.white),
-      //     ),
-      //   ),
-      // ),
       const SizedBox(
         height: 5,
       ),
