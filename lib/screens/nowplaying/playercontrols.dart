@@ -44,7 +44,7 @@ class _PlayercontrolerState extends State<Playercontroler> {
                 if (isshuffle) {
                   return Icon(
                     Icons.shuffle_on_outlined,
-                    color: Colors.blue[300],
+                    color: Colors.blue[100],
                   );
                 } else {
                   return const Icon(
@@ -121,7 +121,7 @@ class _PlayercontrolerState extends State<Playercontroler> {
                 )),
         IconButton(
             onPressed: () {
-              Getallsongs.audioPlayer.loopMode==LoopMode.one
+              Getallsongs.audioPlayer.loopMode == LoopMode.one
                   ? Getallsongs.audioPlayer.setLoopMode(LoopMode.all)
                   : Getallsongs.audioPlayer.setLoopMode(LoopMode.one);
             },
@@ -130,9 +130,9 @@ class _PlayercontrolerState extends State<Playercontroler> {
               builder: (context, snapshot) {
                 final loopmode = snapshot.data;
                 if (LoopMode.one == loopmode) {
-                  return  Icon(
+                  return Icon(
                     Icons.repeat_on_outlined,
-                    color: Colors.blue[300],
+                    color: Colors.blue[100],
                   );
                 } else {
                   return const Icon(

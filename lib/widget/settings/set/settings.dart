@@ -14,10 +14,10 @@ class Settigs extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 39, 33, 55),
         elevation: 15,
-        leading: const Icon(
-          Icons.arrow_back_ios,
-          color: Colors.white60,
-        ),
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, icon:const Icon(Icons.arrow_back_ios,
+          color: Colors.white60,)) ,
         title: const Text(
           'Settings',
           style: TextStyle(

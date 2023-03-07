@@ -109,7 +109,6 @@ class _ProfiewidgetState extends State<Profiewidget> {
                       if (photo != null) {
                         Navigator.pop(context);
                         savebuttonclick();
-                        
                       }
                     }),
                     icon: const Icon(Icons.save_outlined),
@@ -126,10 +125,8 @@ class _ProfiewidgetState extends State<Profiewidget> {
       return;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-       
           backgroundColor: Color.fromARGB(222, 38, 46, 67),
           behavior: SnackBarBehavior.floating,
-          
           content: Text(
             'Profile Updated',
             style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white),

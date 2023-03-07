@@ -43,6 +43,7 @@ dependencies:
   flutter_slidable: 2.0.0
   image_picker: 0.8.6+3
   
+  
 
 dev_dependencies:
   build_runner: 2.3.3
@@ -63,16 +64,17 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/band.avif
     - assets/images/playlist.jpeg
     - assets/images/playlistss.png
     - assets/images/settings.webp
-    - assets/images/contact.avif
     - assets/images/favourites.jpeg
     - assets/images/profile.jpg
     - assets/images/contact.jpg
     - assets/images/profileq.jpeg
     - assets/images/splash2.webp
+    - assets/images/backroundminiplayerone.jpeg
+    - assets/images/backroundminiplayer.jpeg
+    - assets/images/miniplayerb.jpg
 
 
   #   - images/a_dot_ham.jpeg

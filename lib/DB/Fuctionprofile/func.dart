@@ -11,7 +11,6 @@ Future<void> adddetails(Profilemodel userprofile) async {
   // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
   profilenotifier.notifyListeners();
 }
-
 Future<void>getdetails()async{
    final profile = await Hive.openBox<Profilemodel>('profiledata');
    profilenotifier.value.clear();

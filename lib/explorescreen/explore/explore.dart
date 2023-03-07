@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/explorescreen/playlist/playlist.dart';
-
 import '../../widget/recently.dart';
-
 
 class Explorescreen extends StatefulWidget {
   const Explorescreen({super.key});

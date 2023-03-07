@@ -27,21 +27,21 @@ class Mostlyplayedctl {
     final mostlyDB = await Hive.openBox('mostlyplayeddb');
     final mostlyplayeditem = mostlyDB.values.toList();
     mostlyplayednotifier.value.clear();
-    int count = 0;
+    int value = 0;
     for (var i = 0; i < mostlyplayeditem.length; i++) {
       for (var j = 0; j < mostlyplayeditem.length; j++) {
         if (mostlyplayeditem[i] == mostlyplayeditem[j]) {
-          count++;
+          value++;
         }
       }
-      if (count>3) {
-        for (var k = 0; k <startsong.length ; k++) {
-          if (mostlyplayeditem[i]==startsong[k].id) {
-            mostlyplayednotifier.value.add(startsong[k]);
-            mostlyplayed.add(startsong[k]);
+      if (value>5) {
+        for (var m = 0; m<startsong.length ; m++) {
+          if (mostlyplayeditem[i]==startsong[m].id) {
+            mostlyplayednotifier.value.add(startsong[m]);
+            mostlyplayed.add(startsong[m]);
           }
         }
-        count=0;
+        value=0;
       }
     }
     return mostlyplayed;

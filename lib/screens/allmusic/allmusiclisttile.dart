@@ -3,7 +3,6 @@ import 'package:musica/DB/Functions/functionfav.dart';
 import 'package:musica/DB/Functions/functionmostlyplayed.dart';
 import 'package:musica/DB/Functions/recentlyplayed.dart';
 import 'package:musica/controller/getallsongcontroller.dart';
-
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 import '../../provider/songmodelprovider.dart';
@@ -52,8 +51,6 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
               artworkFit: BoxFit.cover,
             ),
             title: Text(widget.songmodel[index].displayNameWOExt,
-                // .substring(0,1).toLowerCase()+ widget.songmodel[index].displayNameWOExt.substring(1),
-
                 maxLines: 1,
                 style: const TextStyle(color: Colors.white70)),
             subtitle: Text(
@@ -180,9 +177,7 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
               Getallsongs.audioPlayer.setAudioSource(
                   Getallsongs.createsongslist(widget.songmodel),
                   initialIndex: index);
-              context
-                  .read<Songmodelprovider>()
-                  .setid(widget.songmodel[index].id);
+               context.read<Songmodelprovider>().setid(widget.songmodel[index].id);
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Nowplaying(
                         songModel: widget.songmodel,
@@ -193,7 +188,7 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
         );
       },
       itemCount: widget.songmodel.length,
-      controller: ScrollController(keepScrollOffset: true),
+      
     );
   }
 }

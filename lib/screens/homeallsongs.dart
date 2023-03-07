@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:musica/components/drawer.dart';
 import 'package:musica/controller/getallsongcontroller.dart';
 import 'package:musica/explorescreen/explore/explore.dart';
 import 'package:musica/search/search.dart';
+import 'package:musica/widget/mniplayer.dart';
 import 'package:musica/widget/mostplayed.dart';
-import '../widget/mniplayer.dart';
 import 'allmusic/allmusic.dart';
 
 class Allsongs extends StatefulWidget {
@@ -16,19 +15,15 @@ class Allsongs extends StatefulWidget {
 }
 
 class _AllsongsState extends State<Allsongs> {
-  
-  GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
-
 
   int bottomnavindexnum = 0;
-  List tabbarwidget =const [Allsongswidget(), Mostplayed(),  Explorescreen()];
+  List tabbarwidget = const [Allsongswidget(), Mostplayed(), Explorescreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 39, 33, 55),
       appBar: AppBar(
-      
         elevation: 15,
         backgroundColor: const Color.fromARGB(255, 39, 33, 55),
         title: const Text(
@@ -37,37 +32,29 @@ class _AllsongsState extends State<Allsongs> {
               fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
         ),
         actions: [
-          Wrap(
-            children: [
-              IconButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>const Searchwidget(),
-                    ));
-                  },
-                  icon: const Icon(
-                    Icons.search,
-                    size: 30,
-                    color: Colors.white,
-                  )),
-            ],
-          ),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const Searchwidget(),
+                ));
+              },
+              icon: const Icon(
+                Icons.search,
+                size: 30,
+                color: Colors.white,
+              )),
         ],
       ),
-      body:
-       Stack(
+      body: Stack(
         children: [
           tabbarwidget[bottomnavindexnum],
           Positioned(
               bottom: 0,
-              child: Column(
-                children: [
-                  Getallsongs.audioPlayer.currentIndex != null
-                      ? const Miniplayers()
-                      : Container()
-                ],
-              ))
-              
+              child: Column(children: [
+                Getallsongs.audioPlayer.currentIndex != null
+                    ? const Miniplayers()
+                    : Container()
+              ]))
         ],
       ),
 
@@ -94,15 +81,13 @@ class _AllsongsState extends State<Allsongs> {
       // ),
       // ),
       drawer: const Drawer(
-          backgroundColor:  Color.fromARGB(201, 25, 21, 36),
+          backgroundColor: Color.fromARGB(201, 25, 21, 36),
           child: Drawerwidget()),
 
-    
-      
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
-        elevation: 30.5,
-        backgroundColor:const Color.fromARGB(255, 46, 42, 57),
+       elevation: 15,
+        backgroundColor: const Color.fromARGB(111, 39, 33, 55),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(
@@ -113,11 +98,17 @@ class _AllsongsState extends State<Allsongs> {
           ),
           BottomNavigationBarItem(
               backgroundColor: Color.fromARGB(255, 42, 35, 58),
-              icon: Icon(Icons.topic_sharp,color: Colors.white60,),
+              icon: Icon(
+                Icons.topic_sharp,
+                color: Colors.white60,
+              ),
               label: 'Mostly Played'),
           BottomNavigationBarItem(
               backgroundColor: Color.fromARGB(255, 42, 35, 58),
-              icon: Icon(Icons.explore,color: Colors.white60,),
+              icon: Icon(
+                Icons.explore,
+                color: Colors.white60,
+              ),
               label: 'Explore')
         ],
         currentIndex: bottomnavindexnum,

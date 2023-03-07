@@ -63,11 +63,9 @@ class _RecentwidgetState extends State<Recentwidget> {
                     );
                   }
                   return ListView.builder(
-                    controller: ScrollController(keepScrollOffset:true ),
+                    controller: ScrollController(keepScrollOffset: true),
                     shrinkWrap: true,
-                    itemCount: recent.length>10
-                    ?10
-                    :recent.length,
+                    itemCount: recent.length > 10 ? 10 : recent.length,
                     itemBuilder: (context, index) => ListTile(
                       leading: QueryArtworkWidget(
                         id: recent[index].id,

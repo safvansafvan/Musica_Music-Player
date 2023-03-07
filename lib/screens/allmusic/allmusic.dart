@@ -41,10 +41,7 @@ class _AllsongswidgetState extends State<Allsongswidget> {
             sortType: null,
             orderType: OrderType.ASC_OR_SMALLER,
             uriType: UriType.EXTERNAL,
-            ignoreCase: true
-            ),
-
-
+            ignoreCase: true),
         builder: (context, item) {
           if (item.data == null) {
             return const Center(

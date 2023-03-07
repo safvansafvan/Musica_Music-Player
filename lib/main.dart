@@ -11,12 +11,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Hive.registerAdapter(ProfilemodelAdapter());
   Hive.registerAdapter(PlayermodelAdapter());
-  
+
   await Hive.initFlutter();
   await Hive.openBox<int>('favoritesDB');
   await Hive.openBox<Playermodel>('playlistdata');
   await Hive.openBox<Profilemodel>('profiledata');
-  
+
   await JustAudioBackground.init(
     androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
     androidNotificationChannelName: 'Audio playback',

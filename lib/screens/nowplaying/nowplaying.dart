@@ -64,6 +64,7 @@ class _NowplatingState extends State<Nowplaying> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 39, 33, 55),
         appBar: AppBar(
           elevation: 15,
          backgroundColor: const Color.fromARGB(255, 39, 33, 55),
@@ -80,9 +81,9 @@ class _NowplatingState extends State<Nowplaying> {
           ),
         ),
         body: SafeArea(
-          child: Container(
+          child: SizedBox(
             height: double.infinity,
-            color: const Color.fromARGB(255, 39, 33, 55),
+            // color: const Color.fromARGB(255, 39, 33, 55),
             child: ListView(children: [
               const SizedBox(
                 height: 100,
@@ -183,7 +184,7 @@ class _NowplatingState extends State<Nowplaying> {
                       },
                       icon: Icon(
                           FavoriteDB.isfavo(widget.songModel[currentindex])
-                              ? Icons.favorite
+                              ?  Icons.favorite
                               : Icons.favorite_border_outlined,
                           color: Colors.white60),
                     ),
@@ -220,7 +221,7 @@ class _NowplatingState extends State<Nowplaying> {
                       });
                     },
                     activeColor: Colors.white60,
-                    thumbColor: Colors.white60,
+                    thumbColor: Colors.white70,
                     inactiveColor: Colors.white60,
                   )),
                   Padding(

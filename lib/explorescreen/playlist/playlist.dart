@@ -49,76 +49,91 @@ class _PlaylistwidgetState extends State<Playlistwidget> {
                   Hive.box<Playermodel>('playlistdata').listenable(),
               builder: (BuildContext context, Box<Playermodel> musiclist,
                   Widget? child) {
-                return ListView.builder(
-                  itemCount: musiclist.length,
-                  itemBuilder: (context, index) {
-                    final data = musiclist.values.toList()[index];
-                    return Slidable(
-                      endActionPane:
-                          ActionPane(motion: const BehindMotion(), children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            deleteplaylist(context, musiclist, index);
-                          },
-                          icon: Icons.delete_outline,
-                          foregroundColor: Colors.red,
-                          backgroundColor:
-                              const Color.fromARGB(255, 37, 37, 54),
+                return Hive.box<Playermodel>('playlistdata').isEmpty
+                    ? const Center(
+                        child: Text(
+                          'No Playlist Found',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white60),
                         ),
-                        SlidableAction(
-                          onPressed: (context) {
-                            editplaylistname(context, data, index);
-                          },
-                          icon: Icons.edit,
-                          backgroundColor:
-                              const Color.fromARGB(255, 37, 37, 54),
-                        ),
-                      ]),
-                      child: Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(
-                                          'assets/images/playlistss.png')),
-                                  color: const Color.fromARGB(255, 29, 29, 45),
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(color: Colors.white30)),
-                              child: ListTile(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => Addplaylist(
-                                            sindex: index, playlist: data),
-                                      ));
-                                },
-                                leading: const Icon(
-                                  Icons.music_note_outlined,
-                                  color: Color.fromARGB(255, 29, 29, 45),
-                                ),
-                                title: Text(
-                                  data.name,
-                                  textAlign: TextAlign.left,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color.fromARGB(255, 29, 29, 45),
+                      )
+                    : ListView.builder(
+                        itemCount: musiclist.length,
+                        itemBuilder: (context, index) {
+                          final data = musiclist.values.toList()[index];
+                          return Slidable(
+                            endActionPane: ActionPane(
+                                motion: const BehindMotion(),
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (context) {
+                                      deleteplaylist(context, musiclist, index);
+                                    },
+                                    icon: Icons.delete_outline,
+                                    foregroundColor: Colors.red,
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 37, 37, 54),
                                   ),
-                                ),
-                                trailing: IconButton(
-                                  tooltip: 'Drag Left',
-                                  icon: const Icon(
-                                    Icons.arrow_forward_ios_rounded,
-                                    color: Colors.white,
+                                  SlidableAction(
+                                    onPressed: (context) {
+                                      editplaylistname(context, data, index);
+                                    },
+                                    icon: Icons.edit,
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 37, 37, 54),
                                   ),
-                                  onPressed: () {},
-                                ),
-                              ))),
-                    );
-                  },
-                );
+                                ]),
+                            child: Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: AssetImage(
+                                                'assets/images/playlistss.png')),
+                                        color: const Color.fromARGB(
+                                            255, 29, 29, 45),
+                                        borderRadius: BorderRadius.circular(15),
+                                        border:
+                                            Border.all(color: Colors.white30)),
+                                    child: ListTile(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => Addplaylist(
+                                                  sindex: index,
+                                                  playlist: data),
+                                            ));
+                                      },
+                                      leading: const Icon(
+                                        Icons.music_note_outlined,
+                                        color: Color.fromARGB(255, 29, 29, 45),
+                                      ),
+                                      title: Text(
+                                        data.name,
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              Color.fromARGB(255, 29, 29, 45),
+                                        ),
+                                      ),
+                                      trailing: IconButton(
+                                        tooltip: 'Drag Left',
+                                        icon: const Icon(
+                                          Icons.arrow_forward_ios_rounded,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {},
+                                      ),
+                                    ))),
+                          );
+                        },
+                      );
               },
             ),
           ),

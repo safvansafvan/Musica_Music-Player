@@ -34,6 +34,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                   color: Color.fromARGB(255, 39, 33, 55),
                 )),
             title: TextField(
+              
               onChanged: (value) => textupdatetextfield(value),
               decoration: InputDecoration(
                   filled: true,
@@ -67,10 +68,14 @@ class _SearchwidgetState extends State<Searchwidget> {
   textupdatetextfield(String text) {
     List<SongModel> result = [];
     if (text.isEmpty) {
-      result = totalsongs;
+      setState(() {
+        result = totalsongs;
+      });
     } else {
       result = totalsongs
-          .where((element) => element.displayNameWOExt.toLowerCase().trim()
+          .where((element) => element.displayNameWOExt
+              .toLowerCase()
+              .trim()
               .contains(text.toLowerCase().trim()))
           .toList();
     }
@@ -86,5 +91,8 @@ class _SearchwidgetState extends State<Searchwidget> {
       uriType: UriType.EXTERNAL,
       ignoreCase: true,
     );
+    setState(() {
+      stillsongs = totalsongs;
+    });
   }
 }

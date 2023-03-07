@@ -14,7 +14,6 @@ class Mostplayed extends StatefulWidget {
 class _MostplayedState extends State<Mostplayed> {
   OnAudioQuery audioQuery = OnAudioQuery();
   List<SongModel> mostly = [];
-  // List<SongModel> mostlyplayedlist = [];
 
   @override
   void initState() {
@@ -25,7 +24,6 @@ class _MostplayedState extends State<Mostplayed> {
   init() async {
     await Mostlyplayedctl.getmostlyplayed();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +66,7 @@ class _MostplayedState extends State<Mostplayed> {
                     }
                     return ListView.builder(
                       shrinkWrap: true,
-                      itemCount: mostly.length,
+                      itemCount: mostly.length > 10 ? 10 : mostly.length,
                       itemBuilder: (context, index) {
                         return ListTile(
                           leading: QueryArtworkWidget(

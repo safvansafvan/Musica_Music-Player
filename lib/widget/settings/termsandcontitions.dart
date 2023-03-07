@@ -27,12 +27,13 @@ class Termsandconditions extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
                 padding: EdgeInsets.all(15),
-                child: Text("""
-                  Last updated: 27/Feb/2023
+                child: Text(
+                  """
+Last updated: 27/Feb/2023
                   
-                  Introduction
+Introduction
                   
-                  Welcome to Musica App,\n
+sWelcome to Musica App,\n
                   These Terms of Service govern your use of our website located at lala.com (together or individually “Service”) operated by Musica App.\n
                   Our Privacy Policy also governs your use of our Service and explains how we collect, safeguard and disclose information that results from your use of our web pages.
                   
