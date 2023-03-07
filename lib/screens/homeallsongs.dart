@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:musica/DB/Fuctionprofile/func.dart';
 import 'package:musica/components/drawer.dart';
 import 'package:musica/controller/getallsongcontroller.dart';
 import 'package:musica/explorescreen/explore/explore.dart';
@@ -15,7 +16,6 @@ class Allsongs extends StatefulWidget {
 }
 
 class _AllsongsState extends State<Allsongs> {
-
   int bottomnavindexnum = 0;
   List tabbarwidget = const [Allsongswidget(), Mostplayed(), Explorescreen()];
 
@@ -52,41 +52,24 @@ class _AllsongsState extends State<Allsongs> {
               bottom: 0,
               child: Column(children: [
                 Getallsongs.audioPlayer.currentIndex != null
-                    ? const Miniplayers()
-                    : Container()
+                    ? StreamBuilder<bool>(
+                      stream: Getallsongs.audioPlayer.playingStream,
+                      builder: (context, snapshot) {
+                        
+                        return const Miniplayers();
+                      }
+                    )
+                    : Container()  
               ]))
         ],
       ),
-
-      // body: tabbarwidget.elementAt(0),
-      // body:
-      // //  SafeArea(
-
-      // child: Stack(
-      //   children: [
-      //     Container(
-      //       height: double.infinity,
-      //       color: const Color.fromARGB(255, 39, 33, 55),
-
-      //     ),
-      // Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-      //   Getallsongs.audioPlayer.currentIndex == null
-      //       ? Container()
-      //       : const Miniplayers()
-      //   // if(Getallsongs.audioPlayer.currentIndex!=null){
-      //   //   const Miniplayers(),
-      //   // }
-      // ])
-      //   ],
-      // ),
-      // ),
       drawer: const Drawer(
           backgroundColor: Color.fromARGB(201, 25, 21, 36),
           child: Drawerwidget()),
 
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
-       elevation: 15,
+        elevation: 15,
         backgroundColor: const Color.fromARGB(111, 39, 33, 55),
         items: const [
           BottomNavigationBarItem(

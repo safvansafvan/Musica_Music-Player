@@ -19,11 +19,11 @@ class _MiniplayersState extends State<Miniplayers> {
     Getallsongs.audioPlayer.currentIndexStream.listen((index) {
       if (index != null && mounted) {
         setState(() {
+          
           index == 0 ? firstsong = true : firstsong = false;
         });
       }
     });
-
     super.initState();
   }
 
@@ -39,6 +39,7 @@ class _MiniplayersState extends State<Miniplayers> {
           },
         ));
       },
+      
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Padding(
@@ -86,9 +87,6 @@ class _MiniplayersState extends State<Miniplayers> {
                           }
                         }),
                   ),
-                  // SizedBox(
-                  //   width: 20,
-                  // ),
                   firstsong
                       ? IconButton(
                           onPressed: () {},

@@ -34,7 +34,6 @@ class _SearchwidgetState extends State<Searchwidget> {
                   color: Color.fromARGB(255, 39, 33, 55),
                 )),
             title: TextField(
-              
               onChanged: (value) => textupdatetextfield(value),
               decoration: InputDecoration(
                   filled: true,
@@ -67,6 +66,7 @@ class _SearchwidgetState extends State<Searchwidget> {
 
   textupdatetextfield(String text) {
     List<SongModel> result = [];
+
     if (text.isEmpty) {
       setState(() {
         result = totalsongs;
