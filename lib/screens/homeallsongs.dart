@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:musica/DB/Fuctionprofile/func.dart';
 import 'package:musica/components/drawer.dart';
 import 'package:musica/controller/getallsongcontroller.dart';
 import 'package:musica/explorescreen/explore/explore.dart';
@@ -55,7 +54,7 @@ class _AllsongsState extends State<Allsongs> {
                     ? StreamBuilder<bool>(
                       stream: Getallsongs.audioPlayer.playingStream,
                       builder: (context, snapshot) {
-                        
+
                         return const Miniplayers();
                       }
                     )

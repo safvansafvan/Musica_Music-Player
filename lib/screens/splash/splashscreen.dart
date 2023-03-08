@@ -40,7 +40,7 @@ class _SplashscreemwidgetState extends State<Splashscreemwidget> {
              children:const [
               SizedBox(height: 550,),
               // Icon(Icons.music_note,size: 150,color: Colors.white54,),
-              Text('Musica',style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold,color:Colors.white60),),
+              Text('Audizi Player',style: TextStyle(fontSize: 30,fontWeight: FontWeight.w500,color:Colors.white60),),
               SizedBox(height: 150,),
               Text('Music Is My Life .The Lyrics Are My Story',style: TextStyle(fontSize: 10,color:Colors.white60))
              ],

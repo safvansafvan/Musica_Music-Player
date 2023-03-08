@@ -65,15 +65,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/playlist.jpeg
-    - assets/images/playlistss.png
     - assets/images/settings.webp
     - assets/images/favourites.jpeg
     - assets/images/profile.jpg
-    - assets/images/contact.jpg
     - assets/images/profileq.jpeg
     - assets/images/splash2.webp
-    - assets/images/backroundminiplayerone.jpeg
-    - assets/images/backroundminiplayer.jpeg
     - assets/images/miniplayerb.jpg
 
 

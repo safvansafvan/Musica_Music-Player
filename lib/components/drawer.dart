@@ -37,10 +37,10 @@ class _DrawerwidgetState extends State<Drawerwidget> {
               child: 
               ListTile(
                 leading: CircleAvatar(
-                  
                   radius: 33,
                   backgroundImage:
-                      FileImage(File(user?.userimage ?? '${const Icon(Icons.person,color: Colors.white60,)}')),
+                      FileImage(File(user?.userimage ?? 
+                      '${const Icon(Icons.person,color: Colors.white60,)}')),
                 ),
                 title: Text(
                   user?.username ?? 'Update Profile',

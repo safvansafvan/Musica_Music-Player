@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:musica/components/splash/splashscreen.dart';
 import 'package:musica/provider/songmodelprovider.dart';
+import 'package:musica/screens/splash/splashscreen.dart';
 import 'package:provider/provider.dart';
 import 'DB/Fuctionprofile/model/model.dart';
 import 'DB/model/model.dart';
@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      title: 'Music Player',
+      title: 'Audizi Music Player',
       debugShowCheckedModeBanner: false,
-      home: const Splashscreemwidget(),
+      home: const Splashscreemwidgets()
     );
   }
 }
