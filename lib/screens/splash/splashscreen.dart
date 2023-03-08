@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:musica/screens/homeallsongs.dart';
 
 
-class Splashscreemwidget extends StatefulWidget {
-  const Splashscreemwidget({super.key});
+class Splashscreemwidgets extends StatefulWidget {
+  const Splashscreemwidgets({super.key});
 
   @override
-  State<Splashscreemwidget> createState() => _SplashscreemwidgetState();
+  State<Splashscreemwidgets> createState() => _SplashscreemwidgetsState();
 }
 
-class _SplashscreemwidgetState extends State<Splashscreemwidget> {
+class _SplashscreemwidgetsState extends State<Splashscreemwidgets> {
    
    @override
   void initState() {

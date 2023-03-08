@@ -29,7 +29,7 @@ class Privacyandpolicy extends StatelessWidget {
                 padding: EdgeInsets.all(15),
                 child: Text(
                   """
-Privacy Policy for Musica player
+Privacy Policy for Audizi Player
           
 Last updated: 27/Feb/2023
           
@@ -43,9 +43,9 @@ Last updated: 27/Feb/2023
           
           Affiliate means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.
           
-          Application refers to Musica player, the software program provided by the Company.
+          Application refers to Audizi Player , the software program provided by the Company.
           
-          Company (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Musica player.
+          Company (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Audizi  .
           
           Country refers to: Kerala, India Device means any device that can access the Service such as a computer, a cellphone or a digital tablet.
           

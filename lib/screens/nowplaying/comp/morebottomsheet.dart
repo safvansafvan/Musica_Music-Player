@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/explorescreen/playlist/playlist.dart';
-import 'package:musica/widget/songinfo.dart';
+import 'package:musica/screens/songinfo/songinfo.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 void showbottomsheet(BuildContext context, SongModel songModel) {

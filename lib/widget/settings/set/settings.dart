@@ -12,18 +12,24 @@ class Settigs extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 39, 33, 55),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 39, 33, 55),
-        elevation: 15,
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon:const Icon(Icons.arrow_back_ios,
-          color: Colors.white60,)) ,
-        title: const Text(
-          'Settings',
-          style: TextStyle(
-              color: Colors.white60, fontWeight: FontWeight.w500, fontSize: 20),
-        ),
-      ),
+            backgroundColor: const Color.fromARGB(255, 37, 37, 54),
+            elevation: 15,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white60,
+                )),
+            title: const Text(
+              'Settings',
+              style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.white60,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -39,7 +45,7 @@ class Settigs extends StatelessWidget {
                   color: Colors.white60,
                 ),
                 title:const Text(
-                  'About Musica',
+                  'About Audizi',
                   style: TextStyle(
                       color: Colors.white60, fontWeight: FontWeight.w500),
                 ),

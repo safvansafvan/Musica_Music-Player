@@ -4,7 +4,7 @@ import 'package:musica/controller/getallsongcontroller.dart';
 import 'package:musica/explorescreen/explore/explore.dart';
 import 'package:musica/search/search.dart';
 import 'package:musica/widget/mniplayer.dart';
-import 'package:musica/widget/mostplayed.dart';
+import 'package:musica/screens/mostlyplayed/mostplayed.dart';
 import 'allmusic/allmusic.dart';
 
 class Allsongs extends StatefulWidget {
@@ -26,9 +26,9 @@ class _AllsongsState extends State<Allsongs> {
         elevation: 15,
         backgroundColor: const Color.fromARGB(255, 39, 33, 55),
         title: const Text(
-          'Musica',
+          'Audizi Player',
           style: TextStyle(
-              fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
+              fontSize: 21, fontWeight: FontWeight.w600, color: Colors.white70),
         ),
         actions: [
           IconButton(
@@ -40,7 +40,7 @@ class _AllsongsState extends State<Allsongs> {
               icon: const Icon(
                 Icons.search,
                 size: 30,
-                color: Colors.white,
+                color: Colors.white70,
               )),
         ],
       ),
