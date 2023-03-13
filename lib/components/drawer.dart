@@ -34,13 +34,10 @@ class _DrawerwidgetState extends State<Drawerwidget> {
           }
           return Padding(
               padding: const EdgeInsets.only(top: 8.0),
-              child: 
-              ListTile(
+              child: ListTile(
                 leading: CircleAvatar(
                   radius: 33,
-                  backgroundImage:
-                      FileImage(File(user?.userimage ?? 
-                      '${const Icon(Icons.person,color: Colors.white60,)}')),
+                  backgroundImage: FileImage(File(user?.userimage ?? '')),
                 ),
                 title: Text(
                   user?.username ?? 'Update Profile',
@@ -56,7 +53,6 @@ class _DrawerwidgetState extends State<Drawerwidget> {
               ));
         },
       ),
-
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 17),
         child: Divider(
@@ -80,7 +76,7 @@ class _DrawerwidgetState extends State<Drawerwidget> {
           leading: const Icon(
             Icons.person,
             size: 27,
-            color: Colors.white,
+            color: Colors.white70,
           ),
           title: const Text(
             'Profile',
@@ -98,7 +94,6 @@ class _DrawerwidgetState extends State<Drawerwidget> {
       const SizedBox(
         height: 5,
       ),
-
       Container(
         width: 285,
         decoration: BoxDecoration(
@@ -112,7 +107,7 @@ class _DrawerwidgetState extends State<Drawerwidget> {
           leading: const Icon(
             Icons.favorite,
             size: 27,
-            color: Colors.white,
+            color: Colors.white70,
           ),
           title: const Text(
             'Favourites',
@@ -143,7 +138,7 @@ class _DrawerwidgetState extends State<Drawerwidget> {
           leading: const Icon(
             Icons.playlist_play_rounded,
             size: 27,
-            color: Colors.white,
+            color: Colors.white70,
           ),
           title: const Text(
             'Playlist',
@@ -174,7 +169,7 @@ class _DrawerwidgetState extends State<Drawerwidget> {
           leading: const Icon(
             Icons.settings,
             size: 27,
-            color: Colors.white,
+            color: Colors.white70,
           ),
           title: const Text(
             'Settings',

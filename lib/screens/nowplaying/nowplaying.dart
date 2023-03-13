@@ -75,9 +75,9 @@ class _NowplatingState extends State<Nowplaying> {
                 color: Colors.white60,
               )),
           title: const Text(
-            'Musica',
+            'Audizi Player',
             style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
+                fontSize: 21, fontWeight: FontWeight.w600, color: Colors.white70)
           ),
         ),
         body: SafeArea(

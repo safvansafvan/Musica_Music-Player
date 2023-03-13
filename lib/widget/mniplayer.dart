@@ -39,113 +39,109 @@ class _MiniplayersState extends State<Miniplayers> {
           },
         ));
       },
-      
       child: Align(
         alignment: Alignment.bottomCenter,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            height: 50,
-            width: 342,
-            decoration: BoxDecoration(
-                image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/miniplayerb.jpg')),
-                border:
-                    Border.all(color: const Color.fromARGB(130, 33, 149, 243)),
-                borderRadius: const BorderRadius.all(Radius.circular(10))),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: 150,
-                    child: StreamBuilder<bool>(
-                        stream: Getallsongs.audioPlayer.playingStream,
-                        builder: (context, snapshot) {
-                          bool? playingstage = snapshot.data;
-                          if (playingstage != null && playingstage) {
-                            return TextScroll(
-                              Getallsongs
-                                  .playsong[
-                                      Getallsongs.audioPlayer.currentIndex!]
-                                  .displayNameWOExt,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(color: Colors.white60),
-                            );
-                          } else {
-                            return Text(
-                              Getallsongs
-                                  .playsong[
-                                      Getallsongs.audioPlayer.currentIndex!]
-                                  .displayNameWOExt,
-                              style: const TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  color: Colors.white60),
-                            );
-                          }
-                        }),
-                  ),
-                  firstsong
-                      ? IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.skip_previous,
-                            color: Colors.white54,
-                          ))
-                      : IconButton(
-                          onPressed: () {
-                            if (Getallsongs.audioPlayer.hasPrevious) {
-                              Getallsongs.audioPlayer.seekToPrevious();
-                            }
-                          },
-                          icon: const Icon(
-                            Icons.skip_previous,
-                            color: Colors.white54,
-                          )),
-
-                  CircleAvatar(
-                    child: IconButton(
-                    
-                      onPressed: () async {
-                        setState(() {
-                          isplaying = !isplaying;
-                        });
-                        if (Getallsongs.audioPlayer.playing) {
-                          await Getallsongs.audioPlayer.pause();
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.07,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              image: const DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/images/miniplayerb.jpg')),
+              border:
+                  Border.all(color: const Color.fromARGB(130, 33, 149, 243)),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  width: 150,
+                  child: StreamBuilder<bool>(
+                      stream: Getallsongs.audioPlayer.playingStream,
+                      builder: (context, snapshot) {
+                        bool? playingstage = snapshot.data;
+                        if (playingstage != null && playingstage) {
+                          return TextScroll(
+                            Getallsongs
+                                .playsong[
+                                    Getallsongs.audioPlayer.currentIndex!]
+                                .displayNameWOExt,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(color: Colors.white60),
+                          );
                         } else {
-                          await Getallsongs.audioPlayer.play();
+                          return Text(
+                            Getallsongs
+                                .playsong[
+                                    Getallsongs.audioPlayer.currentIndex!]
+                                .displayNameWOExt,
+                            style: const TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                                color: Colors.white60),
+                          );
                         }
-                      },
-                      icon: StreamBuilder<bool>(
-                        stream: Getallsongs.audioPlayer.playingStream,
-                        builder: (context, snapshot) {
-                          bool? stage = snapshot.data;
-                          if (stage != null && stage) {
-                            return const Icon(
-                              Icons.pause,
-                              color: Colors.white60,
-                            );
-                          } else {
-                            return const Icon(
-                              Icons.play_arrow,
-                              color: Colors.white60,
-                            );
+                      }),
+                ),
+                firstsong
+                    ? IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.skip_previous,
+                          color: Colors.white54,
+                        ))
+                    : IconButton(
+                        onPressed: () {
+                          if (Getallsongs.audioPlayer.hasPrevious) {
+                            Getallsongs.audioPlayer.seekToPrevious();
                           }
                         },
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        if (Getallsongs.audioPlayer.hasNext) {
-                          Getallsongs.audioPlayer.seekToNext();
+                        icon: const Icon(
+                          Icons.skip_previous,
+                          color: Colors.white54,
+                        )),
+        
+                CircleAvatar(
+                  child: IconButton(
+                  
+                    onPressed: () async {
+                      setState(() {
+                        isplaying = !isplaying;
+                      });
+                      if (Getallsongs.audioPlayer.playing) {
+                        await Getallsongs.audioPlayer.pause();
+                      } else {
+                        await Getallsongs.audioPlayer.play();
+                      }
+                    },
+                    icon: StreamBuilder<bool>(
+                      stream: Getallsongs.audioPlayer.playingStream,
+                      builder: (context, snapshot) {
+                        bool? stage = snapshot.data;
+                        if (stage != null && stage) {
+                          return const Icon(
+                            Icons.pause,
+                            color: Colors.white60,
+                          );
+                        } else {
+                          return const Icon(
+                            Icons.play_arrow,
+                            color: Colors.white60,
+                          );
                         }
                       },
-                      icon: const Icon(Icons.skip_next, color: Colors.white54))
-                ],
-              ),
+                    ),
+                  ),
+                ),
+                IconButton(
+                    onPressed: () {
+                      if (Getallsongs.audioPlayer.hasNext) {
+                        Getallsongs.audioPlayer.seekToNext();
+                      }
+                    },
+                    icon: const Icon(Icons.skip_next, color: Colors.white54))
+              ],
             ),
           ),
         ),
