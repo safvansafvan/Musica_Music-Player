@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
 import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/screens/homeallsongs.dart';
 import 'package:musica/screens/nowplaying/playercontrols.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'artworkwidget.dart';
@@ -69,7 +70,7 @@ class _NowplatingState extends State<Nowplaying> {
           elevation: 15,
          backgroundColor: const Color.fromARGB(255, 39, 33, 55),
           leading: IconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Allsongs(),), (route) => false),
               icon: const Icon(
                 Icons.arrow_back_ios,
                 color: Colors.white60,

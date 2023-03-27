@@ -56,10 +56,7 @@ void showbottomsheet(BuildContext context, SongModel songModel) {
       });
 }
 
-shoplaylistdialog(
-  ctx,
-  SongModel songModel,
-) {
+shoplaylistdialog(ctx,SongModel songModel,) {
   showDialog(
     context: ctx,
     builder: (context) => AlertDialog(
