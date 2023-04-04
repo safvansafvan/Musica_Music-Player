@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:musica/controller/provider/allmusic_provider.dart';
+import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
+import 'package:musica/controller/provider/splash_provider/splash_provider.dart';
 import 'package:musica/provider/songmodelprovider.dart';
 import 'package:musica/screens/splash/splashscreen.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AllMusicProvider>(
-            create: (context) => AllMusicProvider())
+            create: (context) => AllMusicProvider()),
+        ChangeNotifierProvider<SplashProvider>(
+            create: (context) => SplashProvider())
       ],
       child: MaterialApp(
           theme: ThemeData(

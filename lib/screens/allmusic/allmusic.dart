@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/controller/provider/allmusic_provider.dart';
+import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
 import 'package:musica/explorescreen/playlist/playlistsongdisplyscreen.dart';
 import 'package:musica/screens/allmusic/allmusiclisttile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
