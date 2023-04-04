@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionplaylist.dart';
 import 'package:musica/DB/model/model.dart';
-import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class Playlistsongdisplayscreen extends StatefulWidget {
@@ -95,7 +95,10 @@ class _PlaylistsongdisplayscreenState extends State<Playlistsongdisplayscreen> {
                                         .notifyListeners();
                                   });
                                 },
-                                icon: const Icon(Icons.add,color: Colors.white60,),
+                                icon: const Icon(
+                                  Icons.add,
+                                  color: Colors.white60,
+                                ),
                               )
                             : IconButton(
                                 onPressed: () {
@@ -111,18 +114,17 @@ class _PlaylistsongdisplayscreenState extends State<Playlistsongdisplayscreen> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(removesongplaylistsnake);
                                 },
-                                icon: const Icon(Icons.remove,color: Colors.white60))
+                                icon: const Icon(Icons.remove,
+                                    color: Colors.white60))
                       ],
                     ),
                   );
                 },
               );
-            }
-          )
-        );
-     }
+            }));
+  }
 
-   songaddplaylist(SongModel data) {
+  songaddplaylist(SongModel data) {
     widget.playlist.add(data.id);
     const addsongplaylistsnake = SnackBar(
         backgroundColor: Color.fromARGB(222, 38, 46, 67),

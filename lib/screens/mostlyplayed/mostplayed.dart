@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionmostlyplayed.dart';
-import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
@@ -24,6 +24,7 @@ class _MostplayedState extends State<Mostplayed> {
   init() async {
     await Mostlyplayedctl.getmostlyplayed();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

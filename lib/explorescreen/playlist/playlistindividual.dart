@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:musica/DB/Functions/recentlyplayed.dart';
 import 'package:musica/DB/model/model.dart';
-import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/explorescreen/playlist/playlistsongdisplyscreen.dart';
 import 'package:musica/provider/songmodelprovider.dart';
 import 'package:musica/screens/nowplaying/nowplaying.dart';
@@ -10,8 +10,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
 class Addplaylist extends StatefulWidget {
-  const Addplaylist(
-      {super.key, required this.sindex, required this.playlist});
+  const Addplaylist({super.key, required this.sindex, required this.playlist});
   final int sindex;
   final Playermodel playlist;
 
@@ -99,14 +98,23 @@ class _PlaylisttoaddsongState extends State<Addplaylist> {
                                 },
                                 icon: const Icon(Icons.delete_outline,
                                     color: Color.fromARGB(255, 224, 86, 76))),
-                                    onTap: () {
-                                      Recentcontroller.addrecentlyplayed(songplaylist[index].id);
-                                      Getallsongs.audioPlayer.setAudioSource(Getallsongs.createsongslist(songplaylist));
-                                      context.read<Songmodelprovider>().setid(songplaylist[index].id);
-                                       Navigator.push(context, MaterialPageRoute(builder:(context) {
-                                       return  Nowplaying(songModel: songplaylist,count: songplaylist.length,);
-                                       }, ));
-                                    },
+                            onTap: () {
+                              Recentcontroller.addrecentlyplayed(
+                                  songplaylist[index].id);
+                              Getallsongs.audioPlayer.setAudioSource(
+                                  Getallsongs.createsongslist(songplaylist));
+                              context
+                                  .read<Songmodelprovider>()
+                                  .setid(songplaylist[index].id);
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return Nowplaying(
+                                    songModel: songplaylist,
+                                    count: songplaylist.length,
+                                  );
+                                },
+                              ));
+                            },
                           ),
                         ),
                       );

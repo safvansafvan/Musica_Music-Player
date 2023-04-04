@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
-import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/screens/nowplaying/playercontrols.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'artworkwidget.dart';
@@ -64,21 +64,21 @@ class _NowplatingState extends State<Nowplaying> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 39, 33, 55),
+        backgroundColor: const Color.fromARGB(255, 39, 33, 55),
         appBar: AppBar(
           elevation: 15,
-         backgroundColor: const Color.fromARGB(255, 39, 33, 55),
+          backgroundColor: const Color.fromARGB(255, 39, 33, 55),
           leading: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(
                 Icons.arrow_back_ios,
                 color: Colors.white60,
               )),
-          title: const Text(
-            'Audizi Player',
-            style: TextStyle(
-                fontSize: 21, fontWeight: FontWeight.w600, color: Colors.white70)
-          ),
+          title: const Text('Audizi Player',
+              style: TextStyle(
+                  fontSize: 21,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white70)),
         ),
         body: SafeArea(
           child: SizedBox(
@@ -184,7 +184,7 @@ class _NowplatingState extends State<Nowplaying> {
                       },
                       icon: Icon(
                           FavoriteDB.isfavo(widget.songModel[currentindex])
-                              ?  Icons.favorite
+                              ? Icons.favorite
                               : Icons.favorite_border_outlined,
                           color: Colors.white60),
                     ),

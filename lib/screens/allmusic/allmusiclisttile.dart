@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
 import 'package:musica/DB/Functions/functionmostlyplayed.dart';
 import 'package:musica/DB/Functions/recentlyplayed.dart';
-import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 import '../../provider/songmodelprovider.dart';
 import '../nowplaying/comp/morebottomsheet.dart';
 import '../nowplaying/nowplaying.dart';
-
 
 // ignore: must_be_immutable
 class Allmusiclisttile extends StatefulWidget {
@@ -51,8 +50,7 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
               artworkFit: BoxFit.cover,
             ),
             title: Text(widget.songmodel[index].displayNameWOExt,
-                maxLines: 1,
-                style: const TextStyle(color: Colors.white70)),
+                maxLines: 1, style: const TextStyle(color: Colors.white70)),
             subtitle: Text(
               '${widget.songmodel[index].artist.toString() == "<unknown>" ? "Unknown Artist" : widget.songmodel[index].artist}',
               style: const TextStyle(color: Colors.white70),
@@ -143,7 +141,7 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                                             .showSnackBar(add);
                                       }
                                       FavoriteDB.favoitessongs
-                                       // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+                                          // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
                                           .notifyListeners();
 
                                       Navigator.pop(context);
@@ -177,7 +175,9 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
               Getallsongs.audioPlayer.setAudioSource(
                   Getallsongs.createsongslist(widget.songmodel),
                   initialIndex: index);
-               context.read<Songmodelprovider>().setid(widget.songmodel[index].id);
+              context
+                  .read<Songmodelprovider>()
+                  .setid(widget.songmodel[index].id);
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Nowplaying(
                         songModel: widget.songmodel,
@@ -188,7 +188,6 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
         );
       },
       itemCount: widget.songmodel.length,
-      
     );
   }
 }

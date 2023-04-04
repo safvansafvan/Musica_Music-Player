@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:musica/controller/provider/allmusic_provider.dart';
 import 'package:musica/provider/songmodelprovider.dart';
 import 'package:musica/screens/splash/splashscreen.dart';
 import 'package:provider/provider.dart';
@@ -31,13 +32,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
-      title: 'Audizi Music Player',
-      debugShowCheckedModeBanner: false,
-      home: const Splashscreemwidgets()
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AllMusicProvider>(
+            create: (context) => AllMusicProvider())
+      ],
+      child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.blueGrey,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          title: 'Audizi Music Player',
+          debugShowCheckedModeBanner: false,
+          home: const Splashscreemwidgets()),
     );
   }
 }

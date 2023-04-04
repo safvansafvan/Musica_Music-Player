@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/components/drawer.dart';
-import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/explorescreen/explore/explore.dart';
 import 'package:musica/search/search.dart';
 import 'package:musica/widget/mniplayer.dart';
@@ -52,20 +52,17 @@ class _AllsongsState extends State<Allsongs> {
               child: Column(children: [
                 Getallsongs.audioPlayer.currentIndex != null
                     ? StreamBuilder<bool>(
-                      stream: Getallsongs.audioPlayer.playingStream,
-                      builder: (context, snapshot) {
-
-                        return const Miniplayers();
-                      }
-                    )
-                    : Container()  
+                        stream: Getallsongs.audioPlayer.playingStream,
+                        builder: (context, snapshot) {
+                          return const Miniplayers();
+                        })
+                    : Container()
               ]))
         ],
       ),
       drawer: const Drawer(
           backgroundColor: Color.fromARGB(201, 25, 21, 36),
           child: Drawerwidget()),
-
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
         elevation: 15,

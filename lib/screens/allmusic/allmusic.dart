@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
-import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/controller/music_controller/getallsongcontroller.dart';
+import 'package:musica/controller/provider/allmusic_provider.dart';
+import 'package:musica/explorescreen/playlist/playlistsongdisplyscreen.dart';
 import 'package:musica/screens/allmusic/allmusiclisttile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:just_audio/just_audio.dart';
-
+import 'package:provider/provider.dart';
 
 List<SongModel> startsong = [];
 
@@ -18,27 +20,17 @@ class Allsongswidget extends StatefulWidget {
 
 class _AllsongswidgetState extends State<Allsongswidget> {
   @override
-  void initState() {
-    super.initState();
-    requestPermission();
-  }
-
-  requestPermission() async {
-    bool status = await audioqury.permissionsStatus();
-    if (!status) {
-      await audioqury.permissionsRequest();
-    }
-    setState(() {});
-    Permission.storage.request();
-  }
-
-  final OnAudioQuery audioqury = OnAudioQuery();
   final AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
+    // final allmusicprovider =
+    //     Provider.of<AllMusicProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<AllMusicProvider>(context, listen: false).requestPermission();
+    });
     return FutureBuilder<List<SongModel>>(
-        future: audioqury.querySongs(
+        future: audioquery.querySongs(
             sortType: null,
             orderType: OrderType.ASC_OR_SMALLER,
             uriType: UriType.EXTERNAL,

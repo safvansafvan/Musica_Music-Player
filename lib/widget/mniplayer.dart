@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/getallsongcontroller.dart';
+import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:text_scroll/text_scroll.dart';
 
@@ -19,7 +19,6 @@ class _MiniplayersState extends State<Miniplayers> {
     Getallsongs.audioPlayer.currentIndexStream.listen((index) {
       if (index != null && mounted) {
         setState(() {
-          
           index == 0 ? firstsong = true : firstsong = false;
         });
       }
@@ -65,8 +64,7 @@ class _MiniplayersState extends State<Miniplayers> {
                         if (playingstage != null && playingstage) {
                           return TextScroll(
                             Getallsongs
-                                .playsong[
-                                    Getallsongs.audioPlayer.currentIndex!]
+                                .playsong[Getallsongs.audioPlayer.currentIndex!]
                                 .displayNameWOExt,
                             textAlign: TextAlign.center,
                             style: const TextStyle(color: Colors.white60),
@@ -74,8 +72,7 @@ class _MiniplayersState extends State<Miniplayers> {
                         } else {
                           return Text(
                             Getallsongs
-                                .playsong[
-                                    Getallsongs.audioPlayer.currentIndex!]
+                                .playsong[Getallsongs.audioPlayer.currentIndex!]
                                 .displayNameWOExt,
                             style: const TextStyle(
                                 overflow: TextOverflow.ellipsis,
@@ -101,10 +98,8 @@ class _MiniplayersState extends State<Miniplayers> {
                           Icons.skip_previous,
                           color: Colors.white54,
                         )),
-        
                 CircleAvatar(
                   child: IconButton(
-                  
                     onPressed: () async {
                       setState(() {
                         isplaying = !isplaying;
