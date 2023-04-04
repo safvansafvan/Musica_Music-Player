@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           theme: ThemeData(
             primarySwatch: Colors.blueGrey,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           title: 'Audizi Music Player',
           debugShowCheckedModeBanner: false,

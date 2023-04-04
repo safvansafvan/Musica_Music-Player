@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/explorescreen/playlist/playlist.dart';
 import '../../screens/recentlyplayed/recently.dart';
 
@@ -13,7 +14,7 @@ class _ExplorescreenState extends State<Explorescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 39, 33, 55),
+      backgroundColor: appBodyColor,
       body: ListView(
         children: [
           Padding(
@@ -66,9 +67,7 @@ class _ExplorescreenState extends State<Explorescreen> {
             child: Text(
               'Recently Played',
               style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white60),
+                  fontSize: 22, fontWeight: FontWeight.w500, color: kbackcolor),
             ),
           ),
           const Recentwidget()

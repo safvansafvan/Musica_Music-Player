@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:musica/DB/model/model.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/explorescreen/playlist/playlist.dart';
 import 'package:musica/screens/songinfo/songinfo.dart';
+import 'package:musica/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 void showbottomsheet(BuildContext context, SongModel songModel) {
@@ -137,20 +139,9 @@ void songaddtoplaylist(
     SongModel data, datas, String name, BuildContext context) {
   if (!datas.isvalule(data.id)) {
     datas.add(data.id);
-    final snake1 = SnackBar(
-        duration: const Duration(seconds: 1),
-        backgroundColor: const Color.fromARGB(222, 38, 46, 67),
-        content: Center(
-            child: Text(
-          'Playlist Add To $name',
-          style: const TextStyle(color: Colors.white60),
-        )));
-    ScaffoldMessenger.of(context).showSnackBar(snake1);
+    snackBarWidget(ctx: context, title: 'Playlist Add To $name', clr: blueclr);
   } else {
-    final snake2 = SnackBar(
-        duration: const Duration(seconds: 1),
-        backgroundColor: Colors.red,
-        content: Center(child: Text('Song Alredy Added In $name')));
-    ScaffoldMessenger.of(context).showSnackBar(snake2);
+    snackBarWidget(
+        ctx: context, title: 'Song Alredy Added In $name', clr: Colors.red);
   }
 }

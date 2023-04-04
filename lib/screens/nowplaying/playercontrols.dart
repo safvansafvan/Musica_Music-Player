@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
@@ -31,11 +32,13 @@ class _PlayercontrolerState extends State<Playercontroler> {
       children: [
         IconButton(
             onPressed: () {
-              setState(() {
-                isshuffle == false
-                    ? Getallsongs.audioPlayer.setShuffleModeEnabled(true)
-                    : Getallsongs.audioPlayer.setShuffleModeEnabled(false);
-              });
+              setState(
+                () {
+                  isshuffle == false
+                      ? Getallsongs.audioPlayer.setShuffleModeEnabled(true)
+                      : Getallsongs.audioPlayer.setShuffleModeEnabled(false);
+                },
+              );
             },
             icon: StreamBuilder<bool>(
               stream: Getallsongs.audioPlayer.shuffleModeEnabledStream,
@@ -49,7 +52,7 @@ class _PlayercontrolerState extends State<Playercontroler> {
                 } else {
                   return const Icon(
                     Icons.shuffle,
-                    color: Colors.white60,
+                    color: kbackcolor,
                   );
                 }
               },
@@ -68,7 +71,7 @@ class _PlayercontrolerState extends State<Playercontroler> {
                 icon: const Icon(
                   Icons.skip_previous,
                   size: 30,
-                  color: Colors.white60,
+                  color: kbackcolor,
                 ))
             : IconButton(
                 onPressed: () {
@@ -79,26 +82,28 @@ class _PlayercontrolerState extends State<Playercontroler> {
                 icon: const Icon(
                   Icons.skip_previous,
                   size: 30,
-                  color: Colors.white60,
+                  color: kbackcolor,
                 )),
         CircleAvatar(
+          backgroundColor: kbackcolor,
           radius: 30,
           child: IconButton(
-              onPressed: () {
-                setState(() {
-                  isplaying = !isplaying;
-                });
-                if (Getallsongs.audioPlayer.playing) {
-                  Getallsongs.audioPlayer.pause();
-                } else {
-                  Getallsongs.audioPlayer.play();
-                }
-              },
-              icon: Icon(
-                isplaying ? Icons.pause : Icons.play_arrow,
-                color: Colors.white60,
-                size: 30,
-              )),
+            onPressed: () {
+              setState(() {
+                isplaying = !isplaying;
+              });
+              if (Getallsongs.audioPlayer.playing) {
+                Getallsongs.audioPlayer.pause();
+              } else {
+                Getallsongs.audioPlayer.play();
+              }
+            },
+            icon: Icon(
+              isplaying ? Icons.pause : Icons.play_arrow,
+              color: white70,
+              size: 30,
+            ),
+          ),
         ),
         widget.lastsong
             ? const IconButton(
@@ -106,7 +111,7 @@ class _PlayercontrolerState extends State<Playercontroler> {
                 icon: Icon(
                   Icons.skip_next,
                   size: 30,
-                  color: Colors.white60,
+                  color: kbackcolor,
                 ))
             : IconButton(
                 onPressed: () {
@@ -117,31 +122,32 @@ class _PlayercontrolerState extends State<Playercontroler> {
                 icon: const Icon(
                   Icons.skip_next,
                   size: 30,
-                  color: Colors.white60,
+                  color: kbackcolor,
                 )),
         IconButton(
-            onPressed: () {
-              Getallsongs.audioPlayer.loopMode == LoopMode.one
-                  ? Getallsongs.audioPlayer.setLoopMode(LoopMode.all)
-                  : Getallsongs.audioPlayer.setLoopMode(LoopMode.one);
+          onPressed: () {
+            Getallsongs.audioPlayer.loopMode == LoopMode.one
+                ? Getallsongs.audioPlayer.setLoopMode(LoopMode.all)
+                : Getallsongs.audioPlayer.setLoopMode(LoopMode.one);
+          },
+          icon: StreamBuilder<LoopMode>(
+            stream: Getallsongs.audioPlayer.loopModeStream,
+            builder: (context, snapshot) {
+              final loopmode = snapshot.data;
+              if (LoopMode.one == loopmode) {
+                return Icon(
+                  Icons.repeat_on_outlined,
+                  color: Colors.blue[100],
+                );
+              } else {
+                return const Icon(
+                  Icons.repeat,
+                  color: kbackcolor,
+                );
+              }
             },
-            icon: StreamBuilder<LoopMode>(
-              stream: Getallsongs.audioPlayer.loopModeStream,
-              builder: (context, snapshot) {
-                final loopmode = snapshot.data;
-                if (LoopMode.one == loopmode) {
-                  return Icon(
-                    Icons.repeat_on_outlined,
-                    color: Colors.blue[100],
-                  );
-                } else {
-                  return const Icon(
-                    Icons.repeat,
-                    color: Colors.white60,
-                  );
-                }
-              },
-            )),
+          ),
+        ),
       ],
     );
   }

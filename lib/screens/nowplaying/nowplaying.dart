@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/screens/nowplaying/playercontrols.dart';
+import 'package:musica/widget/appbar/appbar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'artworkwidget.dart';
 import 'comp/morebottomsheet.dart';
@@ -63,43 +65,30 @@ class _NowplatingState extends State<Nowplaying> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 39, 33, 55),
-        appBar: AppBar(
-          elevation: 15,
-          backgroundColor: const Color.fromARGB(255, 39, 33, 55),
-          leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white60,
-              )),
-          title: const Text('Audizi Player',
-              style: TextStyle(
-                  fontSize: 21,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white70)),
-        ),
-        body: SafeArea(
-          child: SizedBox(
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: appBodyColor,
+          appBar: PreferredSize(
+            preferredSize: const Size(double.infinity, 55),
+            child: AppBarWidget(
+                titles: 'Audizi Player',
+                leading: Icons.arrow_back_ios,
+                trailing: Icons.error,
+                search: false,
+                menu: false),
+          ),
+          body: SizedBox(
             height: double.infinity,
-            // color: const Color.fromARGB(255, 39, 33, 55),
             child: ListView(children: [
               const SizedBox(
                 height: 100,
               ),
               Center(
-                  child: Artworkwidget(
-                widget: widget,
-                currentindex: currentindex,
-              )),
-              // Container(
-              //   height: 250,
-              //   width: 250,
-              //   decoration: BoxDecoration(
-              //       color: Colors.red[100],
-              //       borderRadius: const BorderRadius.all(Radius.circular(30))),
-              // ),
+                child: Artworkwidget(
+                  widget: widget,
+                  currentindex: currentindex,
+                ),
+              ),
               const SizedBox(
                 height: 15,
               ),
@@ -114,7 +103,7 @@ class _NowplatingState extends State<Nowplaying> {
                         maxLines: 1,
                         style: const TextStyle(
                             fontSize: 20,
-                            color: Colors.white60,
+                            color: kbackcolor,
                             fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center,
                       ),
@@ -130,7 +119,7 @@ class _NowplatingState extends State<Nowplaying> {
                       maxLines: 1,
                       style: const TextStyle(
                           fontSize: 15,
-                          color: Colors.white38,
+                          color: kbackcolor,
                           fontWeight: FontWeight.w500),
                       textAlign: TextAlign.center,
                     )
@@ -186,7 +175,7 @@ class _NowplatingState extends State<Nowplaying> {
                           FavoriteDB.isfavo(widget.songModel[currentindex])
                               ? Icons.favorite
                               : Icons.favorite_border_outlined,
-                          color: Colors.white60),
+                          color: kbackcolor),
                     ),
                   ),
                   IconButton(
@@ -196,7 +185,7 @@ class _NowplatingState extends State<Nowplaying> {
                       },
                       icon: const Icon(
                         Icons.more_vert,
-                        color: Colors.white70,
+                        color: kbackcolor,
                       )),
                 ],
               ),
@@ -206,7 +195,7 @@ class _NowplatingState extends State<Nowplaying> {
                     padding: const EdgeInsets.only(left: 10.0),
                     child: Text(
                       position.toString().split('.')[0],
-                      style: const TextStyle(color: Colors.white60),
+                      style: const TextStyle(color: kbackcolor),
                     ),
                   ),
                   Expanded(
@@ -220,15 +209,15 @@ class _NowplatingState extends State<Nowplaying> {
                         value = value;
                       });
                     },
-                    activeColor: Colors.white60,
-                    thumbColor: Colors.white70,
-                    inactiveColor: Colors.white60,
+                    activeColor: kbackcolor,
+                    thumbColor: kbackcolor,
+                    inactiveColor: kbackcolor,
                   )),
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0),
                     child: Text(
                       duration.toString().split('.')[0],
-                      style: const TextStyle(color: Colors.white60),
+                      style: const TextStyle(color: kbackcolor),
                     ),
                   ),
                 ],
@@ -240,8 +229,8 @@ class _NowplatingState extends State<Nowplaying> {
                   lastsong: lastsong,
                   songModel: widget.songModel[currentindex])
             ]),
-          ),
-        ));
+          )),
+    );
   }
 
   void chagetoseconds(int seconds) {

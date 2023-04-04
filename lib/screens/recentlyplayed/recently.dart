@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/recentlyplayed.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -41,7 +42,7 @@ class _RecentwidgetState extends State<Recentwidget> {
                     style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w500,
-                        color: Colors.white60),
+                        color: kbackcolor),
                   ),
                 ),
               );
@@ -59,51 +60,64 @@ class _RecentwidgetState extends State<Recentwidget> {
                     const CircularProgressIndicator();
                   } else if (items.data!.isEmpty) {
                     const Center(
-                      child: Center(child: Text('No songs in your internal')),
+                      child: Center(
+                          child: Text(
+                        'No songs in your internal',
+                        style: TextStyle(color: Colors.black),
+                      )),
                     );
                   }
                   return ListView.builder(
                     controller: ScrollController(keepScrollOffset: true),
                     shrinkWrap: true,
                     itemCount: recent.length > 10 ? 10 : recent.length,
-                    itemBuilder: (context, index) => ListTile(
-                      leading: QueryArtworkWidget(
-                        id: recent[index].id,
-                        type: ArtworkType.AUDIO,
-                        artworkHeight: 60,
-                        artworkWidth: 60,
-                        nullArtworkWidget: Container(
-                            height: 60,
-                            width: 60,
-                            decoration: BoxDecoration(
-                                color: Colors.white10,
-                                borderRadius: BorderRadius.circular(10.0)),
-                            child: const Icon(
-                              Icons.music_note,
-                              color: Colors.white60,
-                            )),
-                        artworkBorder: BorderRadius.circular(10),
-                        artworkFit: BoxFit.cover,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(7.0),
+                      child: Container(
+                        height: 73,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.blue),
+                        ),
+                        child: ListTile(
+                          leading: QueryArtworkWidget(
+                            id: recent[index].id,
+                            type: ArtworkType.AUDIO,
+                            artworkHeight: 60,
+                            artworkWidth: 60,
+                            nullArtworkWidget: Container(
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: const Icon(
+                                  Icons.music_note,
+                                  color: kbackcolor,
+                                )),
+                            artworkBorder: BorderRadius.circular(10),
+                            artworkFit: BoxFit.cover,
+                          ),
+                          title: Text(recent[index].displayNameWOExt,
+                              maxLines: 1,
+                              style: const TextStyle(color: kbackcolor)),
+                          subtitle: Text(
+                            '${recent[index].artist}',
+                            style: const TextStyle(color: kbackcolor),
+                            maxLines: 1,
+                          ),
+                          onTap: () {
+                            Getallsongs.audioPlayer.setAudioSource(
+                                Getallsongs.createsongslist(recent));
+                            Getallsongs.audioPlayer.play();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Nowplaying(
+                                      songModel: Getallsongs.playsong),
+                                ));
+                          },
+                        ),
                       ),
-                      title: Text(recent[index].displayNameWOExt,
-                          maxLines: 1,
-                          style: const TextStyle(color: Colors.white70)),
-                      subtitle: Text(
-                        '${recent[index].artist}',
-                        style: const TextStyle(color: Colors.white70),
-                        maxLines: 1,
-                      ),
-                      onTap: () {
-                        Getallsongs.audioPlayer.setAudioSource(
-                            Getallsongs.createsongslist(recent));
-                        Getallsongs.audioPlayer.play();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  Nowplaying(songModel: Getallsongs.playsong),
-                            ));
-                      },
                     ),
                   );
                 },

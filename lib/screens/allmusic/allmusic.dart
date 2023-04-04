@@ -19,13 +19,10 @@ class Allsongswidget extends StatefulWidget {
 }
 
 class _AllsongswidgetState extends State<Allsongswidget> {
-  @override
   final AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
-    // final allmusicprovider =
-    //     Provider.of<AllMusicProvider>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<AllMusicProvider>(context, listen: false).requestPermission();
     });

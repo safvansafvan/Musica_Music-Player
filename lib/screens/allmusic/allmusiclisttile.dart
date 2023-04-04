@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
 import 'package:musica/DB/Functions/functionmostlyplayed.dart';
 import 'package:musica/DB/Functions/recentlyplayed.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
+import 'package:musica/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 import '../../provider/songmodelprovider.dart';
@@ -26,37 +28,43 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
       itemBuilder: (context, index) {
         songs.addAll(widget.songmodel);
-        return SizedBox(
-          height: 65,
-          child: ListTile(
-            leading: QueryArtworkWidget(
-              id: widget.songmodel[index].id,
-              type: ArtworkType.AUDIO,
-              artworkHeight: 60,
-              artworkWidth: 60,
-              nullArtworkWidget: Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                      color: Colors.white10,
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: const Icon(
-                    Icons.music_note,
-                    color: Colors.white60,
-                  )),
-              artworkBorder: BorderRadius.circular(10),
-              artworkFit: BoxFit.cover,
+        return Padding(
+          padding: const EdgeInsets.all(7.0),
+          child: Container(
+            height: 73,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.blue),
             ),
-            title: Text(widget.songmodel[index].displayNameWOExt,
-                maxLines: 1, style: const TextStyle(color: Colors.white70)),
-            subtitle: Text(
-              '${widget.songmodel[index].artist.toString() == "<unknown>" ? "Unknown Artist" : widget.songmodel[index].artist}',
-              style: const TextStyle(color: Colors.white70),
-              maxLines: 1,
-            ),
-            trailing: IconButton(
+            child: ListTile(
+              leading: QueryArtworkWidget(
+                id: widget.songmodel[index].id,
+                type: ArtworkType.AUDIO,
+                artworkHeight: 60,
+                artworkWidth: 60,
+                nullArtworkWidget: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: const Icon(
+                      Icons.music_note,
+                      color: kbackcolor,
+                    )),
+                artworkBorder: BorderRadius.circular(10),
+                artworkFit: BoxFit.cover,
+              ),
+              title: Text(widget.songmodel[index].displayNameWOExt,
+                  maxLines: 1, style: const TextStyle(color: kbackcolor)),
+              subtitle: Text(
+                '${widget.songmodel[index].artist.toString() == "<unknown>" ? "Unknown Artist" : widget.songmodel[index].artist}',
+                style: const TextStyle(color: kbackcolor),
+                maxLines: 1,
+              ),
+              trailing: IconButton(
                 onPressed: () {
                   showModalBottomSheet(
                     backgroundColor: Colors.white70,
@@ -88,9 +96,6 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                                 builder:
                                     (context, List<SongModel> data, child) {
                                   return ListTile(
-                                    // leading:const Icon(Icons.favorite_outline,
-                                    //     color: Color.fromARGB(
-                                    //         255, 39, 33, 55)),
                                     title: Text(
                                       FavoriteDB.isfavo(widget.songmodel[index])
                                           ? 'Remove Favorites'
@@ -104,41 +109,18 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                                           widget.songmodel[index])) {
                                         FavoriteDB.deletesong(
                                             widget.songmodel[index].id);
-                                        const remove = SnackBar(
-                                          backgroundColor:
-                                              Color.fromARGB(222, 38, 46, 67),
-                                          content: Center(
-                                            child: Text(
-                                              'Song Removed In Favorate List',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.white70),
-                                            ),
-                                          ),
-                                          duration: Duration(seconds: 2),
-                                        );
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(remove);
+                                        snackBarWidget(
+                                            ctx: context,
+                                            title:
+                                                'Song Removed In Favorate List',
+                                            clr: Colors.red);
                                       } else {
+                                        snackBarWidget(
+                                            ctx: context,
+                                            title:
+                                                'Song Added In Favorate List',
+                                            clr: blueclr);
                                         FavoriteDB.add(widget.songmodel[index]);
-                                        const add = SnackBar(
-                                          backgroundColor:
-                                              Color.fromARGB(222, 38, 46, 67),
-                                          content: Center(
-                                              child: Center(
-                                            child: Text(
-                                              'Song Added In Favorate List',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.white70),
-                                            ),
-                                          )),
-                                          duration: Duration(seconds: 2),
-                                        );
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(add);
                                       }
                                       FavoriteDB.favoitessongs
                                           // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
@@ -165,25 +147,27 @@ class _AllmusiclisttileState extends State<Allmusiclisttile> {
                 },
                 icon: const Icon(
                   Icons.more_vert,
-                  color: Colors.white60,
-                )),
-            onTap: () {
-              Mostlyplayedctl.addmostlyplayed(widget.songmodel[index].id);
+                  color: kbackcolor,
+                ),
+              ),
+              onTap: () {
+                Mostlyplayedctl.addmostlyplayed(widget.songmodel[index].id);
 
-              Recentcontroller.addrecentlyplayed(widget.songmodel[index].id);
+                Recentcontroller.addrecentlyplayed(widget.songmodel[index].id);
 
-              Getallsongs.audioPlayer.setAudioSource(
-                  Getallsongs.createsongslist(widget.songmodel),
-                  initialIndex: index);
-              context
-                  .read<Songmodelprovider>()
-                  .setid(widget.songmodel[index].id);
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Nowplaying(
-                        songModel: widget.songmodel,
-                        count: widget.songmodel.length,
-                      )));
-            },
+                Getallsongs.audioPlayer.setAudioSource(
+                    Getallsongs.createsongslist(widget.songmodel),
+                    initialIndex: index);
+                context
+                    .read<Songmodelprovider>()
+                    .setid(widget.songmodel[index].id);
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Nowplaying(
+                          songModel: widget.songmodel,
+                          count: widget.songmodel.length,
+                        )));
+              },
+            ),
           ),
         );
       },

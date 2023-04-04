@@ -74,8 +74,10 @@ flutter:
     - assets/images/profile.jpg
     - assets/images/profileq.jpeg
     - assets/images/splash2.webp
-    - assets/images/miniplayerb.jpg
     - assets/images/images.png
+    - assets/images/im.jpg
+    
+    
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

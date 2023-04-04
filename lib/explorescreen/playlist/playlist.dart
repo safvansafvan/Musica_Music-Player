@@ -3,7 +3,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:musica/DB/Functions/functionplaylist.dart';
 import 'package:musica/DB/model/model.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/explorescreen/playlist/playlistindividual.dart';
+import 'package:musica/widget/appbar/appbar.dart';
+import 'package:musica/widget/snack_bar.dart';
 
 class Playlistwidget extends StatefulWidget {
   const Playlistwidget({super.key});
@@ -18,132 +21,127 @@ final playlistnamecontroller = TextEditingController();
 class _PlaylistwidgetState extends State<Playlistwidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 37, 37, 54),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 37, 37, 54),
-        elevation: 15,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white60,
-            )),
-        title: const Text(
-          'Playlist',
-          style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.w500, color: Colors.white60),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: appBodyColor,
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 55),
+          child: AppBarWidget(
+              titles: 'Playlist',
+              leading: Icons.arrow_back_ios,
+              trailing: Icons.more_vert,
+              search: false,
+              menu: false),
         ),
-      ),
-      body: SafeArea(
-        child: Center(
-            child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SizedBox(
-            width: double.infinity,
-            child: ValueListenableBuilder(
-              valueListenable:
-              Hive.box<Playermodel>('playlistdata').listenable(),
-              builder: (BuildContext context, Box<Playermodel> musiclist,
-              Widget? child) {
-            return Hive.box<Playermodel>('playlistdata').isEmpty
-                ? const Center(
-                    child: Text(
-                      'No Playlist Found',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white60),
-                    ),
-                  )
-                : ListView.builder(
-                    itemCount: musiclist.length,
-                    itemBuilder: (context, index) {
-                      final data = musiclist.values.toList()[index];
-                      return Slidable(
-                        endActionPane: ActionPane(
-                            motion: const BehindMotion(),
-                            children: [
-                              SlidableAction(
-                                onPressed: (context) {
-                                  deleteplaylist(context, musiclist, index);
-                                },
-                                icon: Icons.delete_outline,
-                                foregroundColor: Colors.red,
-                                backgroundColor:
-                                    const Color.fromARGB(255, 37, 37, 54),
+        body: SafeArea(
+          child: Center(
+              child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              width: double.infinity,
+              child: ValueListenableBuilder(
+                valueListenable:
+                    Hive.box<Playermodel>('playlistdata').listenable(),
+                builder: (BuildContext context, Box<Playermodel> musiclist,
+                    Widget? child) {
+                  return Hive.box<Playermodel>('playlistdata').isEmpty
+                      ? const Center(
+                          child: Text(
+                            'No Playlist Found',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: kbackcolor),
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: musiclist.length,
+                          itemBuilder: (context, index) {
+                            final data = musiclist.values.toList()[index];
+                            return Slidable(
+                              endActionPane: ActionPane(
+                                motion: const BehindMotion(),
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (context) {
+                                      editplaylistname(context, data, index);
+                                    },
+                                    icon: Icons.edit,
+                                    foregroundColor: Colors.blue,
+                                  ),
+                                  SlidableAction(
+                                    onPressed: (context) {
+                                      deleteplaylist(context, musiclist, index);
+                                    },
+                                    icon: Icons.delete_outline,
+                                    foregroundColor: Colors.red,
+                                  ),
+                                ],
                               ),
-                              SlidableAction(
-                                onPressed: (context) {
-                                  editplaylistname(context, data, index);
-                                },
-                                icon: Icons.edit,
-                                backgroundColor:
-                                    const Color.fromARGB(255, 37, 37, 54),
-                              ),
-                            ]),
-                        child: Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    image: const DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                            'assets/images/images.png')),
-                                    color: const Color.fromARGB(
-                                        255, 29, 29, 45),
-                                    borderRadius: BorderRadius.circular(15),
-                                    border:
-                                        Border.all(color: Colors.white30)),
-                                child: ListTile(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Addplaylist(
-                                              sindex: index,
-                                              playlist: data),
-                                        ));
-                                  },
-                                  leading: const Icon(
-                                    Icons.music_note_outlined,
-                                    color: Color.fromARGB(255, 29, 29, 45),
-                                  ),
-                                  title: Text(
-                                    data.name,
-                                    textAlign: TextAlign.left,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                      color:
-                                          Color.fromARGB(255, 29, 29, 45),
-                                    ),
-                                  ),
-                                  trailing: IconButton(
-                                    tooltip: 'Drag Left',
-                                    icon: const Icon(
-                                      Icons.arrow_forward_ios_rounded,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                ))),
-                      );
-                    },
-                  );
-              },
+                              child: Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          image: const DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(
+                                                  'assets/images/images.png')),
+                                          color: const Color.fromARGB(
+                                              255, 29, 29, 45),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          border: Border.all(
+                                              color: Colors.white30)),
+                                      child: ListTile(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Addplaylist(
+                                                        sindex: index,
+                                                        playlist: data),
+                                              ));
+                                        },
+                                        leading: const Icon(
+                                          Icons.music_note_outlined,
+                                          color:
+                                              Color.fromARGB(255, 29, 29, 45),
+                                        ),
+                                        title: Text(
+                                          data.name,
+                                          textAlign: TextAlign.left,
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                            color:
+                                                Color.fromARGB(255, 29, 29, 45),
+                                          ),
+                                        ),
+                                        trailing: IconButton(
+                                          tooltip: 'Drag Left',
+                                          icon: const Icon(
+                                            Icons.arrow_forward_ios_rounded,
+                                            color: Colors.white,
+                                          ),
+                                          onPressed: () {},
+                                        ),
+                                      ))),
+                            );
+                          },
+                        );
+                },
+              ),
             ),
-          ),
-        )),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          newplaylist(context, formkey);
-        },
-        tooltip: 'Add New Playlist',
-        child: const Icon(Icons.add),
+          )),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            newplaylist(context, formkey);
+          },
+          tooltip: 'Add New Playlist',
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
@@ -218,7 +216,6 @@ void newplaylist(BuildContext context, formkey) {
                 TextButton(
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
-                        //
                         okbuttompressing(context);
                       }
                     },
@@ -244,13 +241,7 @@ Future<void> okbuttompressing(context) async {
     return;
   } else {
     Playlistdatabase.addplaylist(music);
-    const addplaylistsnak = SnackBar(
-        backgroundColor: Color.fromARGB(222, 38, 46, 67),
-        duration: Duration(seconds: 1),
-        content: Center(
-            child: Text('Playlist Added',
-                style: TextStyle(color: Colors.white60))));
-    ScaffoldMessenger.of(context).showSnackBar(addplaylistsnak);
+    snackBarWidget(ctx: context, title: 'Playlist Added', clr: blueclr);
     Navigator.pop(context);
     playlistnamecontroller.clear();
   }
@@ -276,26 +267,28 @@ Future<dynamic> deleteplaylist(
           )),
       actions: [
         TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Cancel',
-                style: TextStyle(
-                  color: Color.fromARGB(222, 38, 46, 67),
-                ))),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text(
+            'Cancel',
+            style: TextStyle(
+              color: Color.fromARGB(222, 38, 46, 67),
+            ),
+          ),
+        ),
         TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              musiclist.deleteAt(index);
-              const deletesnake = SnackBar(
-                  duration: Duration(seconds: 1),
-                  backgroundColor: Colors.red,
-                  content: Center(
-                      child: Text('Playlist Deleted',
-                          style: TextStyle(color: Colors.white60))));
-              ScaffoldMessenger.of(context).showSnackBar(deletesnake);
-            },
-            child: const Text('Delete', style: TextStyle(color: Colors.red)))
+          onPressed: () {
+            Navigator.pop(context);
+            musiclist.deleteAt(index);
+
+            snackBarWidget(ctx: context, title: 'Deleted', clr: Colors.red);
+          },
+          child: const Text(
+            'Delete',
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
       ],
     ),
   );
@@ -361,9 +354,11 @@ Future<dynamic> editplaylistname(
                   } else {
                     final playlistname = Playermodel(name: name, songid: []);
                     Playlistdatabase.editplaylist(playlistname, index);
-                    // final playlistName = Playermodel(name: name, songId: []);
-                    // PlaylistDb.editList(index, playlistName);
                   }
+                  snackBarWidget(
+                      ctx: context,
+                      title: 'Playlist Name Changed ',
+                      clr: blueclr);
 
                   Navigator.pop(context);
                 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/screens/allmusic/allmusiclisttile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+import '../../widget/appbar/appbar.dart';
 
 class Favoriteswidget extends StatefulWidget {
   const Favoriteswidget({super.key});
@@ -17,66 +19,49 @@ class _FavoriteswidgetState extends State<Favoriteswidget> {
     return ValueListenableBuilder(
       valueListenable: FavoriteDB.favoitessongs,
       builder: (context, List<SongModel> favoritedata, child) {
-        return Scaffold(
-          backgroundColor: const Color.fromARGB(255, 37, 37, 54),
-          appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 37, 37, 54),
-            elevation: 15,
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white60,
-                )),
-            title: const Text(
-              'Favourites',
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.white60,
-                  fontWeight: FontWeight.bold),
+        return SafeArea(
+          child: Scaffold(
+            appBar: PreferredSize(
+              preferredSize: const Size(double.infinity, 55),
+              child: AppBarWidget(
+                  titles: 'Favourites',
+                  leading: Icons.arrow_back_ios,
+                  trailing: Icons.search,
+                  search: true,
+                  menu: false),
             ),
-            actions: [
-              IconButton(
-                icon: const Icon(
-                  Icons.search,
-                  size: 30,
-                  color: Colors.white60,
-                ),
-                onPressed: () {},
+            body: SafeArea(
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: 693,
+                    child: ValueListenableBuilder(
+                      valueListenable: FavoriteDB.favoitessongs,
+                      builder: (BuildContext context,
+                          List<SongModel> favoritedata, Widget? child) {
+                        if (favoritedata.isEmpty) {
+                          return const Center(
+                            child: Text(
+                              'No songs in favourites',
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  color: kbackcolor,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          );
+                        } else {
+                          final temp = favoritedata.reversed.toList();
+                          favoritedata = temp.toSet().toList();
+                          return Allmusiclisttile(
+                            songmodel: favoritedata,
+                          );
+                        }
+                      },
+                    ),
+                  )
+                ],
               ),
-            ],
-          ),
-          body: SafeArea(
-            child: Column(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 693,
-                  child: ValueListenableBuilder(
-                    valueListenable: FavoriteDB.favoitessongs,
-                    builder: (BuildContext context,
-                        List<SongModel> favoritedata, Widget? child) {
-                      if (favoritedata.isEmpty) {
-                        return const Center(
-                          child: Text(
-                            'No songs in favourites',
-                            style: TextStyle(
-                                fontSize: 28,
-                                color: Colors.white70,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        );
-                      } else {
-                        final temp = favoritedata.reversed.toList();
-                        favoritedata = temp.toSet().toList();
-                        return Allmusiclisttile(songmodel: favoritedata,);
-                      }
-                    },
-                  ),
-                )
-              ],
             ),
           ),
         );

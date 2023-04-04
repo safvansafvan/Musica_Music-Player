@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:musica/controller/core/core.dart';
+import 'package:musica/widget/appbar/appbar.dart';
 
 class Privacyandpolicy extends StatelessWidget {
   const Privacyandpolicy({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 39, 33, 55),
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 39, 33, 55),
-          elevation: 15,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back_ios)),
-          title: const Text(
-            'Privacy Policy',
-            style: TextStyle(
-                color: Colors.white60,
-                fontWeight: FontWeight.w500,
-                fontSize: 20),
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: appBodyColor,
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 55),
+          child: AppBarWidget(
+              titles: 'Privacy And Policy',
+              leading: Icons.arrow_back_ios,
+              trailing: Icons.more_vert,
+              search: false,
+              menu: false),
         ),
         body: const SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-                padding: EdgeInsets.all(15),
-                child: Text(
-                  """
+              padding: EdgeInsets.all(15),
+              child: Text(
+                """
 Privacy Policy for Audizi Player
           
 Last updated: 27/Feb/2023
@@ -156,10 +152,13 @@ Last updated: 27/Feb/2023
                   
                   
           """,
-                  style: TextStyle(
-                      color: Colors.white54, fontWeight: FontWeight.w400),
-                )),
+                style:
+                    TextStyle(color: kbackcolor, fontWeight: FontWeight.w400),
+              ),
+            ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

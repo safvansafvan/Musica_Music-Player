@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionmostlyplayed.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -28,7 +29,7 @@ class _MostplayedState extends State<Mostplayed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 39, 33, 55),
+      backgroundColor: appBodyColor,
       body: FutureBuilder(
         future: Mostlyplayedctl.getmostlyplayed(),
         builder: (context, item) {
@@ -39,7 +40,7 @@ class _MostplayedState extends State<Mostplayed> {
                 return const Center(
                   child: Text(
                     'Your Mostly Played Is Empty',
-                    style: TextStyle(fontSize: 20, color: Colors.white60),
+                    style: TextStyle(fontSize: 20, color: kbackcolor),
                   ),
                 );
               } else {
@@ -59,7 +60,7 @@ class _MostplayedState extends State<Mostplayed> {
                         child: Text(
                           'No Songs In Your Internal',
                           style: TextStyle(
-                              color: Colors.white60,
+                              color: kbackcolor,
                               fontWeight: FontWeight.w500,
                               fontSize: 20),
                         ),
@@ -69,45 +70,55 @@ class _MostplayedState extends State<Mostplayed> {
                       shrinkWrap: true,
                       itemCount: mostly.length > 10 ? 10 : mostly.length,
                       itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: QueryArtworkWidget(
-                            id: mostly[index].id,
-                            type: ArtworkType.AUDIO,
-                            artworkHeight: 60,
-                            artworkWidth: 60,
-                            nullArtworkWidget: Container(
-                              height: 60,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: const Icon(
-                                Icons.music_note,
-                                color: Colors.white60,
-                              ),
+                        return Padding(
+                          padding: const EdgeInsets.all(7.0),
+                          child: Container(
+                            height: 73,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.blue),
                             ),
-                            artworkBorder: BorderRadius.circular(10),
-                            artworkFit: BoxFit.cover,
+                            child: ListTile(
+                              leading: QueryArtworkWidget(
+                                id: mostly[index].id,
+                                type: ArtworkType.AUDIO,
+                                artworkHeight: 60,
+                                artworkWidth: 60,
+                                nullArtworkWidget: Container(
+                                  height: 60,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Icon(
+                                    Icons.music_note,
+                                    color: kbackcolor,
+                                  ),
+                                ),
+                                artworkBorder: BorderRadius.circular(10),
+                                artworkFit: BoxFit.cover,
+                              ),
+                              title: Text(mostly[index].displayNameWOExt,
+                                  maxLines: 1,
+                                  style: const TextStyle(color: kbackcolor)),
+                              subtitle: Text(
+                                '${mostly[index].artist}',
+                                style: const TextStyle(color: kbackcolor),
+                                maxLines: 1,
+                              ),
+                              onTap: () {
+                                Getallsongs.audioPlayer.setAudioSource(
+                                    Getallsongs.createsongslist(mostly));
+                                Getallsongs.audioPlayer.play();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Nowplaying(
+                                          songModel: Getallsongs.playsong),
+                                    ));
+                              },
+                            ),
                           ),
-                          title: Text(mostly[index].displayNameWOExt,
-                              maxLines: 1,
-                              style: const TextStyle(color: Colors.white70)),
-                          subtitle: Text(
-                            '${mostly[index].artist}',
-                            style: const TextStyle(color: Colors.white70),
-                            maxLines: 1,
-                          ),
-                          onTap: () {
-                            Getallsongs.audioPlayer.setAudioSource(
-                                Getallsongs.createsongslist(mostly));
-                            Getallsongs.audioPlayer.play();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Nowplaying(
-                                      songModel: Getallsongs.playsong),
-                                ));
-                          },
                         );
                       },
                     );
