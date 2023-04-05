@@ -2,23 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
-import 'package:musica/explorescreen/playlist/playlistsongdisplyscreen.dart';
+import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
+import 'package:musica/screens/explorescreen/playlist/playlistsongdisplyscreen.dart';
 import 'package:musica/screens/allmusic/allmusiclisttile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 
 List<SongModel> startsong = [];
 
-class Allsongswidget extends StatefulWidget {
-  const Allsongswidget({super.key});
+class Allsongswidget extends StatelessWidget {
+  Allsongswidget({super.key});
 
-  @override
-  State<Allsongswidget> createState() => _AllsongswidgetState();
-}
-
-class _AllsongswidgetState extends State<Allsongswidget> {
   final AudioPlayer audioPlayer = AudioPlayer();
 
   @override
@@ -52,8 +47,10 @@ class _AllsongswidgetState extends State<Allsongswidget> {
           // playlist
           Getallsongs.copysong = item.data!;
 
-          if (!FavoriteDB.isinitialized) {
-            FavoriteDB.init(item.data!);
+          if (Provider.of<FavouriteProvider>(context, listen: false)
+              .isinitialized) {
+            Provider.of<FavouriteProvider>(context, listen: false)
+                .init(item.data!);
           }
 
           return Allmusiclisttile(

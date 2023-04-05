@@ -4,7 +4,7 @@ import 'package:musica/DB/Functions/recentlyplayed.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/explorescreen/playlist/playlistsongdisplyscreen.dart';
+import 'package:musica/screens/explorescreen/playlist/playlistsongdisplyscreen.dart';
 import 'package:musica/provider/songmodelprovider.dart';
 import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:musica/widget/appbar/appbar.dart';

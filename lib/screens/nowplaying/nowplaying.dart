@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:musica/DB/Functions/functionfav.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
+import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
+import 'package:musica/screens/homeallsongs.dart';
 import 'package:musica/screens/nowplaying/playercontrols.dart';
-import 'package:musica/widget/appbar/appbar.dart';
+import 'package:musica/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:provider/provider.dart';
 import 'artworkwidget.dart';
 import 'comp/morebottomsheet.dart';
 
@@ -70,12 +73,19 @@ class _NowplatingState extends State<Nowplaying> {
           backgroundColor: appBodyColor,
           appBar: PreferredSize(
             preferredSize: const Size(double.infinity, 55),
-            child: AppBarWidget(
-                titles: 'Audizi Player',
-                leading: Icons.arrow_back_ios,
-                trailing: Icons.error,
-                search: false,
-                menu: false),
+            child: ListTile(
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                    builder: (context) {
+                      return const Allsongs();
+                    },
+                  ), (route) => false);
+                },
+                icon: const Icon(Icons.arrow_back_ios),
+              ),
+              title: const Text('Audizi Player'),
+            ),
           ),
           body: SizedBox(
             height: double.infinity,
@@ -136,43 +146,27 @@ class _NowplatingState extends State<Nowplaying> {
                     padding: const EdgeInsets.only(top: 10.0),
                     child: IconButton(
                       onPressed: () {
-                        if (FavoriteDB.isfavo(widget.songModel[currentindex])) {
-                          FavoriteDB.deletesong(
-                              widget.songModel[currentindex].id);
-                          const remove = SnackBar(
-                            duration: Duration(seconds: 2),
-                            backgroundColor: Color.fromARGB(222, 38, 46, 67),
-                            content: Center(
-                              child: Text(
-                                'Song Removed In Favorate List',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white70),
-                              ),
-                            ),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(remove);
+                        if (Provider.of<FavouriteProvider>(context,
+                                listen: false)
+                            .isfavo(widget.songModel[currentindex])) {
+                          Provider.of<FavouriteProvider>(context, listen: false)
+                              .deletesong(widget.songModel[currentindex].id);
+                          snackBarWidget(
+                              ctx: context,
+                              title: 'Song Removed In Favourite List',
+                              clr: Colors.red);
                         } else {
-                          FavoriteDB.add(widget.songModel[currentindex]);
-                          const add = SnackBar(
-                            duration: Duration(seconds: 2),
-                            backgroundColor: Color.fromARGB(222, 38, 46, 67),
-                            content: Center(
-                              child: Text(
-                                'Song Added In Favorate List',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white70),
-                              ),
-                            ),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(add);
+                          Provider.of<FavouriteProvider>(context, listen: false)
+                              .add(widget.songModel[currentindex]);
+                          snackBarWidget(
+                              ctx: context,
+                              title: 'Song Added In Favourite List',
+                              clr: blueclr);
                         }
                       },
                       icon: Icon(
-                          FavoriteDB.isfavo(widget.songModel[currentindex])
+                          Provider.of<FavouriteProvider>(context, listen: false)
+                                  .isfavo(widget.songModel[currentindex])
                               ? Icons.favorite
                               : Icons.favorite_border_outlined,
                           color: kbackcolor),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
+import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
 import 'package:musica/controller/provider/splash_provider/splash_provider.dart';
 import 'package:musica/provider/songmodelprovider.dart';
 import 'package:musica/screens/splash/splashscreen.dart';
@@ -38,7 +39,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<AllMusicProvider>(
             create: (context) => AllMusicProvider()),
         ChangeNotifierProvider<SplashProvider>(
-            create: (context) => SplashProvider())
+            create: (context) => SplashProvider()),
+        ChangeNotifierProvider<FavouriteProvider>(
+            create: (context) => FavouriteProvider()),
       ],
       child: MaterialApp(
           theme: ThemeData(

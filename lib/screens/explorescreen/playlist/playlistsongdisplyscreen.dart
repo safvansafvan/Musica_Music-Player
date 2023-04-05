@@ -4,6 +4,7 @@ import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/widget/appbar/appbar.dart';
+import 'package:musica/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class Playlistsongdisplayscreen extends StatefulWidget {
@@ -111,15 +112,10 @@ class _PlaylistsongdisplayscreenState extends State<Playlistsongdisplayscreen> {
                                   onPressed: () {
                                     widget.playlist
                                         .deletedata(item.data![index].id);
-                                    const removesongplaylistsnake = SnackBar(
-                                        backgroundColor:
-                                            Color.fromARGB(222, 38, 46, 67),
-                                        duration: Duration(seconds: 1),
-                                        content: Center(
-                                            child: Text(
-                                                'Music Removed In Playlist')));
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(removesongplaylistsnake);
+                                    snackBarWidget(
+                                        ctx: context,
+                                        title: 'Music Removed In Playlist',
+                                        clr: kred);
                                   },
                                   icon: const Icon(Icons.remove,
                                       color: kbackcolor),
@@ -139,10 +135,7 @@ class _PlaylistsongdisplayscreenState extends State<Playlistsongdisplayscreen> {
 
   songaddplaylist(SongModel data) {
     widget.playlist.add(data.id);
-    const addsongplaylistsnake = SnackBar(
-        backgroundColor: Color.fromARGB(222, 38, 46, 67),
-        duration: Duration(seconds: 1),
-        content: Center(child: Text('Music Added In Playlist')));
-    ScaffoldMessenger.of(context).showSnackBar(addsongplaylistsnake);
+    snackBarWidget(
+        ctx: context, title: 'Music Added In Playlist', clr: blueclr);
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:musica/components/drawer.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/explorescreen/explore/explore.dart';
+import 'package:musica/screens/explorescreen/explore/explore.dart';
 import 'package:musica/widget/appbar/appbar.dart';
 import 'package:musica/widget/mniplayer.dart';
 import 'package:musica/screens/mostlyplayed/mostplayed.dart';
@@ -17,7 +17,11 @@ class Allsongs extends StatefulWidget {
 
 class _AllsongsState extends State<Allsongs> {
   int bottomnavindexnum = 0;
-  List tabbarwidget = const [Allsongswidget(), Mostplayed(), Explorescreen()];
+  List tabbarwidget = [
+    Allsongswidget(),
+    const Mostplayed(),
+    const Explorescreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +40,9 @@ class _AllsongsState extends State<Allsongs> {
           children: [
             tabbarwidget[bottomnavindexnum],
             Positioned(
-                bottom: 0,
-                child: Column(children: [
+              bottom: 0,
+              child: Column(
+                children: [
                   Getallsongs.audioPlayer.currentIndex != null
                       ? StreamBuilder<bool>(
                           stream: Getallsongs.audioPlayer.playingStream,
@@ -45,7 +50,9 @@ class _AllsongsState extends State<Allsongs> {
                             return const Miniplayers();
                           })
                       : Container()
-                ]))
+                ],
+              ),
+            ),
           ],
         ),
         drawer: const Drawer(

@@ -32,7 +32,7 @@ class AppBarWidget extends StatelessWidget {
                 icon: Icon(leading))
             : IconButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.pop(context);
                 },
                 icon: Icon(leading),
               ),

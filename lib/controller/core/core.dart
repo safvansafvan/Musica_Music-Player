@@ -8,6 +8,8 @@ const kbackcolor = Colors.black87;
 
 dynamic blueclr = Colors.blue[500];
 
+const kred = Colors.red;
+
 //function
 
 textStyleFuc({required double size, required clr, required FontWeight bld}) {
