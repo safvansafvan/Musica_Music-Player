@@ -5,7 +5,9 @@ import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.d
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
 import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
 import 'package:musica/controller/provider/playlist_provider/playlist_provider.dart';
+import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
+import 'package:musica/controller/provider/search_provider/search_provider.dart';
 import 'package:musica/controller/provider/splash_provider/splash_provider.dart';
 import 'package:musica/provider/songmodelprovider.dart';
 import 'package:musica/screens/splash/splashscreen.dart';
@@ -53,6 +55,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<PlaylistProvider>(
           create: (context) => PlaylistProvider(),
+        ),
+        ChangeNotifierProvider<ProfileProvider>(
+          create: (context) => ProfileProvider(),
+        ),
+        ChangeNotifierProvider<SearchProvider>(
+          create: (context) => SearchProvider(),
         )
       ],
       child: MaterialApp(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:musica/DB/Functions/functionplaylist.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
@@ -9,21 +8,13 @@ import 'package:musica/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
-class Playlistsongdisplayscreen extends StatefulWidget {
+class Playlistsongdisplayscreen extends StatelessWidget {
   const Playlistsongdisplayscreen({
     super.key,
     required this.playlist,
   });
   final Playermodel playlist;
 
-  @override
-  State<Playlistsongdisplayscreen> createState() =>
-      _PlaylistsongdisplayscreenState();
-}
-
-final audioquery = OnAudioQuery();
-
-class _PlaylistsongdisplayscreenState extends State<Playlistsongdisplayscreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -94,19 +85,15 @@ class _PlaylistsongdisplayscreenState extends State<Playlistsongdisplayscreen> {
                       ),
                       trailing: Wrap(
                         children: [
-                          !widget.playlist.isvalule(item.data![index].id)
+                          !playlist.isvalule(item.data![index].id)
                               ? IconButton(
                                   onPressed: () {
                                     Getallsongs.copysong = item.data!;
 
-                                    songaddplaylist(item.data![index]);
+                                    songaddplaylist(item.data![index], context);
                                     Provider.of<PlaylistProvider>(context,
                                             listen: false)
                                         .playlist;
-
-                                    // Playlistdatabase.playlistnotifier
-                                    //     // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-                                    //     .notifyListeners();
                                   },
                                   icon: const Icon(
                                     Icons.add,
@@ -115,8 +102,7 @@ class _PlaylistsongdisplayscreenState extends State<Playlistsongdisplayscreen> {
                                 )
                               : IconButton(
                                   onPressed: () {
-                                    widget.playlist
-                                        .deletedata(item.data![index].id);
+                                    playlist.deletedata(item.data![index].id);
                                     snackBarWidget(
                                         ctx: context,
                                         title: 'Music Removed In Playlist',
@@ -138,9 +124,10 @@ class _PlaylistsongdisplayscreenState extends State<Playlistsongdisplayscreen> {
     );
   }
 
-  songaddplaylist(SongModel data) {
-    widget.playlist.add(data.id);
-    snackBarWidget(
-        ctx: context, title: 'Music Added In Playlist', clr: blueclr);
+  songaddplaylist(SongModel data, ctx) {
+    playlist.add(data.id);
+    snackBarWidget(ctx: ctx, title: 'Music Added In Playlist', clr: blueclr);
   }
 }
+
+final audioquery = OnAudioQuery();

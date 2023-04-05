@@ -1,60 +1,66 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:musica/DB/Fuctionprofile/func.dart';
-import 'package:musica/components/draweroptions/profile.dart';
-import 'package:musica/screens/explorescreen/favourites/favorites.dart';
-import 'package:musica/screens/explorescreen/playlist/playlist.dart';
-import 'package:musica/widget/settings/set/settings.dart';
-import '../DB/Fuctionprofile/model/model.dart';
-import '../controller/core/core.dart';
+import 'package:musica/presentation/screens/profile/profile.dart';
+import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
+import 'package:musica/presentation/screens/explorescreen/favourites/favorites.dart';
+import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
+import 'package:musica/presentation/screens/widget/settings/set/settings.dart';
+import 'package:provider/provider.dart';
+import '../../../../DB/profile_model/model/model.dart';
+import '../../../../controller/core/core.dart';
 
-class Drawerwidget extends StatefulWidget {
-  const Drawerwidget({super.key});
+// ignore: must_be_immutable
+class Drawerwidget extends StatelessWidget {
+  Drawerwidget({super.key});
 
-  @override
-  State<Drawerwidget> createState() => _DrawerwidgetState();
-}
-
-class _DrawerwidgetState extends State<Drawerwidget> {
   Profilemodel? user;
-  @override
-  void initState() {
-    super.initState();
-    getdetails();
-  }
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<ProfileProvider>(context, listen: false).getdetails();
+    });
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
           children: [
             ValueListenableBuilder(
-              valueListenable: profilenotifier,
+              valueListenable: Provider.of<ProfileProvider>(
+                context,
+              ).userprofilelist,
               builder: (context, userdata, child) {
                 for (final x in userdata) {
                   user = x;
                 }
                 return Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 33,
-                        backgroundImage: FileImage(File(user?.userimage ?? '')),
-                      ),
-                      title: Text(
-                        user?.username ?? 'Update Profile',
-                        style: const TextStyle(color: kbackcolor, fontSize: 15),
-                      ),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
+                  padding: const EdgeInsets.only(
+                    top: 15.0,
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 33,
+                      backgroundImage: FileImage(File(user?.userimage ?? '')),
+                    ),
+                    title: Text(
+                      user?.username.toUpperCase() ?? 'Update Profile',
+                      style: const TextStyle(color: kbackcolor, fontSize: 15),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
                           builder: (context) {
                             return const Profiewidget();
                           },
-                        ));
-                      },
-                    ));
+                        ),
+                      );
+                    },
+                  ),
+                );
               },
+            ),
+            const SizedBox(
+              height: 5,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 17),
@@ -72,8 +78,7 @@ class _DrawerwidgetState extends State<Drawerwidget> {
                   image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage('assets/images/profile.jpg')),
-                  color: Colors.blue[200],
-                  border: Border.all(color: Colors.white60),
+                  border: Border.all(color: blueclr),
                   borderRadius: BorderRadius.circular(15)),
               child: ListTile(
                 leading: const Icon(
@@ -87,10 +92,11 @@ class _DrawerwidgetState extends State<Drawerwidget> {
                 ),
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Profiewidget(),
-                      ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Profiewidget(),
+                    ),
+                  );
                 },
               ),
             ),
@@ -100,12 +106,12 @@ class _DrawerwidgetState extends State<Drawerwidget> {
             Container(
               width: 285,
               decoration: BoxDecoration(
-                  image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/images/favourites.jpeg')),
-                  color: Colors.blue[200],
-                  border: Border.all(color: Colors.white60),
-                  borderRadius: BorderRadius.circular(15)),
+                image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/images/favourites.jpeg')),
+                border: Border.all(color: blueclr),
+                borderRadius: BorderRadius.circular(15),
+              ),
               child: ListTile(
                 leading: const Icon(
                   Icons.favorite,
@@ -118,10 +124,11 @@ class _DrawerwidgetState extends State<Drawerwidget> {
                 ),
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Favoriteswidget(),
-                      ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Favoriteswidget(),
+                    ),
+                  );
                 },
               ),
             ),
@@ -134,8 +141,7 @@ class _DrawerwidgetState extends State<Drawerwidget> {
                   image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage('assets/images/playlist.jpeg')),
-                  color: Colors.blue[200],
-                  border: Border.all(color: Colors.white60),
+                  border: Border.all(color: blueclr),
                   borderRadius: BorderRadius.circular(15)),
               child: ListTile(
                 leading: const Icon(
@@ -166,7 +172,7 @@ class _DrawerwidgetState extends State<Drawerwidget> {
                       fit: BoxFit.cover,
                       image: AssetImage('assets/images/settings.webp')),
                   color: Colors.blue[200],
-                  border: Border.all(color: Colors.white60),
+                  border: Border.all(color: blueclr),
                   borderRadius: BorderRadius.circular(15)),
               child: ListTile(
                 leading: const Icon(
@@ -192,11 +198,11 @@ class _DrawerwidgetState extends State<Drawerwidget> {
             ),
             const Text(
               'Version ',
-              style: TextStyle(color: kbackcolor),
+              style: TextStyle(color: kbackcolor, fontWeight: FontWeight.w500),
             ),
             const Text(
               '1.1v ',
-              style: TextStyle(color: kbackcolor),
+              style: TextStyle(color: kbackcolor, fontWeight: FontWeight.w500),
             )
           ],
         ),
