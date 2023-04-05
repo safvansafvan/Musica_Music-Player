@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:musica/DB/Functions/functionplaylist.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
+import 'package:musica/controller/provider/playlist_provider/playlist_provider.dart';
 import 'package:musica/screens/explorescreen/playlist/playlistindividual.dart';
 import 'package:musica/widget/appbar/appbar.dart';
 import 'package:musica/widget/snack_bar.dart';
+import 'package:provider/provider.dart';
 
-class Playlistwidget extends StatefulWidget {
+class Playlistwidget extends StatelessWidget {
   const Playlistwidget({super.key});
 
-  @override
-  State<Playlistwidget> createState() => _PlaylistwidgetState();
-}
-
-final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-final playlistnamecontroller = TextEditingController();
-
-class _PlaylistwidgetState extends State<Playlistwidget> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -145,10 +138,10 @@ class _PlaylistwidgetState extends State<Playlistwidget> {
       ),
     );
   }
-
-  //function
-//show dialog in create playlist
 }
+
+final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+final playlistnamecontroller = TextEditingController();
 
 void newplaylist(BuildContext context, formkey) {
   showDialog(
@@ -240,7 +233,7 @@ Future<void> okbuttompressing(context) async {
   if (name.isEmpty) {
     return;
   } else {
-    Playlistdatabase.addplaylist(music);
+    Provider.of<PlaylistProvider>(context, listen: false).addplaylist(music);
     snackBarWidget(ctx: context, title: 'Playlist Added', clr: blueclr);
     Navigator.pop(context);
     playlistnamecontroller.clear();
@@ -353,7 +346,8 @@ Future<dynamic> editplaylistname(
                     return;
                   } else {
                     final playlistname = Playermodel(name: name, songid: []);
-                    Playlistdatabase.editplaylist(playlistname, index);
+                    Provider.of<PlaylistProvider>(context, listen: false)
+                        .editplaylist(playlistname, index);
                   }
                   snackBarWidget(
                       ctx: context,

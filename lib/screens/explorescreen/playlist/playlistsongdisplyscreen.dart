@@ -3,9 +3,11 @@ import 'package:musica/DB/Functions/functionplaylist.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
+import 'package:musica/controller/provider/playlist_provider/playlist_provider.dart';
 import 'package:musica/widget/appbar/appbar.dart';
 import 'package:musica/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:provider/provider.dart';
 
 class Playlistsongdisplayscreen extends StatefulWidget {
   const Playlistsongdisplayscreen({
@@ -96,12 +98,15 @@ class _PlaylistsongdisplayscreenState extends State<Playlistsongdisplayscreen> {
                               ? IconButton(
                                   onPressed: () {
                                     Getallsongs.copysong = item.data!;
-                                    setState(() {
-                                      songaddplaylist(item.data![index]);
-                                      Playlistdatabase.playlistnotifier
-                                          // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-                                          .notifyListeners();
-                                    });
+
+                                    songaddplaylist(item.data![index]);
+                                    Provider.of<PlaylistProvider>(context,
+                                            listen: false)
+                                        .playlist;
+
+                                    // Playlistdatabase.playlistnotifier
+                                    //     // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+                                    //     .notifyListeners();
                                   },
                                   icon: const Icon(
                                     Icons.add,

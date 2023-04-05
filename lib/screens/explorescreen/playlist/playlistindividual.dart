@@ -11,16 +11,11 @@ import 'package:musica/widget/appbar/appbar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
-class Addplaylist extends StatefulWidget {
+class Addplaylist extends StatelessWidget {
   const Addplaylist({super.key, required this.sindex, required this.playlist});
   final int sindex;
   final Playermodel playlist;
 
-  @override
-  State<Addplaylist> createState() => _PlaylisttoaddsongState();
-}
-
-class _PlaylisttoaddsongState extends State<Addplaylist> {
   @override
   Widget build(BuildContext context) {
     late List<SongModel> songplaylist;
@@ -30,7 +25,7 @@ class _PlaylisttoaddsongState extends State<Addplaylist> {
         appBar: PreferredSize(
           preferredSize: const Size(double.infinity, 55),
           child: AppBarWidget(
-              titles: widget.playlist.name,
+              titles: playlist.name,
               leading: Icons.arrow_back_ios,
               trailing: Icons.more_vert,
               search: false,
@@ -46,8 +41,8 @@ class _PlaylisttoaddsongState extends State<Addplaylist> {
                   valueListenable:
                       Hive.box<Playermodel>('playlistdata').listenable(),
                   builder: (context, Box<Playermodel> song, Widget? child) {
-                    songplaylist = listplaylist(
-                        song.values.toList()[widget.sindex].songid);
+                    songplaylist =
+                        listplaylist(song.values.toList()[sindex].songid);
                     return songplaylist.isEmpty
                         ? const Center(
                             child: Text(
@@ -98,7 +93,7 @@ class _PlaylisttoaddsongState extends State<Addplaylist> {
                                   ),
                                   trailing: IconButton(
                                       onPressed: () {
-                                        widget.playlist
+                                        playlist
                                             .deletedata(songplaylist[index].id);
                                       },
                                       icon: const Icon(Icons.delete_outline,
@@ -143,7 +138,7 @@ class _PlaylisttoaddsongState extends State<Addplaylist> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => Playlistsongdisplayscreen(
-                          playlist: widget.playlist,
+                          playlist: playlist,
                         )));
           },
           label: const Text('Add Songs'),
