@@ -4,7 +4,7 @@ import 'package:musica/presentation/screens/profile/profile.dart';
 import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
 import 'package:musica/presentation/screens/explorescreen/favourites/favorites.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
-import 'package:musica/presentation/screens/widget/settings/set/settings.dart';
+import 'package:musica/presentation/screens/widget/settings/settings_pages/settings.dart';
 import 'package:provider/provider.dart';
 import '../../../../DB/profile_model/model/model.dart';
 import '../../../../controller/core/core.dart';
@@ -188,7 +188,7 @@ class Drawerwidget extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Settings(),
+                        builder: (context) => const SettingsP(),
                       ));
                 },
               ),

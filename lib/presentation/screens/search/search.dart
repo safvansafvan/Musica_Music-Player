@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/search_provider/search_provider.dart';
-import 'package:musica/screens/allmusic/allmusiclisttile.dart';
-import 'package:musica/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/allmusic/allmusiclisttile.dart';
+import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
 
 import 'package:provider/provider.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:musica/components/drawer.dart';
+import 'package:musica/presentation/screens/widget/drawer/drawer.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/screens/explorescreen/explore/explore.dart';
-import 'package:musica/widget/appbar/appbar.dart';
-import 'package:musica/widget/mniplayer.dart';
-import 'package:musica/screens/mostlyplayed/mostplayed.dart';
+import 'package:musica/presentation/screens/explorescreen/explore/explore.dart';
+import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/mniplayer.dart';
+import 'package:musica/presentation/screens/mostlyplayed/mostplayed.dart';
 import 'allmusic/allmusic.dart';
 
 class Allsongs extends StatefulWidget {

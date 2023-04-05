@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
 
 class Privacyandpolicy extends StatelessWidget {
   const Privacyandpolicy({super.key});

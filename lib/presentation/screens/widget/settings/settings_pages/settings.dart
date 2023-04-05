@@ -5,8 +5,8 @@ import 'package:musica/presentation/screens/widget/settings/aboutmusica.dart';
 import 'package:musica/presentation/screens/widget/settings/termsandcontitions.dart';
 import '../privacyandpolicy.dart';
 
-class Settings extends StatelessWidget {
-  const Settings({super.key});
+class SettingsP extends StatelessWidget {
+  const SettingsP({super.key});
 
   @override
   Widget build(BuildContext context) {

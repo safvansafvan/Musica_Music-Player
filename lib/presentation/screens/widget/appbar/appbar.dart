@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/search/search.dart';
+import 'package:musica/presentation/screens/search/search.dart';
 
 // ignore: must_be_immutable
 class AppBarWidget extends StatelessWidget {

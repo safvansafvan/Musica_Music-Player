@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/screens/nowplaying/nowplaying.dart';
+import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
 import 'package:text_scroll/text_scroll.dart';
 
 class Miniplayers extends StatefulWidget {
@@ -76,7 +76,7 @@ class _MiniplayersState extends State<Miniplayers> {
                                       Getallsongs.audioPlayer.currentIndex!]
                                   .displayNameWOExt,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(color: kbackcolor),
+                              style: const TextStyle(color: kwhite),
                             );
                           } else {
                             return Text(
@@ -109,7 +109,7 @@ class _MiniplayersState extends State<Miniplayers> {
                             color: kbackcolor,
                           )),
                   CircleAvatar(
-                    backgroundColor: kbackcolor,
+                    backgroundColor: Colors.black87,
                     child: IconButton(
                       onPressed: () async {
                         setState(() {

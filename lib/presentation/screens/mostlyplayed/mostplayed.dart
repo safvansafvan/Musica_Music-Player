@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
-import 'package:musica/screens/nowplaying/nowplaying.dart';
+import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 

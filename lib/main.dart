@@ -9,11 +9,11 @@ import 'package:musica/controller/provider/profile_provider/profile_provider.dar
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
 import 'package:musica/controller/provider/search_provider/search_provider.dart';
 import 'package:musica/controller/provider/splash_provider/splash_provider.dart';
-import 'package:musica/provider/songmodelprovider.dart';
-import 'package:musica/screens/splash/splashscreen.dart';
+import 'package:musica/controller/provider/provider_nowp_image/songmodelprovider.dart';
+import 'package:musica/presentation/screens/splash/splashscreen.dart';
 import 'package:provider/provider.dart';
-import 'DB/Fuctionprofile/model/model.dart';
 import 'DB/model/model.dart';
+import 'DB/profile_model/model/model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

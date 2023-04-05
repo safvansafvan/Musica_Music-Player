@@ -3,10 +3,10 @@ import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
-import 'package:musica/screens/allmusic/widget/bottom_sheet.dart';
+import 'package:musica/presentation/screens/allmusic/widget/bottom_sheet.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
-import '../../provider/songmodelprovider.dart';
+import '../../../controller/provider/provider_nowp_image/songmodelprovider.dart';
 import '../nowplaying/nowplaying.dart';
 
 // ignore: must_be_immutable

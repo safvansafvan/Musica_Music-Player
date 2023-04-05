@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:musica/screens/allmusic/allmusic.dart';
+import 'package:musica/presentation/screens/allmusic/allmusic.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class MostlyPlayedProvider extends ChangeNotifier {

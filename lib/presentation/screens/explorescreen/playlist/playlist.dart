@@ -4,9 +4,9 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/playlist_provider/playlist_provider.dart';
-import 'package:musica/screens/explorescreen/playlist/playlistindividual.dart';
-import 'package:musica/widget/appbar/appbar.dart';
-import 'package:musica/widget/snack_bar.dart';
+import 'package:musica/presentation/screens/explorescreen/playlist/playlistindividual.dart';
+import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:provider/provider.dart';
 
 class Playlistwidget extends StatelessWidget {

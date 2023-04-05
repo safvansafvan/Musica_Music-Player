@@ -4,6 +4,8 @@ const appBodyColor = Colors.white;
 
 const white70 = Colors.white70;
 
+const kwhite = Colors.white;
+
 const kbackcolor = Colors.black87;
 
 dynamic blueclr = Colors.blue[500];

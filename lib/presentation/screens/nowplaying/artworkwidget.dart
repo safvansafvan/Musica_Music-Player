@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/screens/nowplaying/nowplaying.dart';
+import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class Artworkwidget extends StatelessWidget {

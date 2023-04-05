@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class Songinfowidget extends StatelessWidget {

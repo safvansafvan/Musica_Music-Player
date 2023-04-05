@@ -4,10 +4,10 @@ import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
-import 'package:musica/screens/explorescreen/playlist/playlistsongdisplyscreen.dart';
-import 'package:musica/provider/songmodelprovider.dart';
-import 'package:musica/screens/nowplaying/nowplaying.dart';
-import 'package:musica/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/explorescreen/playlist/playlistsongdisplyscreen.dart';
+import 'package:musica/controller/provider/provider_nowp_image/songmodelprovider.dart';
+import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
+import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 

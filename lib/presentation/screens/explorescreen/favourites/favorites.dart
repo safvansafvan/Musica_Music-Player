@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
-import 'package:musica/screens/allmusic/allmusiclisttile.dart';
+import 'package:musica/presentation/screens/allmusic/allmusiclisttile.dart';
 import 'package:provider/provider.dart';
 
-import '../../../widget/appbar/appbar.dart';
+import '../../widget/appbar/appbar.dart';
 
 class Favoriteswidget extends StatelessWidget {
   const Favoriteswidget({super.key});

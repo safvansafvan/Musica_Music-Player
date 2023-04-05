@@ -3,8 +3,8 @@ import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/playlist_provider/playlist_provider.dart';
-import 'package:musica/widget/appbar/appbar.dart';
-import 'package:musica/widget/snack_bar.dart';
+import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
