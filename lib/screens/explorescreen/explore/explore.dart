@@ -22,23 +22,28 @@ class _ExplorescreenState extends State<Explorescreen> {
             child: InkWell(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Playlistwidget(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Playlistwidget(),
+                  ),
+                );
               },
               child: Card(
                 elevation: 15,
                 shape: RoundedRectangleBorder(
+                    side: const BorderSide(
+                      color: Colors.blue,
+                    ),
                     borderRadius: BorderRadius.circular(24)),
                 child: Container(
                   height: 200,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(28),
-                      image: const DecorationImage(
-                          image: AssetImage('assets/images/playlist.jpeg'),
-                          fit: BoxFit.fill)),
+                    borderRadius: BorderRadius.circular(25),
+                    image: const DecorationImage(
+                        image: AssetImage('assets/images/playlist.jpeg'),
+                        fit: BoxFit.fill),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 35),
                     child: Column(
@@ -70,7 +75,7 @@ class _ExplorescreenState extends State<Explorescreen> {
                   fontSize: 22, fontWeight: FontWeight.w500, color: kbackcolor),
             ),
           ),
-          const Recentwidget()
+          Recentwidget()
         ],
       ),
     );

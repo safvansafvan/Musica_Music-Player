@@ -1,39 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:musica/DB/Functions/recentlyplayed.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
+import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
 import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:provider/provider.dart';
 
-class Recentwidget extends StatefulWidget {
-  const Recentwidget({super.key});
+class Recentwidget extends StatelessWidget {
+  Recentwidget({super.key});
 
-  @override
-  State<Recentwidget> createState() => _RecentwidgetState();
-}
-
-class _RecentwidgetState extends State<Recentwidget> {
   final OnAudioQuery audioQuery = OnAudioQuery();
-  List<SongModel> recent = [];
-  @override
-  void initState() {
-    initialize();
-    super.initState();
-  }
 
-  initialize() async {
-    await Recentcontroller.getallrecently();
-  }
+  List<SongModel> recent = [];
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<RecentlyProvider>(context, listen: false).getallrecently();
+    });
     return FutureBuilder(
-      future: Recentcontroller.getallrecently(),
+      future: Provider.of<RecentlyProvider>(context, listen: false)
+          .getallrecently(),
       builder: (context, item) {
-        return ValueListenableBuilder(
-          valueListenable: Recentcontroller.recenlylistnotifier,
-          builder: (context, value, child) {
-            if (value.isEmpty) {
+        return Consumer<RecentlyProvider>(
+          builder: (context, datas, child) {
+            if (datas.recenlylist.isEmpty) {
               return const Center(
                 child: Padding(
                   padding: EdgeInsets.only(top: 150.0),
@@ -47,7 +38,7 @@ class _RecentwidgetState extends State<Recentwidget> {
                 ),
               );
             } else {
-              final temp = value.reversed.toList();
+              final temp = datas.recenlylist.reversed.toList();
               recent = temp.toSet().toList();
               return FutureBuilder(
                 future: audioQuery.querySongs(

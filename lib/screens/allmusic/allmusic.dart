@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musica/DB/Functions/functionfav.dart';
+import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
@@ -37,7 +37,7 @@ class Allsongswidget extends StatelessWidget {
             return const Center(
               child: Text(
                 'No songs',
-                style: TextStyle(fontSize: 30, color: Colors.white),
+                style: TextStyle(fontSize: 30, color: kbackcolor),
               ),
             );
           }

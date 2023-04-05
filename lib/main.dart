@@ -3,6 +3,8 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
+import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
+import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
 import 'package:musica/controller/provider/splash_provider/splash_provider.dart';
 import 'package:musica/provider/songmodelprovider.dart';
 import 'package:musica/screens/splash/splashscreen.dart';
@@ -42,6 +44,12 @@ class MyApp extends StatelessWidget {
             create: (context) => SplashProvider()),
         ChangeNotifierProvider<FavouriteProvider>(
             create: (context) => FavouriteProvider()),
+        ChangeNotifierProvider<RecentlyProvider>(
+          create: (context) => RecentlyProvider(),
+        ),
+        ChangeNotifierProvider<MostlyPlayedProvider>(
+          create: (context) => MostlyPlayedProvider(),
+        )
       ],
       child: MaterialApp(
           theme: ThemeData(

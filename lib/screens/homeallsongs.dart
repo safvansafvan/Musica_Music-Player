@@ -17,11 +17,7 @@ class Allsongs extends StatefulWidget {
 
 class _AllsongsState extends State<Allsongs> {
   int bottomnavindexnum = 0;
-  List tabbarwidget = [
-    Allsongswidget(),
-    const Mostplayed(),
-    const Explorescreen()
-  ];
+  List tabbarwidget = [Allsongswidget(), Mostplayed(), const Explorescreen()];
 
   @override
   Widget build(BuildContext context) {

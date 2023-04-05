@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:musica/DB/Functions/functionmostlyplayed.dart';
-import 'package:musica/DB/Functions/recentlyplayed.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
+import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
+import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
 import 'package:musica/screens/allmusic/widget/bottom_sheet.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
@@ -78,9 +78,11 @@ class Allmusiclisttile extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Mostlyplayedctl.addmostlyplayed(songmodel[index].id);
+                Provider.of<MostlyPlayedProvider>(context, listen: false)
+                    .addmostlyplayed(songmodel[index].id);
 
-                Recentcontroller.addrecentlyplayed(songmodel[index].id);
+                Provider.of<RecentlyProvider>(context, listen: false)
+                    .addrecentlyplayed(songmodel[index].id);
 
                 Getallsongs.audioPlayer.setAudioSource(
                     Getallsongs.createsongslist(songmodel),

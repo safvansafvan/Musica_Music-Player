@@ -1,42 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:musica/DB/Functions/functionmostlyplayed.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
+import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
 import 'package:musica/screens/nowplaying/nowplaying.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:provider/provider.dart';
 
-class Mostplayed extends StatefulWidget {
-  const Mostplayed({super.key});
+class Mostplayed extends StatelessWidget {
+  Mostplayed({super.key});
 
-  @override
-  State<Mostplayed> createState() => _MostplayedState();
-}
-
-class _MostplayedState extends State<Mostplayed> {
   OnAudioQuery audioQuery = OnAudioQuery();
+
   List<SongModel> mostly = [];
 
   @override
-  void initState() {
-    init();
-    super.initState();
-  }
-
-  init() async {
-    await Mostlyplayedctl.getmostlyplayed();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<MostlyPlayedProvider>(context, listen: false)
+          .getmostlyplayed();
+    });
     return Scaffold(
       backgroundColor: appBodyColor,
       body: FutureBuilder(
-        future: Mostlyplayedctl.getmostlyplayed(),
+        future: Provider.of<MostlyPlayedProvider>(context, listen: false)
+            .getmostlyplayed(),
         builder: (context, item) {
-          return ValueListenableBuilder(
-            valueListenable: Mostlyplayedctl.mostlyplayednotifier,
+          return Consumer<MostlyPlayedProvider>(
             builder: (context, value, child) {
-              if (value.isEmpty) {
+              if (value.mostlyplayedlist.isEmpty) {
                 return const Center(
                   child: Text(
                     'Your Mostly Played Is Empty',
@@ -44,7 +35,7 @@ class _MostplayedState extends State<Mostplayed> {
                   ),
                 );
               } else {
-                final temp = value.reversed.toList();
+                final temp = value.mostlyplayedlist.reversed.toList();
                 mostly = temp.toSet().toList();
                 return FutureBuilder(
                   future: audioQuery.querySongs(

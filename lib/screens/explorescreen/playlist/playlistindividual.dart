@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:musica/DB/Functions/recentlyplayed.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
+import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
 import 'package:musica/screens/explorescreen/playlist/playlistsongdisplyscreen.dart';
 import 'package:musica/provider/songmodelprovider.dart';
 import 'package:musica/screens/nowplaying/nowplaying.dart';
@@ -105,8 +105,10 @@ class _PlaylisttoaddsongState extends State<Addplaylist> {
                                           color: Color.fromARGB(
                                               255, 224, 86, 76))),
                                   onTap: () {
-                                    Recentcontroller.addrecentlyplayed(
-                                        songplaylist[index].id);
+                                    Provider.of<RecentlyProvider>(context,
+                                            listen: false)
+                                        .addrecentlyplayed(
+                                            songplaylist[index].id);
                                     Getallsongs.audioPlayer.setAudioSource(
                                         Getallsongs.createsongslist(
                                             songplaylist));
