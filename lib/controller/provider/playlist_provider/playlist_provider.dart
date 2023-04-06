@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:musica/DB/model/model.dart';
 
+List<int>? songid;
+
 class PlaylistProvider extends ChangeNotifier {
   List<Playermodel> playlist = [];
   final playlistdata = Hive.box<Playermodel>('playlistdata');
@@ -33,4 +35,11 @@ class PlaylistProvider extends ChangeNotifier {
     getallplaylist();
     notifyListeners();
   }
+
+  // songaddplaylist(SongModel data, ctx) {
+  //   playlist.add(data.id);
+  //   notifyListeners();
+
+  //   snackBarWidget(ctx: ctx, title: 'Music Added In Playlist', clr: blueclr);
+  // }
 }

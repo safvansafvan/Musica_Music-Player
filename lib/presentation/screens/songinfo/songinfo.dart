@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/artwork_widget/main_artworkwidget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+// ignore: must_be_immutable
 class Songinfowidget extends StatelessWidget {
-  const Songinfowidget({
-    super.key,
-    required this.songmodel,
-  });
+  Songinfowidget(
+      {super.key,
+      required this.songmodel,
+      required this.widget,
+      required this.index});
   final SongModel songmodel;
+  // ignore: prefer_typing_uninitialized_variables
+  final widget;
+  int index;
 
   @override
   Widget build(BuildContext context) {
+    var screenheight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         backgroundColor: appBodyColor,
@@ -28,33 +35,12 @@ class Songinfowidget extends StatelessWidget {
           padding: const EdgeInsets.all(40.0),
           child: Column(
             children: [
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: screenheight * 0.03,
               ),
-              QueryArtworkWidget(
-                artworkHeight: 260,
-                artworkWidth: 260,
-                id: songmodel.id,
-                type: ArtworkType.AUDIO,
-                artworkFit: BoxFit.cover,
-                artworkBorder: BorderRadius.circular(30),
-                nullArtworkWidget: Container(
-                  height: 250,
-                  width: 250,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30),
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.music_note,
-                    size: 120,
-                    color: kbackcolor,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 30,
+              Artworkwidget(widget: widget, currentindex: index),
+              SizedBox(
+                height: screenheight * 0.05,
               ),
               Text(
                 'Title:${songmodel.title}',
@@ -63,17 +49,14 @@ class Songinfowidget extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: screenheight * 0.05,
               ),
               Text(
                 'Artist: ${songmodel.artist == '<unknown>' ? 'Unknown Artist' : songmodel.artist}',
                 style: const TextStyle(color: kbackcolor),
                 maxLines: 1,
                 textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 30,
               ),
             ],
           ),

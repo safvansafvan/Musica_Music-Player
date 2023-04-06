@@ -83,36 +83,37 @@ class Playlistsongdisplayscreen extends StatelessWidget {
                         style: const TextStyle(color: kbackcolor),
                         maxLines: 1,
                       ),
-                      trailing: Wrap(
-                        children: [
-                          !playlist.isvalule(item.data![index].id)
-                              ? IconButton(
-                                  onPressed: () {
-                                    Getallsongs.copysong = item.data!;
-
-                                    songaddplaylist(item.data![index], context);
-                                    Provider.of<PlaylistProvider>(context,
-                                            listen: false)
-                                        .playlist;
-                                  },
-                                  icon: const Icon(
-                                    Icons.add,
-                                    color: kbackcolor,
-                                  ),
-                                )
-                              : IconButton(
-                                  onPressed: () {
-                                    playlist.deletedata(item.data![index].id);
-                                    snackBarWidget(
+                      trailing: Consumer<PlaylistProvider>(
+                          builder: (context, data, _) {
+                        return Wrap(
+                          children: [
+                            !playlist.isvalule(item.data![index].id)
+                                ? IconButton(
+                                    onPressed: () {
+                                      Getallsongs.copysong = item.data!;
+                                      songaddplaylist(
+                                          item.data![index], context);
+                                    },
+                                    icon: const Icon(
+                                      Icons.add,
+                                      color: kbackcolor,
+                                    ),
+                                  )
+                                : IconButton(
+                                    onPressed: () {
+                                      playlist.deletedata(item.data![index].id);
+                                      snackBarWidget(
                                         ctx: context,
                                         title: 'Music Removed In Playlist',
-                                        clr: kred);
-                                  },
-                                  icon: const Icon(Icons.remove,
-                                      color: kbackcolor),
-                                ),
-                        ],
-                      ),
+                                        clr: kred,
+                                      );
+                                    },
+                                    icon: const Icon(Icons.remove,
+                                        color: kbackcolor),
+                                  ),
+                          ],
+                        );
+                      }),
                     ),
                   ),
                 );
@@ -126,6 +127,7 @@ class Playlistsongdisplayscreen extends StatelessWidget {
 
   songaddplaylist(SongModel data, ctx) {
     playlist.add(data.id);
+
     snackBarWidget(ctx: ctx, title: 'Music Added In Playlist', clr: blueclr);
   }
 }

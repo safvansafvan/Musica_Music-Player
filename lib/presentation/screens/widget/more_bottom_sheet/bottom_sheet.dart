@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
-import 'package:musica/presentation/screens/nowplaying/comp/morebottomsheet.dart';
 import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
+
+import 'playlis_dialog.dart';
 
 // ignore: must_be_immutable
 class BottomSheetWidget extends StatelessWidget {
@@ -29,10 +30,7 @@ class BottomSheetWidget extends StatelessWidget {
               ),
             ),
             onTap: () {
-              shoplaylistdialog(
-                context,
-                songmodel,
-              );
+              shoplaylistdialog(context, songmodel);
             },
           ),
           //2

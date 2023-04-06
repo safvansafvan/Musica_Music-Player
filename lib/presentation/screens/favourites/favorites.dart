@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
-import 'package:musica/presentation/screens/allmusic/allmusiclisttile.dart';
+import 'package:musica/presentation/screens/allmusic/widget/allmusiclisttile.dart';
 import 'package:provider/provider.dart';
-
-import '../../widget/appbar/appbar.dart';
+import '../widget/appbar/appbar.dart';
 
 class Favoriteswidget extends StatelessWidget {
   const Favoriteswidget({super.key});
@@ -30,13 +29,11 @@ class Favoriteswidget extends StatelessWidget {
               child: Consumer<FavouriteProvider>(
                 builder: (BuildContext context, data, Widget? child) {
                   if (data.favoitessongs.isEmpty) {
-                    return const Center(
+                    return Center(
                       child: Text(
-                        'No songs in favourites',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: kbackcolor,
-                            fontWeight: FontWeight.w600),
+                        'Your Favourites Is Empty',
+                        style: textStyleFuc(
+                            size: 24, clr: kbackcolor, bld: FontWeight.w500),
                       ),
                     );
                   } else {

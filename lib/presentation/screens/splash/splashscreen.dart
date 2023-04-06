@@ -7,6 +7,7 @@ class Splashscreemwidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var meadiaquery = MediaQuery.of(context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<SplashProvider>(context, listen: false)
           .navigatetohome(context);
@@ -23,21 +24,21 @@ class Splashscreemwidgets extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             SizedBox(
-              height: 550,
+              height: meadiaquery.size.height * 0.71,
             ),
-            Text(
+            const Text(
               'Audizi Player',
               style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w500,
                   color: Colors.white60),
             ),
-            SizedBox(
+            const SizedBox(
               height: 150,
             ),
-            Text('Music Is My Life .The Lyrics Are My Story',
+            const Text('Music Is My Life .The Lyrics Are My Story',
                 style: TextStyle(fontSize: 10, color: Colors.white60))
           ],
         ),

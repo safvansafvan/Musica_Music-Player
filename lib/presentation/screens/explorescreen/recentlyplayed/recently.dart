@@ -3,9 +3,12 @@ import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
 import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
+import 'package:musica/presentation/screens/widget/artwork_widget/leading_art_widget.dart';
+import 'package:musica/presentation/screens/widget/more_bottom_sheet/bottom_sheet.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class Recentwidget extends StatelessWidget {
   Recentwidget({super.key});
 
@@ -71,23 +74,8 @@ class Recentwidget extends StatelessWidget {
                           border: Border.all(color: Colors.blue),
                         ),
                         child: ListTile(
-                          leading: QueryArtworkWidget(
-                            id: recent[index].id,
-                            type: ArtworkType.AUDIO,
-                            artworkHeight: 60,
-                            artworkWidth: 60,
-                            nullArtworkWidget: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                child: const Icon(
-                                  Icons.music_note,
-                                  color: kbackcolor,
-                                )),
-                            artworkBorder: BorderRadius.circular(10),
-                            artworkFit: BoxFit.cover,
-                          ),
+                          leading:
+                              LeadingArtWidget(songmodel: recent, index: index),
                           title: Text(recent[index].displayNameWOExt,
                               maxLines: 1,
                               style: const TextStyle(color: kbackcolor)),
@@ -96,16 +84,35 @@ class Recentwidget extends StatelessWidget {
                             style: const TextStyle(color: kbackcolor),
                             maxLines: 1,
                           ),
+                          trailing: IconButton(
+                            onPressed: () {
+                              showModalBottomSheet(
+                                backgroundColor: white70,
+                                context: context,
+                                builder: (context) {
+                                  return BottomSheetWidget(
+                                    songmodel: recent[index],
+                                    index: index,
+                                  );
+                                },
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.more_vert,
+                              color: kbackcolor,
+                            ),
+                          ),
                           onTap: () {
                             Getallsongs.audioPlayer.setAudioSource(
                                 Getallsongs.createsongslist(recent));
                             Getallsongs.audioPlayer.play();
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Nowplaying(
-                                      songModel: Getallsongs.playsong),
-                                ));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    Nowplaying(songModel: Getallsongs.playsong),
+                              ),
+                            );
                           },
                         ),
                       ),

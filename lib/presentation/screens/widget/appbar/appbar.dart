@@ -38,7 +38,7 @@ class AppBarWidget extends StatelessWidget {
               ),
         title: Text(
           titles,
-          style: textStyleFuc(size: 17, clr: kbackcolor, bld: FontWeight.w500),
+          style: textStyleFuc(size: 18, clr: kbackcolor, bld: FontWeight.w500),
         ),
         trailing: search
             ? IconButton(

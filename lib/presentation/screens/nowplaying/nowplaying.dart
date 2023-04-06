@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
-import 'package:musica/presentation/screens/homeallsongs.dart';
-import 'package:musica/presentation/screens/nowplaying/playercontrols.dart';
+import 'package:musica/presentation/homeallsongs.dart';
+import 'package:musica/presentation/screens/nowplaying/widget/playercontrols.dart';
+import 'package:musica/presentation/screens/nowplaying/widget/song_durations_controller.dart';
+import 'package:musica/presentation/screens/songinfo/songinfo.dart';
+import 'package:musica/presentation/screens/widget/more_bottom_sheet/playlis_dialog.dart';
 import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
-import 'artworkwidget.dart';
-import 'comp/morebottomsheet.dart';
+import '../widget/artwork_widget/main_artworkwidget.dart';
 
 class Nowplaying extends StatefulWidget {
   const Nowplaying({
@@ -24,13 +26,13 @@ class Nowplaying extends StatefulWidget {
 }
 
 class _NowplatingState extends State<Nowplaying> {
-  Duration duration = const Duration();
-  Duration position = const Duration();
-
   int currentindex = 0;
   bool firstsong = false;
   bool lastsong = false;
   int large = 0;
+
+  Duration duration = const Duration();
+  Duration position = const Duration();
 
   @override
   void initState() {
@@ -38,12 +40,14 @@ class _NowplatingState extends State<Nowplaying> {
       if (ind != null) {
         Getallsongs.currentindexgetallsongs = ind;
         if (mounted) {
-          setState(() {
-            large = widget.count - 1;
-            currentindex = ind;
-            ind == 0 ? firstsong = true : firstsong = false;
-            ind == large ? lastsong = true : lastsong = false;
-          });
+          setState(
+            () {
+              large = widget.count - 1;
+              currentindex = ind;
+              ind == 0 ? firstsong = true : firstsong = false;
+              ind == large ? lastsong = true : lastsong = false;
+            },
+          );
         }
       }
     });
@@ -67,30 +71,53 @@ class _NowplatingState extends State<Nowplaying> {
 
   @override
   Widget build(BuildContext context) {
+    var screenheight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-          backgroundColor: appBodyColor,
-          appBar: PreferredSize(
-            preferredSize: const Size(double.infinity, 55),
-            child: ListTile(
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+        backgroundColor: appBodyColor,
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 55),
+          child: ListTile(
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                  builder: (context) {
+                    return const Allsongs();
+                  },
+                ), (route) => false);
+              },
+              icon: const Icon(Icons.arrow_back_ios),
+            ),
+            title: Text(
+              'Audizi Player',
+              style:
+                  textStyleFuc(size: 18, clr: kbackcolor, bld: FontWeight.w500),
+            ),
+            trailing: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
                     builder: (context) {
-                      return const Allsongs();
+                      return Songinfowidget(
+                        widget: widget,
+                        index: currentindex,
+                        songmodel: widget.songModel[currentindex],
+                      );
                     },
-                  ), (route) => false);
-                },
-                icon: const Icon(Icons.arrow_back_ios),
-              ),
-              title: const Text('Audizi Player'),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.info_outline_rounded),
             ),
           ),
-          body: SizedBox(
-            height: double.infinity,
-            child: ListView(children: [
-              const SizedBox(
-                height: 100,
+        ),
+        body: SizedBox(
+          height: double.infinity,
+          child: ListView(
+            children: [
+              SizedBox(
+                height: screenheight * 0.08,
               ),
               Center(
                 child: Artworkwidget(
@@ -98,8 +125,8 @@ class _NowplatingState extends State<Nowplaying> {
                   currentindex: currentindex,
                 ),
               ),
-              const SizedBox(
-                height: 15,
+              SizedBox(
+                height: screenheight * 0.03,
               ),
               SizedBox(
                 width: double.infinity,
@@ -117,8 +144,8 @@ class _NowplatingState extends State<Nowplaying> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    const SizedBox(
-                      height: 2,
+                    SizedBox(
+                      height: screenheight * 0.01,
                     ),
                     Text(
                       widget.songModel[currentindex].artist.toString() ==
@@ -135,28 +162,23 @@ class _NowplatingState extends State<Nowplaying> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 70,
+              SizedBox(
+                height: screenheight * 0.1,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: IconButton(
+              Consumer<FavouriteProvider>(builder: (context, value, _) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
                       onPressed: () {
-                        if (Provider.of<FavouriteProvider>(context,
-                                listen: false)
-                            .isfavo(widget.songModel[currentindex])) {
-                          Provider.of<FavouriteProvider>(context, listen: false)
-                              .deletesong(widget.songModel[currentindex].id);
+                        if (value.isfavo(widget.songModel[currentindex])) {
+                          value.deletesong(widget.songModel[currentindex].id);
                           snackBarWidget(
                               ctx: context,
                               title: 'Song Removed In Favourite List',
-                              clr: Colors.red);
+                              clr: kred);
                         } else {
-                          Provider.of<FavouriteProvider>(context, listen: false)
-                              .add(widget.songModel[currentindex]);
+                          value.add(widget.songModel[currentindex]);
                           snackBarWidget(
                               ctx: context,
                               title: 'Song Added In Favourite List',
@@ -170,64 +192,34 @@ class _NowplatingState extends State<Nowplaying> {
                               : Icons.favorite_border_outlined,
                           color: kbackcolor),
                     ),
-                  ),
-                  IconButton(
+                    IconButton(
                       onPressed: () {
-                        showbottomsheet(
+                        shoplaylistdialog(
                             context, widget.songModel[currentindex]);
                       },
                       icon: const Icon(
-                        Icons.more_vert,
+                        Icons.playlist_add_circle_outlined,
                         color: kbackcolor,
-                      )),
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      position.toString().split('.')[0],
-                      style: const TextStyle(color: kbackcolor),
+                      ),
                     ),
-                  ),
-                  Expanded(
-                      child: Slider(
-                    min: const Duration(microseconds: 0).inSeconds.toDouble(),
-                    value: position.inSeconds.toDouble(),
-                    max: duration.inSeconds.toDouble(),
-                    onChanged: (value) {
-                      setState(() {
-                        chagetoseconds(value.toInt());
-                        value = value;
-                      });
-                    },
-                    activeColor: kbackcolor,
-                    thumbColor: kbackcolor,
-                    inactiveColor: kbackcolor,
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Text(
-                      duration.toString().split('.')[0],
-                      style: const TextStyle(color: kbackcolor),
-                    ),
-                  ),
-                ],
+                  ],
+                );
+              }),
+              SongDurationsController(
+                position: position,
+                duration: duration,
               ),
               //row
-              Playercontroler(
-                  count: widget.count,
-                  firstsong: firstsong,
-                  lastsong: lastsong,
-                  songModel: widget.songModel[currentindex])
-            ]),
-          )),
+              Playercontrolers(
+                count: widget.count,
+                firstsong: firstsong,
+                lastsong: lastsong,
+                songModel: widget.songModel[currentindex],
+              )
+            ],
+          ),
+        ),
+      ),
     );
-  }
-
-  void chagetoseconds(int seconds) {
-    Duration duration = Duration(seconds: seconds);
-    Getallsongs.audioPlayer.seek(duration);
   }
 }

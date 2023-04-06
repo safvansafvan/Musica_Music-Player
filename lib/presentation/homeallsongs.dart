@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:musica/presentation/screens/widget/drawer/drawer.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/presentation/screens/explorescreen/explore/explore.dart';
+import 'package:musica/presentation/screens/explorescreen/explore.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
 import 'package:musica/presentation/screens/widget/mniplayer.dart';
 import 'package:musica/presentation/screens/mostlyplayed/mostplayed.dart';
-import 'allmusic/allmusic.dart';
+import 'screens/allmusic/allmusic.dart';
 
 class Allsongs extends StatefulWidget {
   const Allsongs({super.key});
@@ -37,17 +37,13 @@ class _AllsongsState extends State<Allsongs> {
             tabbarwidget[bottomnavindexnum],
             Positioned(
               bottom: 0,
-              child: Column(
-                children: [
-                  Getallsongs.audioPlayer.currentIndex != null
-                      ? StreamBuilder<bool>(
-                          stream: Getallsongs.audioPlayer.playingStream,
-                          builder: (context, snapshot) {
-                            return const Miniplayers();
-                          })
-                      : Container()
-                ],
-              ),
+              child: Getallsongs.audioPlayer.currentIndex != null
+                  ? StreamBuilder<bool>(
+                      stream: Getallsongs.audioPlayer.playingStream,
+                      builder: (context, snapshot) {
+                        return const Miniplayers();
+                      })
+                  : const SizedBox(),
             ),
           ],
         ),
@@ -62,14 +58,14 @@ class _AllsongsState extends State<Allsongs> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.music_video,
+                Icons.music_note_rounded,
                 color: kbackcolor,
               ),
               label: 'All Music',
             ),
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.topic_sharp,
+                  Icons.library_music_rounded,
                   color: kbackcolor,
                 ),
                 label: 'Mostly Played'),

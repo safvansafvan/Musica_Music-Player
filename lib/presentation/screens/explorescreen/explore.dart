@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
-import '../../recentlyplayed/recently.dart';
+import 'recentlyplayed/recently.dart';
 
-class Explorescreen extends StatefulWidget {
+class Explorescreen extends StatelessWidget {
   const Explorescreen({super.key});
 
   @override
-  State<Explorescreen> createState() => _ExplorescreenState();
-}
-
-class _ExplorescreenState extends State<Explorescreen> {
-  @override
   Widget build(BuildContext context) {
+    var screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: appBodyColor,
       body: ListView(
@@ -36,7 +32,7 @@ class _ExplorescreenState extends State<Explorescreen> {
                     ),
                     borderRadius: BorderRadius.circular(24)),
                 child: Container(
-                  height: 200,
+                  height: screenheight * 0.27,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
@@ -67,12 +63,12 @@ class _ExplorescreenState extends State<Explorescreen> {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(12.0),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
             child: Text(
               'Recently Played',
-              style: TextStyle(
-                  fontSize: 22, fontWeight: FontWeight.w500, color: kbackcolor),
+              style:
+                  textStyleFuc(size: 22, clr: kbackcolor, bld: FontWeight.w500),
             ),
           ),
           Recentwidget()

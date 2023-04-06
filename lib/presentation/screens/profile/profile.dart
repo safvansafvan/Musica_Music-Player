@@ -5,7 +5,6 @@ import 'package:musica/controller/provider/profile_provider/profile_provider.dar
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
 import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:provider/provider.dart';
-
 import '../../../DB/profile_model/model/model.dart';
 
 class Profiewidget extends StatelessWidget {

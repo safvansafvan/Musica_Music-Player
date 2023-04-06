@@ -26,9 +26,8 @@ class Playlistwidget extends StatelessWidget {
               search: false,
               menu: false),
         ),
-        body: SafeArea(
-          child: Center(
-              child: Padding(
+        body: Center(
+          child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
               width: double.infinity,
@@ -38,14 +37,12 @@ class Playlistwidget extends StatelessWidget {
                 builder: (BuildContext context, Box<Playermodel> musiclist,
                     Widget? child) {
                   return Hive.box<Playermodel>('playlistdata').isEmpty
-                      ? const Center(
-                          child: Text(
-                            'No Playlist Found',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: kbackcolor),
-                          ),
+                      ? Center(
+                          child: Text('No Playlist Found',
+                              style: textStyleFuc(
+                                  size: 24,
+                                  clr: kbackcolor,
+                                  bld: FontWeight.w500)),
                         )
                       : ListView.builder(
                           itemCount: musiclist.length,
@@ -66,7 +63,7 @@ class Playlistwidget extends StatelessWidget {
                                     onPressed: (context) {
                                       deleteplaylist(context, musiclist, index);
                                     },
-                                    icon: Icons.delete_outline,
+                                    icon: Icons.delete_outline_rounded,
                                     foregroundColor: Colors.red,
                                   ),
                                 ],
@@ -75,16 +72,16 @@ class Playlistwidget extends StatelessWidget {
                                   padding: const EdgeInsets.only(top: 20),
                                   child: Container(
                                       decoration: BoxDecoration(
-                                          image: const DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: AssetImage(
-                                                  'assets/images/images.png')),
-                                          color: const Color.fromARGB(
-                                              255, 29, 29, 45),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          border: Border.all(
-                                              color: Colors.white30)),
+                                        image: const DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                              'assets/images/images.png'),
+                                        ),
+                                        color: const Color.fromARGB(
+                                            255, 29, 29, 45),
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(color: blueclr),
+                                      ),
                                       child: ListTile(
                                         onTap: () {
                                           Navigator.push(
@@ -102,14 +99,12 @@ class Playlistwidget extends StatelessWidget {
                                               Color.fromARGB(255, 29, 29, 45),
                                         ),
                                         title: Text(
-                                          data.name,
+                                          data.name.toUpperCase(),
                                           textAlign: TextAlign.left,
                                           style: const TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromARGB(255, 29, 29, 45),
-                                          ),
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500,
+                                              color: kwhite),
                                         ),
                                         trailing: IconButton(
                                           tooltip: 'Drag Left',
@@ -126,9 +121,12 @@ class Playlistwidget extends StatelessWidget {
                 },
               ),
             ),
-          )),
+          ),
         ),
         floatingActionButton: FloatingActionButton(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: const BorderSide(color: Colors.blue)),
           onPressed: () {
             newplaylist(context, formkey);
           },
@@ -191,7 +189,6 @@ void newplaylist(BuildContext context, formkey) {
                 ),
               ),
             ),
-            // const  SizedBox(height: 8,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

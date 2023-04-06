@@ -4,6 +4,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
 import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
+import 'package:musica/controller/provider/nowplaying_provider/nowplay_provider.dart';
 import 'package:musica/controller/provider/playlist_provider/playlist_provider.dart';
 import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
@@ -48,20 +49,17 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<FavouriteProvider>(
             create: (context) => FavouriteProvider()),
         ChangeNotifierProvider<RecentlyProvider>(
-          create: (context) => RecentlyProvider(),
-        ),
+            create: (context) => RecentlyProvider()),
         ChangeNotifierProvider<MostlyPlayedProvider>(
-          create: (context) => MostlyPlayedProvider(),
-        ),
+            create: (context) => MostlyPlayedProvider()),
         ChangeNotifierProvider<PlaylistProvider>(
-          create: (context) => PlaylistProvider(),
-        ),
+            create: (context) => PlaylistProvider()),
         ChangeNotifierProvider<ProfileProvider>(
-          create: (context) => ProfileProvider(),
-        ),
+            create: (context) => ProfileProvider()),
         ChangeNotifierProvider<SearchProvider>(
-          create: (context) => SearchProvider(),
-        )
+            create: (context) => SearchProvider()),
+        ChangeNotifierProvider<NowplayingScreenProvider>(
+            create: (context) => NowplayingScreenProvider()),
       ],
       child: MaterialApp(
           theme: ThemeData(

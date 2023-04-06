@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/search_provider/search_provider.dart';
-import 'package:musica/presentation/screens/allmusic/allmusiclisttile.dart';
+import 'package:musica/presentation/screens/allmusic/widget/allmusiclisttile.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
-
 import 'package:provider/provider.dart';
 
 class Searchwidget extends StatelessWidget {
@@ -45,9 +44,9 @@ class Searchwidget extends StatelessWidget {
                       padding: EdgeInsets.only(top: 270),
                       child: Center(
                         child: Text(
-                          'No Songs ',
+                          'Song Not Found',
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 24,
                               fontWeight: FontWeight.w500,
                               color: kbackcolor),
                         ),

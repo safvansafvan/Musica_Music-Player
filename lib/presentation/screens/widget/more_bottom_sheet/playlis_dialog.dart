@@ -3,65 +3,10 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
-import 'package:musica/presentation/screens/songinfo/songinfo.dart';
 import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
-void showbottomsheet(BuildContext context, SongModel songModel) {
-  showModalBottomSheet(
-      backgroundColor: Colors.white70,
-      context: context,
-      builder: (ctx1) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            height: 113,
-            child: Column(
-              children: [
-                ListTile(
-                  leading: const Icon(
-                    Icons.playlist_add,
-                    color: Color.fromARGB(255, 37, 37, 54),
-                  ),
-                  title: const Text(
-                    'Add Playlist',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 37, 37, 54),
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    shoplaylistdialog(context, songModel);
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.info_outline,
-                      color: Color.fromARGB(255, 37, 37, 54)),
-                  title: const Text(
-                    'Song Info',
-                    style: TextStyle(color: Color.fromARGB(255, 37, 37, 54)),
-                  ),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return Songinfowidget(
-                          songmodel: songModel,
-                        );
-                      },
-                    ));
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      });
-}
-
-shoplaylistdialog(
-  ctx,
-  SongModel songModel,
-) {
+shoplaylistdialog(ctx, SongModel songModel) {
   showDialog(
     context: ctx,
     builder: (context) => AlertDialog(
@@ -110,7 +55,8 @@ shoplaylistdialog(
                           ),
                         ),
                       );
-                    });
+                    },
+                  );
           },
         ),
       ),
@@ -123,11 +69,12 @@ shoplaylistdialog(
                 },
                 child: const Text('Cancel')),
             TextButton(
-                onPressed: () {
-                  Navigator.pop(ctx);
-                  newplaylist(ctx, formkey);
-                },
-                child: const Text('New Playlist'))
+              onPressed: () {
+                Navigator.pop(ctx);
+                newplaylist(ctx, formkey);
+              },
+              child: const Text('New Playlist'),
+            )
           ],
         )
       ],

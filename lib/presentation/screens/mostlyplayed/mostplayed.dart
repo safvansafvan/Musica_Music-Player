@@ -3,9 +3,12 @@ import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
 import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
+import 'package:musica/presentation/screens/widget/artwork_widget/leading_art_widget.dart';
+import 'package:musica/presentation/screens/widget/more_bottom_sheet/bottom_sheet.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class Mostplayed extends StatelessWidget {
   Mostplayed({super.key});
 
@@ -28,10 +31,11 @@ class Mostplayed extends StatelessWidget {
           return Consumer<MostlyPlayedProvider>(
             builder: (context, value, child) {
               if (value.mostlyplayedlist.isEmpty) {
-                return const Center(
+                return Center(
                   child: Text(
                     'Your Mostly Played Is Empty',
-                    style: TextStyle(fontSize: 20, color: kbackcolor),
+                    style: textStyleFuc(
+                        size: 24, clr: kbackcolor, bld: FontWeight.w500),
                   ),
                 );
               } else {
@@ -47,13 +51,11 @@ class Mostplayed extends StatelessWidget {
                     if (item.data == null) {
                       const Center(child: CircularProgressIndicator());
                     } else if (item.data!.isEmpty) {
-                      const Center(
+                      Center(
                         child: Text(
                           'No Songs In Your Internal',
-                          style: TextStyle(
-                              color: kbackcolor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20),
+                          style: textStyleFuc(
+                              size: 24, clr: kbackcolor, bld: FontWeight.w500),
                         ),
                       );
                     }
@@ -70,25 +72,8 @@ class Mostplayed extends StatelessWidget {
                               border: Border.all(color: Colors.blue),
                             ),
                             child: ListTile(
-                              leading: QueryArtworkWidget(
-                                id: mostly[index].id,
-                                type: ArtworkType.AUDIO,
-                                artworkHeight: 60,
-                                artworkWidth: 60,
-                                nullArtworkWidget: Container(
-                                  height: 60,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: const Icon(
-                                    Icons.music_note,
-                                    color: kbackcolor,
-                                  ),
-                                ),
-                                artworkBorder: BorderRadius.circular(10),
-                                artworkFit: BoxFit.cover,
-                              ),
+                              leading: LeadingArtWidget(
+                                  songmodel: mostly, index: index),
                               title: Text(mostly[index].displayNameWOExt,
                                   maxLines: 1,
                                   style: const TextStyle(color: kbackcolor)),
@@ -96,6 +81,24 @@ class Mostplayed extends StatelessWidget {
                                 '${mostly[index].artist}',
                                 style: const TextStyle(color: kbackcolor),
                                 maxLines: 1,
+                              ),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    backgroundColor: white70,
+                                    context: context,
+                                    builder: (context) {
+                                      return BottomSheetWidget(
+                                        songmodel: mostly[index],
+                                        index: index,
+                                      );
+                                    },
+                                  );
+                                },
+                                icon: const Icon(
+                                  Icons.more_vert,
+                                  color: kbackcolor,
+                                ),
                               ),
                               onTap: () {
                                 Getallsongs.audioPlayer.setAudioSource(

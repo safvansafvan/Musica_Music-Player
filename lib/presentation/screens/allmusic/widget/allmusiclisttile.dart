@@ -3,11 +3,12 @@ import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
-import 'package:musica/presentation/screens/allmusic/widget/bottom_sheet.dart';
+import 'package:musica/presentation/screens/widget/more_bottom_sheet/bottom_sheet.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
-import '../../../controller/provider/provider_nowp_image/songmodelprovider.dart';
-import '../nowplaying/nowplaying.dart';
+import '../../../../controller/provider/provider_nowp_image/songmodelprovider.dart';
+import '../../nowplaying/nowplaying.dart';
+import '../../widget/artwork_widget/leading_art_widget.dart';
 
 // ignore: must_be_immutable
 class Allmusiclisttile extends StatelessWidget {
@@ -34,23 +35,9 @@ class Allmusiclisttile extends StatelessWidget {
               border: Border.all(color: Colors.blue),
             ),
             child: ListTile(
-              leading: QueryArtworkWidget(
-                id: songmodel[index].id,
-                type: ArtworkType.AUDIO,
-                artworkHeight: 60,
-                artworkWidth: 60,
-                nullArtworkWidget: Container(
-                  height: 60,
-                  width: 60,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
-                  child: const Icon(
-                    Icons.music_note,
-                    color: kbackcolor,
-                  ),
-                ),
-                artworkBorder: BorderRadius.circular(10),
-                artworkFit: BoxFit.cover,
+              leading: LeadingArtWidget(
+                songmodel: songmodel,
+                index: index,
               ),
               title: Text(songmodel[index].displayNameWOExt,
                   maxLines: 1, style: const TextStyle(color: kbackcolor)),
@@ -62,7 +49,7 @@ class Allmusiclisttile extends StatelessWidget {
               trailing: IconButton(
                 onPressed: () {
                   showModalBottomSheet(
-                    backgroundColor: Colors.white70,
+                    backgroundColor: white70,
                     context: context,
                     builder: (context) {
                       return BottomSheetWidget(

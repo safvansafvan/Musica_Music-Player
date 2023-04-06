@@ -31,7 +31,7 @@ class _MiniplayersState extends State<Miniplayers> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
+        Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {
             return Nowplaying(
               songModel: Getallsongs.playsong,
@@ -76,7 +76,8 @@ class _MiniplayersState extends State<Miniplayers> {
                                       Getallsongs.audioPlayer.currentIndex!]
                                   .displayNameWOExt,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(color: kwhite),
+                              style: const TextStyle(
+                                  color: kwhite, fontWeight: FontWeight.w500),
                             );
                           } else {
                             return Text(
@@ -86,6 +87,7 @@ class _MiniplayersState extends State<Miniplayers> {
                                   .displayNameWOExt,
                               style: const TextStyle(
                                   overflow: TextOverflow.ellipsis,
+                                  fontWeight: FontWeight.w500,
                                   color: kbackcolor),
                             );
                           }

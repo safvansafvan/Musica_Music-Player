@@ -18,26 +18,27 @@ class Artworkwidget extends StatelessWidget {
       keepOldArtwork: true,
       id: widget.songModel[currentindex].id,
       type: ArtworkType.AUDIO,
-      artworkWidth: 250,
-      artworkHeight: 250,
+      artworkWidth: 280,
+      artworkHeight: 280,
       artworkFit: BoxFit.cover,
       artworkBorder: const BorderRadius.all(
-        Radius.circular(30),
+        Radius.circular(15),
       ),
       nullArtworkWidget: Container(
-          height: 250,
-          width: 250,
-          decoration: const BoxDecoration(
-            color: Colors.black12,
-            borderRadius: BorderRadius.all(
-              Radius.circular(30),
-            ),
+        height: 280,
+        width: 280,
+        decoration: const BoxDecoration(
+          color: Colors.black12,
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
           ),
-          child: const Icon(
-            Icons.music_note_outlined,
-            size: 120,
-            color: kbackcolor,
-          )),
+        ),
+        child: const Icon(
+          Icons.music_note_outlined,
+          size: 120,
+          color: kbackcolor,
+        ),
+      ),
     );
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
 
-class Termsandconditions extends StatelessWidget {
-  const Termsandconditions({super.key});
+class Termsandcondition extends StatelessWidget {
+  const Termsandcondition({super.key});
 
   @override
   Widget build(BuildContext context) {
