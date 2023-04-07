@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
-import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
-import 'package:musica/presentation/screens/widget/more_bottom_sheet/bottom_sheet.dart';
+import 'package:musica/presentation/screens/widget/main_listtile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:provider/provider.dart';
-import '../../../../controller/provider/provider_nowp_image/songmodelprovider.dart';
-import '../../nowplaying/nowplaying.dart';
-import '../../widget/artwork_widget/leading_art_widget.dart';
 
 // ignore: must_be_immutable
 class Allmusiclisttile extends StatelessWidget {
@@ -22,73 +14,7 @@ class Allmusiclisttile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        songs.addAll(songmodel);
-        return Padding(
-          padding: const EdgeInsets.all(7.0),
-          child: Container(
-            height: 73,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.blue),
-            ),
-            child: ListTile(
-              leading: LeadingArtWidget(
-                songmodel: songmodel,
-                index: index,
-              ),
-              title: Text(songmodel[index].displayNameWOExt,
-                  maxLines: 1, style: const TextStyle(color: kbackcolor)),
-              subtitle: Text(
-                '${songmodel[index].artist.toString() == "<unknown>" ? "Unknown Artist" : songmodel[index].artist}',
-                style: const TextStyle(color: kbackcolor),
-                maxLines: 1,
-              ),
-              trailing: IconButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    backgroundColor: white70,
-                    context: context,
-                    builder: (context) {
-                      return BottomSheetWidget(
-                        songmodel: songmodel[index],
-                        index: index,
-                      );
-                    },
-                  );
-                },
-                icon: const Icon(
-                  Icons.more_vert,
-                  color: kbackcolor,
-                ),
-              ),
-              onTap: () {
-                Provider.of<MostlyPlayedProvider>(context, listen: false)
-                    .addmostlyplayed(songmodel[index].id);
-
-                Provider.of<RecentlyProvider>(context, listen: false)
-                    .addrecentlyplayed(songmodel[index].id);
-
-                Getallsongs.audioPlayer.setAudioSource(
-                    Getallsongs.createsongslist(songmodel),
-                    initialIndex: index);
-                context.read<Songmodelprovider>().setid(songmodel[index].id);
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Nowplaying(
-                      songModel: songmodel,
-                      count: songmodel.length,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        );
-      },
-      itemCount: songmodel.length,
-    );
+    return MusicListTile(
+        songmodel: songmodel, isRecently: false, isMosltly: false);
   }
 }

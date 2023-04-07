@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
-import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
-import 'package:musica/presentation/screens/widget/artwork_widget/leading_art_widget.dart';
-import 'package:musica/presentation/screens/widget/more_bottom_sheet/bottom_sheet.dart';
+import 'package:musica/presentation/screens/widget/main_listtile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
@@ -56,68 +53,15 @@ class Recentwidget extends StatelessWidget {
                     const Center(
                       child: Center(
                           child: Text(
-                        'No songs in your internal',
+                        'No Songs In Your Internal',
                         style: TextStyle(color: Colors.black),
                       )),
                     );
                   }
-                  return ListView.builder(
-                    controller: ScrollController(keepScrollOffset: true),
-                    shrinkWrap: true,
-                    itemCount: recent.length > 10 ? 10 : recent.length,
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(7.0),
-                      child: Container(
-                        height: 73,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.blue),
-                        ),
-                        child: ListTile(
-                          leading:
-                              LeadingArtWidget(songmodel: recent, index: index),
-                          title: Text(recent[index].displayNameWOExt,
-                              maxLines: 1,
-                              style: const TextStyle(color: kbackcolor)),
-                          subtitle: Text(
-                            '${recent[index].artist}',
-                            style: const TextStyle(color: kbackcolor),
-                            maxLines: 1,
-                          ),
-                          trailing: IconButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                backgroundColor: white70,
-                                context: context,
-                                builder: (context) {
-                                  return BottomSheetWidget(
-                                    songmodel: recent[index],
-                                    index: index,
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.more_vert,
-                              color: kbackcolor,
-                            ),
-                          ),
-                          onTap: () {
-                            Getallsongs.audioPlayer.setAudioSource(
-                                Getallsongs.createsongslist(recent));
-                            Getallsongs.audioPlayer.play();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    Nowplaying(songModel: Getallsongs.playsong),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  );
+                  return MusicListTile(
+                      songmodel: recent,
+                      isRecently: true,
+                      recentlylength: recent.length > 10 ? 10 : recent.length);
                 },
               );
             }

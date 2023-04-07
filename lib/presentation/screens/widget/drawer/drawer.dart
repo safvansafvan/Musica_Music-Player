@@ -1,17 +1,21 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:musica/DB/model/model.dart';
+import 'package:musica/DB/profile_model/model/model.dart';
 import 'package:musica/presentation/screens/profile/profile.dart';
 import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
 import 'package:musica/presentation/screens/favourites/favorites.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
 import 'package:musica/presentation/screens/settings/settings.dart';
+import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:provider/provider.dart';
-import '../../../../DB/profile_model/model/model.dart';
 import '../../../../controller/core/core.dart';
 
 // ignore: must_be_immutable
 class Drawerwidget extends StatelessWidget {
-  Drawerwidget({super.key});
+  Drawerwidget({
+    super.key,
+  });
 
   Profilemodel? user;
 
@@ -25,9 +29,8 @@ class Drawerwidget extends StatelessWidget {
         child: Column(
           children: [
             ValueListenableBuilder(
-              valueListenable: Provider.of<ProfileProvider>(
-                context,
-              ).userprofilelist,
+              valueListenable:
+                  Provider.of<ProfileProvider>(context).userprofilelist,
               builder: (context, userdata, child) {
                 for (final x in userdata) {
                   user = x;
@@ -36,26 +39,39 @@ class Drawerwidget extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     top: 15.0,
                   ),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 33,
-                      backgroundImage: FileImage(File(user?.userimage ?? '')),
-                    ),
-                    title: Text(
-                      user?.username.toUpperCase() ?? 'Update Profile',
-                      style: const TextStyle(color: kbackcolor, fontSize: 15),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const Profiewidget();
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                  child:
+                      Consumer<ProfileProvider>(builder: (context, value, _) {
+                    return ListTile(
+                      leading: CircleAvatar(
+                        radius: 33,
+                        backgroundImage: FileImage(File(user?.userimage ?? '')),
+                      ),
+                      title: Text(
+                        user?.username.toUpperCase() ?? 'Update Profile',
+                        style: const TextStyle(color: kbackcolor, fontSize: 15),
+                      ),
+                      trailing: IconButton(
+                        onPressed: () {
+                          value.delete(value.userprofilelist.value.length - 1);
+                          snackBarWidget(
+                              ctx: context,
+                              title: 'Profile Removed',
+                              clr: kred);
+                        },
+                        icon: const Icon(Icons.remove_circle_outline_rounded),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const Profiewidget();
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  }),
                 );
               },
             ),

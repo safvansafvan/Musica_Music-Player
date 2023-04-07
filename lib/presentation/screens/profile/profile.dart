@@ -151,8 +151,10 @@ class Profiewidget extends StatelessWidget {
     } else {
       snackBarWidget(ctx: ctx, title: 'Profile Updated', clr: blueclr);
     }
-    final userprofile =
-        Profilemodel(username: name, userimage: profilepro.photo!.path);
+    final userprofile = Profilemodel(
+        username: name,
+        userimage: profilepro.photo!.path,
+        id: DateTime.now().microsecondsSinceEpoch);
     profilepro.adddetails(userprofile);
   }
 }

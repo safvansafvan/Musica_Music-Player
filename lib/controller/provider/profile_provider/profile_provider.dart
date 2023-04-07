@@ -1,5 +1,5 @@
+import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
@@ -8,6 +8,7 @@ import 'package:musica/DB/profile_model/model/model.dart';
 
 class ProfileProvider with ChangeNotifier {
   ValueListenable<List<Profilemodel>> userprofilelist = ValueNotifier([]);
+  Profilemodel? user;
 
   Future<void> adddetails(Profilemodel userprofile) async {
     final profile = await Hive.openBox<Profilemodel>('profiledata');
@@ -18,6 +19,15 @@ class ProfileProvider with ChangeNotifier {
     final profile = await Hive.openBox<Profilemodel>('profiledata');
     userprofilelist.value.clear();
     userprofilelist.value.addAll(profile.values);
+    notifyListeners();
+  }
+
+  Future<void> delete(int id) async {
+    final profile = await Hive.openBox<Profilemodel>('profiledata');
+    profile.clear();
+    userprofilelist.value.removeAt(id);
+    log('called');
+    getdetails();
     notifyListeners();
   }
 

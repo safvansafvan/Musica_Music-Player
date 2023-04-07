@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
-import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
-import 'package:musica/presentation/screens/widget/artwork_widget/leading_art_widget.dart';
-import 'package:musica/presentation/screens/widget/more_bottom_sheet/bottom_sheet.dart';
+import 'package:musica/presentation/screens/widget/main_listtile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
@@ -59,63 +56,10 @@ class Mostplayed extends StatelessWidget {
                         ),
                       );
                     }
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: mostly.length > 10 ? 10 : mostly.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(7.0),
-                          child: Container(
-                            height: 73,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.blue),
-                            ),
-                            child: ListTile(
-                              leading: LeadingArtWidget(
-                                  songmodel: mostly, index: index),
-                              title: Text(mostly[index].displayNameWOExt,
-                                  maxLines: 1,
-                                  style: const TextStyle(color: kbackcolor)),
-                              subtitle: Text(
-                                '${mostly[index].artist}',
-                                style: const TextStyle(color: kbackcolor),
-                                maxLines: 1,
-                              ),
-                              trailing: IconButton(
-                                onPressed: () {
-                                  showModalBottomSheet(
-                                    backgroundColor: white70,
-                                    context: context,
-                                    builder: (context) {
-                                      return BottomSheetWidget(
-                                        songmodel: mostly[index],
-                                        index: index,
-                                      );
-                                    },
-                                  );
-                                },
-                                icon: const Icon(
-                                  Icons.more_vert,
-                                  color: kbackcolor,
-                                ),
-                              ),
-                              onTap: () {
-                                Getallsongs.audioPlayer.setAudioSource(
-                                    Getallsongs.createsongslist(mostly));
-                                Getallsongs.audioPlayer.play();
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Nowplaying(
-                                          songModel: Getallsongs.playsong),
-                                    ));
-                              },
-                            ),
-                          ),
-                        );
-                      },
-                    );
+                    return MusicListTile(
+                        songmodel: mostly,
+                        recentlylength: mostly.length > 10 ? 10 : mostly.length,
+                        isMosltly: true);
                   },
                 );
               }

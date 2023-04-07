@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
-import 'package:musica/presentation/screens/widget/artwork_widget/main_artworkwidget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import '../widget/main_artwork.dart';
 
 // ignore: must_be_immutable
 class Songinfowidget extends StatelessWidget {

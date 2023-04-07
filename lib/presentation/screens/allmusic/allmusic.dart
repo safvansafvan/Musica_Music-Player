@@ -3,7 +3,7 @@ import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
-import 'package:musica/presentation/screens/explorescreen/playlist/playlistsongdisplyscreen.dart';
+import 'package:musica/presentation/screens/explorescreen/playlist/widget/songadd_toplaylist.dart';
 import 'package:musica/presentation/screens/allmusic/widget/allmusiclisttile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:just_audio/just_audio.dart';

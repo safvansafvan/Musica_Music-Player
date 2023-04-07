@@ -26,10 +26,11 @@ class MostlyPlayedProvider extends ChangeNotifier {
     final mostlyDB = await Hive.openBox('mostlyplayeddb');
     final mostlyplayeditem = mostlyDB.values.toList();
     mostlyplayedlist.clear();
+    final mostlyplay = mostlyDB.values.toSet().toList();
     int value = 0;
     for (var i = 0; i < mostlyplayeditem.length; i++) {
-      for (var j = 0; j < mostlyplayeditem.length; j++) {
-        if (mostlyplayeditem[i] == mostlyplayeditem[j]) {
+      for (var j = 0; j < mostlyplay.length; j++) {
+        if (mostlyplayeditem[i] == mostlyplay[j]) {
           value++;
         }
       }

@@ -10,7 +10,7 @@ import 'package:musica/presentation/screens/widget/more_bottom_sheet/playlis_dia
 import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
-import '../widget/artwork_widget/main_artworkwidget.dart';
+import '../widget/main_artwork.dart';
 
 class Nowplaying extends StatefulWidget {
   const Nowplaying({

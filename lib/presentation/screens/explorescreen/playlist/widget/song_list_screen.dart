@@ -3,16 +3,17 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
-import 'package:musica/presentation/screens/explorescreen/playlist/playlistsongdisplyscreen.dart';
 import 'package:musica/controller/provider/provider_nowp_image/songmodelprovider.dart';
+import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
+import 'package:musica/presentation/screens/explorescreen/playlist/widget/songadd_toplaylist.dart';
 import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
-class Addplaylist extends StatelessWidget {
-  const Addplaylist({super.key, required this.sindex, required this.playlist});
+class SongListScreen extends StatelessWidget {
+  const SongListScreen(
+      {super.key, required this.sindex, required this.playlist});
   final int sindex;
   final Playermodel playlist;
 
@@ -46,12 +47,13 @@ class Addplaylist extends StatelessWidget {
                     return songplaylist.isEmpty
                         ? const Center(
                             child: Text(
-                            'Add Songs',
-                            style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                                color: kbackcolor),
-                          ))
+                              'Add Songs',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: kbackcolor),
+                            ),
+                          )
                         : ListView.builder(
                             itemCount: songplaylist.length,
                             itemBuilder: (context, index) => Padding(
@@ -135,11 +137,13 @@ class Addplaylist extends StatelessWidget {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Playlistsongdisplayscreen(
-                          playlist: playlist,
-                        )));
+              context,
+              MaterialPageRoute(
+                builder: (context) => SongAddToPlaylist(
+                  playlist: playlist,
+                ),
+              ),
+            );
           },
           label: const Text('Add Songs'),
         ),

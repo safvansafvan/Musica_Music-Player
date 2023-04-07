@@ -62,12 +62,13 @@ class MyApp extends StatelessWidget {
             create: (context) => NowplayingScreenProvider()),
       ],
       child: MaterialApp(
-          theme: ThemeData(
-            primarySwatch: Colors.blueGrey,
-          ),
-          title: 'Audizi Music Player',
-          debugShowCheckedModeBanner: false,
-          home: const Splashscreemwidgets()),
+        theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+        ),
+        title: 'Audizi Music Player',
+        debugShowCheckedModeBanner: false,
+        home: const Splashscreemwidgets(),
+      ),
     );
   }
 }

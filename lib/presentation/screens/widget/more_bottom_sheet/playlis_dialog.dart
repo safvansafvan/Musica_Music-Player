@@ -6,6 +6,8 @@ import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart
 import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+import '../../explorescreen/playlist/widget/dialog_function.dart';
+
 shoplaylistdialog(ctx, SongModel songModel) {
   showDialog(
     context: ctx,

@@ -7,6 +7,9 @@ class Profilemodel {
   final String username;
   @HiveField(1)
   final String userimage;
+  @HiveField(2)
+  final int id;
 
-  Profilemodel({required this.userimage, required this.username});
+  Profilemodel(
+      {required this.userimage, required this.username, required this.id});
 }

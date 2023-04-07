@@ -19,17 +19,20 @@ class ProfilemodelAdapter extends TypeAdapter<Profilemodel> {
     return Profilemodel(
       userimage: fields[1] as String,
       username: fields[0] as String,
+      id: fields[2] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Profilemodel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.username)
       ..writeByte(1)
-      ..write(obj.userimage);
+      ..write(obj.userimage)
+      ..writeByte(2)
+      ..write(obj.id);
   }
 
   @override

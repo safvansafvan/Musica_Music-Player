@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:musica/DB/model/model.dart';
+import 'package:musica/controller/core/core.dart';
+import 'package:musica/presentation/screens/widget/snack_bar.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 List<int>? songid;
 
@@ -36,10 +39,9 @@ class PlaylistProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // songaddplaylist(SongModel data, ctx) {
-  //   playlist.add(data.id);
-  //   notifyListeners();
-
-  //   snackBarWidget(ctx: ctx, title: 'Music Added In Playlist', clr: blueclr);
-  // }
+  songaddplaylist(SongModel data, playlist, ctx) {
+    playlist.add(data.id);
+    snackBarWidget(ctx: ctx, title: 'Music Added In Playlist', clr: blueclr);
+    notifyListeners();
+  }
 }

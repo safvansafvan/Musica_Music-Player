@@ -19,27 +19,50 @@ class Splashscreemwidgets extends StatelessWidget {
           color: Color.fromARGB(255, 39, 33, 55),
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('assets/images/splash2.webp'),
+            image: AssetImage('assets/images/newsplash.jpg'),
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: meadiaquery.size.height * 0.71,
+            Stack(
+              alignment: Alignment.bottomRight,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 8, top: 30),
+                  height: 40,
+                  width: 40,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/ic_launcher.png'),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const Text(
-              'Audizi Player',
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white60),
+            SizedBox(
+              height: meadiaquery.size.height * 0.61,
+            ),
+            const Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Audizi Player',
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white60),
+              ),
             ),
             const SizedBox(
               height: 150,
             ),
-            const Text('Music Is My Life .The Lyrics Are My Story',
-                style: TextStyle(fontSize: 10, color: Colors.white60))
+            const Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Music Is My Life .The Lyrics Are My Story',
+                style: TextStyle(fontSize: 10, color: Colors.white60),
+              ),
+            )
           ],
         ),
       ),

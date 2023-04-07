@@ -12,6 +12,8 @@ dynamic blueclr = Colors.blue[500];
 
 const kred = Colors.red;
 
+const dialogcolor = Color.fromARGB(255, 39, 33, 55);
+
 //function
 
 textStyleFuc({required double size, required clr, required FontWeight bld}) {
