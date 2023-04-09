@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:musica/DB/model/model.dart';
 import 'package:musica/DB/profile_model/model/model.dart';
 import 'package:musica/presentation/screens/profile/profile.dart';
 import 'package:musica/controller/provider/profile_provider/profile_provider.dart';

@@ -5,19 +5,16 @@ import 'package:musica/controller/core/core.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
 import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-
 import '../../explorescreen/playlist/widget/dialog_function.dart';
 
-shoplaylistdialog(ctx, SongModel songModel) {
+showPlayListDialogNowPlayScreen(ctx, SongModel songModel) {
   showDialog(
     context: ctx,
     builder: (context) => AlertDialog(
-      backgroundColor: const Color.fromARGB(207, 255, 255, 255),
+      backgroundColor: dialogcolor,
       title: const Text(
         'Select Your Playlist',
-        style: TextStyle(
-          color: Color.fromARGB(255, 37, 37, 54),
-        ),
+        style: TextStyle(color: white70),
       ),
       content: SizedBox(
         height: 200,
@@ -28,18 +25,21 @@ shoplaylistdialog(ctx, SongModel songModel) {
             return Hive.box<Playermodel>('playlistdata').isEmpty
                 ? const Center(
                     child: Text(
-                    'No Playlist Found',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ))
+                      'No Playlist Found',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600, color: white70),
+                    ),
+                  )
                 : ListView.builder(
                     itemCount: musiclist.length,
                     itemBuilder: (context, index) {
                       final data = musiclist.values.toList()[index];
                       return Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue[200],
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.blue)),
+                          color: Colors.white38,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: blueclr),
+                        ),
                         child: ListTile(
                           onTap: () {
                             songaddtoplaylist(songModel, data, data.name, ctx);
@@ -48,13 +48,9 @@ shoplaylistdialog(ctx, SongModel songModel) {
                           title: Text(
                             data.name,
                             style: const TextStyle(
-                                color: Color.fromARGB(255, 37, 37, 54),
-                                fontWeight: FontWeight.w500),
+                                color: white70, fontWeight: FontWeight.w500),
                           ),
-                          trailing: const Icon(
-                            Icons.add,
-                            color: Color.fromARGB(255, 37, 37, 54),
-                          ),
+                          trailing: const Icon(Icons.add, color: white70),
                         ),
                       );
                     },

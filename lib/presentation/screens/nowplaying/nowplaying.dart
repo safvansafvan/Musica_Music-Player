@@ -194,7 +194,7 @@ class _NowplatingState extends State<Nowplaying> {
                     ),
                     IconButton(
                       onPressed: () {
-                        shoplaylistdialog(
+                        showPlayListDialogNowPlayScreen(
                             context, widget.songModel[currentindex]);
                       },
                       icon: const Icon(

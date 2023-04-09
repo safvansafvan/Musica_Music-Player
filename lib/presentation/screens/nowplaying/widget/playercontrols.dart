@@ -79,27 +79,31 @@ class Playercontrolers extends StatelessWidget {
                       Icons.skip_previous_rounded,
                       size: 30,
                       color: kbackcolor,
-                    )),
+                    ),
+                  ),
             CircleAvatar(
               backgroundColor: kbackcolor,
               radius: 30,
-              child: IconButton(
-                onPressed: () {
-                  if (Getallsongs.audioPlayer.playing) {
-                    value.songPause();
-                  } else {
-                    value.songPlay();
-                  }
-                  value.playpause();
-                },
-                icon: Icon(
-                  value.songplaying
-                      ? Icons.pause_rounded
-                      : Icons.play_arrow_rounded,
-                  color: white70,
-                  size: 30,
-                ),
-              ),
+              child: Consumer<NowplayingScreenProvider>(
+                  builder: (context, data, _) {
+                return IconButton(
+                  onPressed: () {
+                    if (Getallsongs.audioPlayer.playing) {
+                      data.songPause();
+                    } else {
+                      data.songPlay();
+                    }
+                    data.playpause();
+                  },
+                  icon: Icon(
+                    value.songplaying
+                        ? Icons.pause_rounded
+                        : Icons.play_arrow_rounded,
+                    color: white70,
+                    size: 30,
+                  ),
+                );
+              }),
             ),
             lastsong
                 ? const IconButton(
