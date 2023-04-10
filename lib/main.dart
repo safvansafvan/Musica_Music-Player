@@ -42,24 +42,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AllMusicProvider>(
-            create: (context) => AllMusicProvider()),
-        ChangeNotifierProvider<SplashProvider>(
-            create: (context) => SplashProvider()),
-        ChangeNotifierProvider<FavouriteProvider>(
-            create: (context) => FavouriteProvider()),
-        ChangeNotifierProvider<RecentlyProvider>(
-            create: (context) => RecentlyProvider()),
-        ChangeNotifierProvider<MostlyPlayedProvider>(
-            create: (context) => MostlyPlayedProvider()),
-        ChangeNotifierProvider<PlaylistProvider>(
-            create: (context) => PlaylistProvider()),
-        ChangeNotifierProvider<ProfileProvider>(
-            create: (context) => ProfileProvider()),
-        ChangeNotifierProvider<SearchProvider>(
-            create: (context) => SearchProvider()),
-        ChangeNotifierProvider<NowplayingScreenProvider>(
-            create: (context) => NowplayingScreenProvider()),
+        ChangeNotifierProvider(create: (context) => AllMusicProvider()),
+        ChangeNotifierProvider(create: (context) => SplashProvider()),
+        ChangeNotifierProvider(create: (context) => FavouriteProvider()),
+        ChangeNotifierProvider(create: (context) => RecentlyProvider()),
+        ChangeNotifierProvider(create: (context) => MostlyPlayedProvider()),
+        ChangeNotifierProvider(create: (context) => PlaylistProvider()),
+        ChangeNotifierProvider(create: (context) => ProfileProvider()),
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
+        ChangeNotifierProvider(create: (context) => NowplayingScreenProvider()),
       ],
       child: MaterialApp(
         theme: ThemeData(
