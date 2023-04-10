@@ -17,11 +17,17 @@ class Drawerwidget extends StatelessWidget {
   });
 
   Profilemodel? user;
+  bool status = true;
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<ProfileProvider>(context, listen: false).getdetails();
+      if (user?.userimage == null) {
+        status = true;
+      } else {
+        status = false;
+      }
     });
     return SafeArea(
       child: SingleChildScrollView(
@@ -42,8 +48,12 @@ class Drawerwidget extends StatelessWidget {
                       Consumer<ProfileProvider>(builder: (context, value, _) {
                     return ListTile(
                       leading: CircleAvatar(
-                        radius: 33,
-                        backgroundImage: FileImage(File(user?.userimage ?? '')),
+                        radius: 25,
+                        child: ClipOval(
+                          child: status
+                              ? Image.asset('assets/images/ic_launcher.png')
+                              : Image.file(File(user!.userimage)),
+                        ),
                       ),
                       title: Text(
                         user?.username.toUpperCase() ?? 'Update Profile',
