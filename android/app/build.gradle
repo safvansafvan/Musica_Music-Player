@@ -72,11 +72,11 @@ android {
            signingConfig signingConfigs.release
        }
    }
-   configurations {
-        all {
-            exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
-        }
-    }
+//    configurations {
+//         all {
+//             exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
+//         }
+//     }
 
 }
 

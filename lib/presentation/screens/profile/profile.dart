@@ -26,6 +26,7 @@ class Profiewidget extends StatelessWidget {
         ),
         body: SafeArea(
           child: ListView(
+            shrinkWrap: true,
             children: [
               Padding(
                 padding: const EdgeInsets.only(
@@ -111,7 +112,7 @@ class Profiewidget extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 250,
+                          height: 50,
                         ),
                         ElevatedButton.icon(
                           style: ButtonStyle(

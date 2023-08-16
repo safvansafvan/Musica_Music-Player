@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
-import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
-import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
-import 'package:musica/controller/provider/nowplaying_provider/nowplay_provider.dart';
-import 'package:musica/controller/provider/playlist_provider/playlist_provider.dart';
-import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
-import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
-import 'package:musica/controller/provider/search_provider/search_provider.dart';
-import 'package:musica/controller/provider/splash_provider/splash_provider.dart';
-import 'package:musica/controller/provider/provider_nowp_image/songmodelprovider.dart';
+import 'package:musica/DB/model/model.dart';
+import 'package:musica/DB/profile_model/model/model.dart';
 import 'package:musica/presentation/screens/splash/splashscreen.dart';
 import 'package:provider/provider.dart';
-import 'DB/model/model.dart';
-import 'DB/profile_model/model/model.dart';
+import 'controller/provider/allmusic_provider/allmusic_provider.dart';
+import 'controller/provider/favourite_provider/favourit_provider.dart';
+import 'controller/provider/mostly_p_provider/mostly_provider.dart';
+import 'controller/provider/nowplaying_provider/nowplay_provider.dart';
+import 'controller/provider/playlist_provider/playlist_provider.dart';
+import 'controller/provider/profile_provider/profile_provider.dart';
+import 'controller/provider/provider_nowp_image/songmodelprovider.dart';
+import 'controller/provider/recently__provider/recently_provider.dart';
+import 'controller/provider/search_provider/search_provider.dart';
+import 'controller/provider/splash_provider/splash_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

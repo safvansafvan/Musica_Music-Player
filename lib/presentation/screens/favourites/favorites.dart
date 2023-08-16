@@ -21,7 +21,7 @@ class Favoriteswidget extends StatelessWidget {
               search: true,
               menu: false),
         ),
-        body: Column(
+        body: ListView(
           children: [
             SizedBox(
               width: double.infinity,
