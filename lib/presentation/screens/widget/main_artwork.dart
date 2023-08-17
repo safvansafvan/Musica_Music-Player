@@ -14,19 +14,20 @@ class Artworkwidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return QueryArtworkWidget(
       keepOldArtwork: true,
       id: widget.songModel[currentindex].id,
       type: ArtworkType.AUDIO,
-      artworkWidth: 280,
-      artworkHeight: 280,
+      artworkWidth: size.width * 0.7,
+      artworkHeight: size.height * 0.35,
       artworkFit: BoxFit.cover,
       artworkBorder: const BorderRadius.all(
         Radius.circular(15),
       ),
       nullArtworkWidget: Container(
-        height: 280,
-        width: 280,
+        height: size.height * 0.35,
+        width: size.width * 0.7,
         decoration: const BoxDecoration(
           color: Colors.black12,
           borderRadius: BorderRadius.all(

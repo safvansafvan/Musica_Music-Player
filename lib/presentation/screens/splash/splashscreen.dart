@@ -53,9 +53,7 @@ class Splashscreemwidgets extends StatelessWidget {
                     color: Colors.white60),
               ),
             ),
-            const SizedBox(
-              height: 150,
-            ),
+            const Spacer(),
             const Align(
               alignment: Alignment.center,
               child: Text(

@@ -117,7 +117,7 @@ class _NowplatingState extends State<Nowplaying> {
           child: ListView(
             children: [
               SizedBox(
-                height: screenheight * 0.08,
+                height: screenheight * 0.06,
               ),
               Center(
                 child: Artworkwidget(

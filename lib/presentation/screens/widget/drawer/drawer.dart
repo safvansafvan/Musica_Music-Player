@@ -50,8 +50,16 @@ class Drawerwidget extends StatelessWidget {
                       leading: CircleAvatar(
                         radius: 25,
                         child: status
-                            ? Image.asset('assets/images/ic_launcher.png')
-                            : Image.file(File(user!.userimage)),
+                            ? Image.asset(
+                                'assets/images/ic_launcher.png',
+                                fit: BoxFit.cover,
+                              )
+                            : Image.file(
+                                File(
+                                  user!.userimage,
+                                ),
+                                fit: BoxFit.cover,
+                              ),
                       ),
                       title: Text(
                         user?.username.toUpperCase() ?? 'Update Profile',

@@ -34,23 +34,27 @@ showPlayListDialogNowPlayScreen(ctx, SongModel songModel) {
                     itemCount: musiclist.length,
                     itemBuilder: (context, index) {
                       final data = musiclist.values.toList()[index];
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white38,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: blueclr),
-                        ),
-                        child: ListTile(
-                          onTap: () {
-                            songaddtoplaylist(songModel, data, data.name, ctx);
-                            Navigator.pop(context);
-                          },
-                          title: Text(
-                            data.name,
-                            style: const TextStyle(
-                                color: white70, fontWeight: FontWeight.w500),
+                      return Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white38,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: blueclr),
                           ),
-                          trailing: const Icon(Icons.add, color: white70),
+                          child: ListTile(
+                            onTap: () {
+                              songaddtoplaylist(
+                                  songModel, data, data.name, ctx);
+                              Navigator.pop(context);
+                            },
+                            title: Text(
+                              data.name,
+                              style: const TextStyle(
+                                  color: white70, fontWeight: FontWeight.w500),
+                            ),
+                            trailing: const Icon(Icons.add, color: white70),
+                          ),
                         ),
                       );
                     },
