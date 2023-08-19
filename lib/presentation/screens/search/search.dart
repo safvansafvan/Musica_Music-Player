@@ -4,6 +4,7 @@ import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/search_provider/search_provider.dart';
 import 'package:musica/presentation/screens/allmusic/widget/allmusiclisttile.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/not_found_widget.dart';
 import 'package:provider/provider.dart';
 
 class Searchwidget extends StatelessWidget {
@@ -11,7 +12,6 @@ class Searchwidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final seachProvid = Provider.of<SearchProvider>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<SearchProvider>(context, listen: false).fetchallsongs();
     });
@@ -28,7 +28,7 @@ class Searchwidget extends StatelessWidget {
               menu: false),
         ),
         body: Consumer<SearchProvider>(builder: (context, data, _) {
-          return Column(
+          return ListView(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -40,17 +40,15 @@ class Searchwidget extends StatelessWidget {
                 ),
               ),
               data.stillsongs.isEmpty
-                  ? const Padding(
-                      padding: EdgeInsets.only(top: 270),
-                      child: Center(
-                        child: Text(
-                          'Song Not Found',
-                          style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500,
-                              color: kbackcolor),
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        NotFoundWidget(isMusicEmptyWid: true),
+                        const Text(
+                          'No Songs In Your Internal',
+                          style: TextStyle(color: Colors.black),
                         ),
-                      ),
+                      ],
                     )
                   : Expanded(
                       child: Allmusiclisttile(

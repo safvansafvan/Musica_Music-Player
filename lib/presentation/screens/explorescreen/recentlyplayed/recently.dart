@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
 import 'package:musica/presentation/screens/widget/main_listtile.dart';
+import 'package:musica/presentation/screens/widget/not_found_widget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
@@ -25,18 +25,7 @@ class Recentwidget extends StatelessWidget {
         return Consumer<RecentlyProvider>(
           builder: (context, datas, child) {
             if (datas.recenlylist.isEmpty) {
-              return const Center(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 150.0),
-                  child: Text(
-                    "Your Recent Is Empty",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                        color: kbackcolor),
-                  ),
-                ),
-              );
+              return NotFoundWidget(isMusicEmptyWid: false);
             } else {
               final temp = datas.recenlylist.reversed.toList();
               recent = temp.toSet().toList();
@@ -50,12 +39,14 @@ class Recentwidget extends StatelessWidget {
                   if (items.data == null) {
                     const CircularProgressIndicator();
                   } else if (items.data!.isEmpty) {
-                    const Center(
-                      child: Center(
-                          child: Text(
-                        'No Songs In Your Internal',
-                        style: TextStyle(color: Colors.black),
-                      )),
+                    Column(
+                      children: [
+                        NotFoundWidget(isMusicEmptyWid: true),
+                        const Text(
+                          'No Songs In Your Internal',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ],
                     );
                   }
                   return MusicListTile(

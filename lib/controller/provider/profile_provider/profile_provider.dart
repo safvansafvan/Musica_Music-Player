@@ -26,6 +26,7 @@ class ProfileProvider with ChangeNotifier {
     final profile = await Hive.openBox<Profilemodel>('profiledata');
     profile.clear();
     userprofilelist.value.removeAt(id);
+    notifyListeners();
     log('called');
     getdetails();
     notifyListeners();

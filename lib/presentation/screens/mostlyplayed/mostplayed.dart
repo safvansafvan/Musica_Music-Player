@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/mostly_p_provider/mostly_provider.dart';
 import 'package:musica/presentation/screens/widget/main_listtile.dart';
+import 'package:musica/presentation/screens/widget/not_found_widget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
@@ -28,13 +29,7 @@ class Mostplayed extends StatelessWidget {
           return Consumer<MostlyPlayedProvider>(
             builder: (context, value, child) {
               if (value.mostlyplayedlist.isEmpty) {
-                return Center(
-                  child: Text(
-                    'Your Mostly Played Is Empty',
-                    style: textStyleFuc(
-                        size: 24, clr: kbackcolor, bld: FontWeight.w500),
-                  ),
-                );
+                return NotFoundWidget(isMusicEmptyWid: false);
               } else {
                 final temp = value.mostlyplayedlist.reversed.toList();
                 mostly = temp.toSet().toList();

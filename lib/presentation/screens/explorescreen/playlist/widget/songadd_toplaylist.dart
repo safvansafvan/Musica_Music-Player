@@ -4,6 +4,7 @@ import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/playlist_provider/playlist_provider.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/not_found_widget.dart';
 import 'package:musica/presentation/screens/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,16 @@ class SongAddToPlaylist extends StatelessWidget {
                 return const CircularProgressIndicator();
               }
               if (item.data!.isEmpty) {
-                return const Center(child: Text('No Songs Available'));
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    NotFoundWidget(isMusicEmptyWid: true),
+                    const Text(
+                      'No Songs In Your Internal',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
+                );
               }
               return ListView.builder(
                 itemCount: item.data!.length,

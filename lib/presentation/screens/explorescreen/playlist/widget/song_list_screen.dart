@@ -8,6 +8,7 @@ import 'package:musica/controller/provider/recently__provider/recently_provider.
 import 'package:musica/presentation/screens/explorescreen/playlist/widget/songadd_toplaylist.dart';
 import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/not_found_widget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
@@ -45,14 +46,15 @@ class SongListScreen extends StatelessWidget {
                     songplaylist =
                         listplaylist(song.values.toList()[sindex].songid);
                     return songplaylist.isEmpty
-                        ? const Center(
-                            child: Text(
-                              'Add Songs',
-                              style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: kbackcolor),
-                            ),
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              NotFoundWidget(isMusicEmptyWid: true),
+                              const Text(
+                                'Add Songs',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
                           )
                         : ListView.builder(
                             itemCount: songplaylist.length,

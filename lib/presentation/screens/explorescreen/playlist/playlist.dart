@@ -6,6 +6,7 @@ import 'package:musica/controller/core/core.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/widget/dialog_function.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/widget/song_list_screen.dart';
 import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/widget/not_found_widget.dart';
 
 class Playlistwidget extends StatelessWidget {
   const Playlistwidget({super.key});
@@ -35,13 +36,7 @@ class Playlistwidget extends StatelessWidget {
                 builder: (BuildContext context, Box<Playermodel> musiclist,
                     Widget? child) {
                   return Hive.box<Playermodel>('playlistdata').isEmpty
-                      ? Center(
-                          child: Text('No Playlist Found',
-                              style: textStyleFuc(
-                                  size: 24,
-                                  clr: kbackcolor,
-                                  bld: FontWeight.w500)),
-                        )
+                      ? NotFoundWidget(isMusicEmptyWid: false)
                       : ListView.builder(
                           itemCount: musiclist.length,
                           itemBuilder: (context, index) {

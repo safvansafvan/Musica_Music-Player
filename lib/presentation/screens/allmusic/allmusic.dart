@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/widget/songadd_toplaylist.dart';
 import 'package:musica/presentation/screens/allmusic/widget/allmusiclisttile.dart';
+import 'package:musica/presentation/screens/widget/not_found_widget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
@@ -34,12 +34,15 @@ class Allsongswidget extends StatelessWidget {
           );
         }
         if (item.data!.isEmpty) {
-          return Center(
-            child: Text(
-              'No Songs In Your Internal',
-              style:
-                  textStyleFuc(size: 24, clr: kbackcolor, bld: FontWeight.w500),
-            ),
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              NotFoundWidget(isMusicEmptyWid: true),
+              const Text(
+                'No Songs In Your Internal',
+                style: TextStyle(color: Colors.black),
+              ),
+            ],
           );
         }
 
