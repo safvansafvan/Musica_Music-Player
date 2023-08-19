@@ -44,16 +44,10 @@ class Searchwidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         NotFoundWidget(isMusicEmptyWid: true),
-                        const Text(
-                          'No Songs In Your Internal',
-                          style: TextStyle(color: Colors.black),
-                        ),
                       ],
                     )
-                  : Expanded(
-                      child: Allmusiclisttile(
-                        songmodel: data.stillsongs,
-                      ),
+                  : Allmusiclisttile(
+                      songmodel: data.stillsongs,
                     ),
             ],
           );
