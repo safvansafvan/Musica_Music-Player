@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/presentation/screens/widget/snack_bar.dart';
+import 'package:musica/model/model/model.dart';
+import 'package:musica/presentation/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 List<int>? songid;

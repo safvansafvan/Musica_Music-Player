@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:musica/DB/model/model.dart';
+import 'package:musica/model/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/provider_nowp_image/songmodelprovider.dart';
 import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/widget/songadd_toplaylist.dart';
 import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
-import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
-import 'package:musica/presentation/screens/widget/not_found_widget.dart';
+import 'package:musica/presentation/widget/appbar/appbar.dart';
+import 'package:musica/presentation/widget/not_found_widget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 

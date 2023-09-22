@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/widget/appbar/appbar.dart';
 
 class Termsandcondition extends StatelessWidget {
   const Termsandcondition({super.key});
@@ -97,7 +97,7 @@ Welcome to Audizi Player App,\n
      BY USING SERVICE OR OTHER SERVICES PROVIDED BY US, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS OF SERVICE AND AGREE TO BE BOUND BY THEM.
                   
 17. Contact Us
-      Please send your feedback, comments, requests for technical support by email: sajusajuptl@gmil.com
+      Please send your feedback, comments, requests for technical support by email: playhost99@gmail.com
                   """,
                 style:
                     TextStyle(color: kbackcolor, fontWeight: FontWeight.w400),

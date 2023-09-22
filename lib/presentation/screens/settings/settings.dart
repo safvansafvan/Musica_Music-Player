@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/presentation/screens/settings/widget/termsandcontitions.dart';
-import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
-import 'package:musica/presentation/screens/settings/widget/aboutmusica.dart';
-import 'widget/privacyandpolicy.dart';
+import 'package:musica/presentation/screens/settings/screens/termsandcontitions.dart';
+import 'package:musica/presentation/widget/appbar/appbar.dart';
+import 'package:musica/presentation/screens/settings/screens/aboutmusica.dart';
+import 'screens/privacyandpolicy.dart';
 
 class SettingsP extends StatelessWidget {
   const SettingsP({super.key});

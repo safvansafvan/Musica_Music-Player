@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:musica/DB/model/model.dart';
-import 'package:musica/DB/profile_model/model/model.dart';
 import 'package:musica/presentation/screens/splash/splashscreen.dart';
 import 'package:provider/provider.dart';
 import 'controller/provider/allmusic_provider/allmusic_provider.dart';
@@ -15,6 +13,8 @@ import 'controller/provider/provider_nowp_image/songmodelprovider.dart';
 import 'controller/provider/recently__provider/recently_provider.dart';
 import 'controller/provider/search_provider/search_provider.dart';
 import 'controller/provider/splash_provider/splash_provider.dart';
+import 'model/model/model.dart';
+import 'model/profile_model/model/model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blueGrey,
         ),
-        title: 'Audizi Music Player',
+        title: 'Music Player',
         debugShowCheckedModeBanner: false,
         home: const Splashscreemwidgets(),
       ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:musica/presentation/screens/widget/drawer/drawer.dart';
+import 'package:musica/presentation/widget/drawer/drawer.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/presentation/screens/explorescreen/explore.dart';
-import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
-import 'package:musica/presentation/screens/widget/mniplayer.dart';
+import 'package:musica/presentation/widget/appbar/appbar.dart';
+import 'package:musica/presentation/widget/mniplayer.dart';
 import 'package:musica/presentation/screens/mostlyplayed/mostplayed.dart';
-import 'screens/allmusic/allmusic.dart';
+import 'allmusic/allmusic.dart';
 
 class Allsongs extends StatefulWidget {
   const Allsongs({super.key});
@@ -26,7 +26,7 @@ class _AllsongsState extends State<Allsongs> {
         appBar: PreferredSize(
           preferredSize: const Size(double.infinity, 55),
           child: AppBarWidget(
-              titles: 'Audizi Player',
+              titles: 'Musics',
               leading: Icons.menu,
               trailing: Icons.search,
               search: true,
@@ -48,7 +48,7 @@ class _AllsongsState extends State<Allsongs> {
           ],
         ),
         drawer: Drawer(
-          backgroundColor: Colors.white60,
+          backgroundColor: Colors.white,
           child: Drawerwidget(),
         ),
         bottomNavigationBar: BottomNavigationBar(

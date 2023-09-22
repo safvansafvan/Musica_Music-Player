@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:musica/DB/model/model.dart';
+import 'package:musica/model/model/model.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
-import 'package:musica/presentation/screens/widget/snack_bar.dart';
+import 'package:musica/presentation/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import '../../explorescreen/playlist/widget/dialog_function.dart';
+import '../../screens/explorescreen/playlist/widget/dialog_function.dart';
 
 showPlayListDialogNowPlayScreen(ctx, SongModel songModel) {
   showDialog(

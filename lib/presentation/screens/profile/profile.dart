@@ -2,10 +2,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
-import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
-import 'package:musica/presentation/screens/widget/snack_bar.dart';
+import 'package:musica/model/profile_model/model/model.dart';
+import 'package:musica/presentation/widget/appbar/appbar.dart';
+import 'package:musica/presentation/widget/snack_bar.dart';
 import 'package:provider/provider.dart';
-import '../../../DB/profile_model/model/model.dart';
 
 class Profiewidget extends StatelessWidget {
   const Profiewidget({super.key});

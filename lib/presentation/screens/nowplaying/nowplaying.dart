@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
 import 'package:musica/controller/music_controller/getallsongcontroller.dart';
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
-import 'package:musica/presentation/homeallsongs.dart';
+import 'package:musica/presentation/screens/homeallsongs.dart';
 import 'package:musica/presentation/screens/nowplaying/widget/playercontrols.dart';
 import 'package:musica/presentation/screens/nowplaying/widget/song_durations_controller.dart';
 import 'package:musica/presentation/screens/songinfo/songinfo.dart';
-import 'package:musica/presentation/screens/widget/more_bottom_sheet/playlis_dialog.dart';
-import 'package:musica/presentation/screens/widget/snack_bar.dart';
+import 'package:musica/presentation/widget/more_bottom_sheet/playlis_dialog.dart';
+import 'package:musica/presentation/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
-import '../widget/main_artwork.dart';
+import '../../widget/main_artwork.dart';
 
 class Nowplaying extends StatefulWidget {
   const Nowplaying({

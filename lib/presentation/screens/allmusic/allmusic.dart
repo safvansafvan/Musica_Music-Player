@@ -4,7 +4,7 @@ import 'package:musica/controller/provider/allmusic_provider/allmusic_provider.d
 import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/widget/songadd_toplaylist.dart';
 import 'package:musica/presentation/screens/allmusic/widget/allmusiclisttile.dart';
-import 'package:musica/presentation/screens/widget/not_found_widget.dart';
+import 'package:musica/presentation/widget/not_found_widget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';

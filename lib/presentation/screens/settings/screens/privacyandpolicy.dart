@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:musica/controller/core/core.dart';
-import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
+import 'package:musica/presentation/widget/appbar/appbar.dart';
 
 class Privacyandpolicy extends StatelessWidget {
   const Privacyandpolicy({super.key});
@@ -148,7 +148,7 @@ Last updated: 27/Feb/2023
           Contact Us
           If you have any questions about this Privacy Policy, You can contact us:
           
-          By email: sajusajuptl@gmail.com.
+          By email: playhost99@gmail.com
                   
                   
           """,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:musica/DB/model/model.dart';
 import 'package:musica/controller/core/core.dart';
+import 'package:musica/model/model/model.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/widget/dialog_function.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/widget/song_list_screen.dart';
-import 'package:musica/presentation/screens/widget/appbar/appbar.dart';
-import 'package:musica/presentation/screens/widget/not_found_widget.dart';
+import 'package:musica/presentation/widget/appbar/appbar.dart';
+import 'package:musica/presentation/widget/not_found_widget.dart';
 
 class Playlistwidget extends StatelessWidget {
   const Playlistwidget({super.key});

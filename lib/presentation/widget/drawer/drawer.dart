@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:musica/DB/profile_model/model/model.dart';
+import 'package:musica/model/profile_model/model/model.dart';
 import 'package:musica/presentation/screens/profile/profile.dart';
 import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
 import 'package:musica/presentation/screens/favourites/favorites.dart';
 import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
 import 'package:musica/presentation/screens/settings/settings.dart';
-import 'package:musica/presentation/screens/widget/snack_bar.dart';
+import 'package:musica/presentation/widget/snack_bar.dart';
 import 'package:provider/provider.dart';
-import '../../../../controller/core/core.dart';
+import '../../../controller/core/core.dart';
 
 // ignore: must_be_immutable
 class Drawerwidget extends StatelessWidget {
@@ -102,20 +102,17 @@ class Drawerwidget extends StatelessWidget {
           Container(
             width: 285,
             decoration: BoxDecoration(
-                image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/profile.jpg')),
-                border: Border.all(color: blueclr),
+                border: Border.all(color: kbackcolor),
                 borderRadius: BorderRadius.circular(15)),
             child: ListTile(
               leading: const Icon(
                 Icons.person,
                 size: 27,
-                color: Colors.white70,
+                color: kbackcolor,
               ),
               title: const Text(
                 'Profile',
-                style: TextStyle(fontSize: 17, color: Colors.white),
+                style: TextStyle(fontSize: 17, color: kbackcolor),
               ),
               onTap: () {
                 Navigator.push(
@@ -133,21 +130,14 @@ class Drawerwidget extends StatelessWidget {
           Container(
             width: 285,
             decoration: BoxDecoration(
-              image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/images/favourites.jpeg')),
-              border: Border.all(color: blueclr),
+              border: Border.all(color: kbackcolor),
               borderRadius: BorderRadius.circular(15),
             ),
             child: ListTile(
-              leading: const Icon(
-                Icons.favorite,
-                size: 27,
-                color: Colors.white70,
-              ),
+              leading: const Icon(Icons.favorite, size: 27, color: kbackcolor),
               title: const Text(
                 'Favourites',
-                style: TextStyle(fontSize: 17, color: Colors.white),
+                style: TextStyle(fontSize: 17, color: kbackcolor),
               ),
               onTap: () {
                 Navigator.push(
@@ -165,20 +155,14 @@ class Drawerwidget extends StatelessWidget {
           Container(
             width: 285,
             decoration: BoxDecoration(
-                image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/playlist.jpeg')),
-                border: Border.all(color: blueclr),
+                border: Border.all(color: kbackcolor),
                 borderRadius: BorderRadius.circular(15)),
             child: ListTile(
-              leading: const Icon(
-                Icons.playlist_play_rounded,
-                size: 27,
-                color: Colors.white70,
-              ),
+              leading: const Icon(Icons.playlist_play_rounded,
+                  size: 27, color: kbackcolor),
               title: const Text(
                 'Playlist',
-                style: TextStyle(fontSize: 17, color: Colors.white),
+                style: TextStyle(fontSize: 17, color: kbackcolor),
               ),
               onTap: () {
                 Navigator.push(
@@ -195,21 +179,13 @@ class Drawerwidget extends StatelessWidget {
           Container(
             width: 285,
             decoration: BoxDecoration(
-                image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/settings.webp')),
-                color: Colors.blue[200],
-                border: Border.all(color: blueclr),
+                border: Border.all(color: kbackcolor),
                 borderRadius: BorderRadius.circular(15)),
             child: ListTile(
-              leading: const Icon(
-                Icons.settings,
-                size: 27,
-                color: Colors.white70,
-              ),
+              leading: const Icon(Icons.settings, size: 27, color: kbackcolor),
               title: const Text(
                 'Settings',
-                style: TextStyle(fontSize: 17, color: Colors.white),
+                style: TextStyle(fontSize: 17, color: kbackcolor),
               ),
               onTap: () {
                 Navigator.push(
