@@ -8,8 +8,8 @@ class Splashscreemwidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var meadiaquery = MediaQuery.of(context);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<SplashProvider>(context, listen: false)
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<SplashProvider>(context, listen: false)
           .navigatetohome(context);
     });
     return Scaffold(
@@ -25,28 +25,13 @@ class Splashscreemwidgets extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 8, top: 30),
-                  height: 40,
-                  width: 40,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/ic_launcher.png'),
-                    ),
-                  ),
-                ),
-              ],
-            ),
             SizedBox(
               height: meadiaquery.size.height * 0.61,
             ),
             const Align(
               alignment: Alignment.center,
               child: Text(
-                'Audizi Player',
+                'Music Player',
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w500,

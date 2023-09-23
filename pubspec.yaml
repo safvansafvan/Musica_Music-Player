@@ -37,7 +37,7 @@ dependencies:
   image_picker: 0.8.6+3
   just_audio: 0.9.31
   just_audio_background: 0.0.1-beta.9
-  lottie: ^2.6.0
+  lottie: 2.6.0
   on_audio_query: 2.6.1
   permission_handler: 10.2.0
   provider: 6.0.5
@@ -70,10 +70,10 @@ flutter:
     - assets/images/images.png
     - assets/images/im.jpg
     - assets/images/newsplash.jpg
-    - assets/images/ic_launcher.png
-    - assets/images/msplayer.json
     - assets/images/musicnotfound.json
     - assets/images/msnotfound.json
+    - assets/images/msplayer.json
+    
     
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -8,6 +8,7 @@ import 'package:musica/presentation/widget/mniplayer.dart';
 import 'package:musica/presentation/screens/mostlyplayed/mostplayed.dart';
 import 'allmusic/allmusic.dart';
 
+// ignore: must_be_immutable
 class Allsongs extends StatefulWidget {
   const Allsongs({super.key});
 
@@ -16,7 +17,7 @@ class Allsongs extends StatefulWidget {
 }
 
 class _AllsongsState extends State<Allsongs> {
-  int bottomnavindexnum = 0;
+  int bottomNavigationIndexnum = 0;
   List tabbarwidget = [Allsongswidget(), Mostplayed(), const Explorescreen()];
 
   @override
@@ -34,7 +35,7 @@ class _AllsongsState extends State<Allsongs> {
         ),
         body: Stack(
           children: [
-            tabbarwidget[bottomnavindexnum],
+            tabbarwidget[bottomNavigationIndexnum],
             Positioned(
               bottom: 0,
               child: Getallsongs.audioPlayer.currentIndex != null
@@ -74,10 +75,10 @@ class _AllsongsState extends State<Allsongs> {
               label: 'Explore',
             )
           ],
-          currentIndex: bottomnavindexnum,
+          currentIndex: bottomNavigationIndexnum,
           onTap: (int index) {
             setState(() {
-              bottomnavindexnum = index;
+              bottomNavigationIndexnum = index;
             });
           },
         ),

@@ -24,41 +24,38 @@ class AppBarWidget extends StatelessWidget {
     return Container(
       color: appBodyColor,
       child: ListTile(
-        leading: menu
-            ? IconButton(
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                icon: Icon(leading))
-            : IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(leading),
-              ),
-        title: Text(
-          titles,
-          style: textStyleFuc(size: 18, clr: kbackcolor, bld: FontWeight.w500),
-        ),
-        trailing: search
-            ? IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const Searchwidget();
-                      },
-                    ),
-                  );
-                },
-                icon: Icon(trailing),
-              )
-            : IconButton(
-                onPressed: () {},
-                icon: Icon(trailing),
-              ),
-      ),
+          leading: menu
+              ? IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: Icon(leading))
+              : IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(leading),
+                ),
+          title: Text(
+            titles,
+            style:
+                textStyleFuc(size: 18, clr: kbackcolor, bld: FontWeight.w500),
+          ),
+          trailing: search
+              ? IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const Searchwidget();
+                        },
+                      ),
+                    );
+                  },
+                  icon: Icon(trailing),
+                )
+              : null),
     );
   }
 }

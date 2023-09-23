@@ -89,7 +89,7 @@ class _NowplatingState extends State<Nowplaying> {
               icon: const Icon(Icons.arrow_back_ios),
             ),
             title: Text(
-              'Audizi Player',
+              'Music Player',
               style:
                   textStyleFuc(size: 18, clr: kbackcolor, bld: FontWeight.w500),
             ),

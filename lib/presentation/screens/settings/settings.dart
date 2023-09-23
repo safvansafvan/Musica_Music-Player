@@ -5,8 +5,8 @@ import 'package:musica/presentation/widget/appbar/appbar.dart';
 import 'package:musica/presentation/screens/settings/screens/aboutmusica.dart';
 import 'screens/privacyandpolicy.dart';
 
-class SettingsP extends StatelessWidget {
-  const SettingsP({super.key});
+class Settings extends StatelessWidget {
+  const Settings({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,10 @@ class SettingsP extends StatelessWidget {
           child: Column(
             children: [
               Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: const Color.fromARGB(154, 33, 149, 243),
+                    color: kbackcolor,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -54,13 +55,10 @@ class SettingsP extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(
-                height: 8,
-              ),
               Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color.fromARGB(154, 33, 149, 243)),
+                    border: Border.all(color: kbackcolor),
                     borderRadius: BorderRadius.circular(8)),
                 child: ListTile(
                   leading: const Icon(
@@ -82,13 +80,10 @@ class SettingsP extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(
-                height: 8,
-              ),
               Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color.fromARGB(154, 33, 149, 243)),
+                    border: Border.all(color: kbackcolor),
                     borderRadius: BorderRadius.circular(8)),
                 child: ListTile(
                   leading: const Icon(
