@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:musica/model/profile_model/model/model.dart';
+import 'package:musics/model/profile_model/model/model.dart';
 
 class ProfileProvider with ChangeNotifier {
   ValueListenable<List<Profilemodel>> userprofilelist = ValueNotifier([]);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/music_controller/getallsongcontroller.dart';
+import 'package:musics/controller/music_controller/getallsongcontroller.dart';
 
 class NowplayingScreenProvider extends ChangeNotifier {
   bool songplaying = true;

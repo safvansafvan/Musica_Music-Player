@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/presentation/widget/appbar/appbar.dart';
+import 'package:musics/controller/core/core.dart';
+import 'package:musics/presentation/widget/appbar/appbar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import '../../widget/main_artwork.dart';
 

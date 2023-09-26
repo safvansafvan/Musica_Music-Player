@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
+import 'package:musics/controller/core/core.dart';
+import 'package:musics/presentation/screens/explorescreen/playlist/playlist.dart';
 import 'recentlyplayed/recently.dart';
 
 class Explorescreen extends StatelessWidget {
@@ -40,10 +40,10 @@ class Explorescreen extends StatelessWidget {
                         image: AssetImage('assets/images/playlist.jpeg'),
                         fit: BoxFit.fill),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 35),
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 35),
                     child: Column(
-                      children: const [
+                      children: [
                         Icon(
                           Icons.playlist_add,
                           color: Colors.white70,

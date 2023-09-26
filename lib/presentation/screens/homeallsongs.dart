@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:musica/presentation/widget/drawer/drawer.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/presentation/screens/explorescreen/explore.dart';
-import 'package:musica/presentation/widget/appbar/appbar.dart';
-import 'package:musica/presentation/widget/mniplayer.dart';
-import 'package:musica/presentation/screens/mostlyplayed/mostplayed.dart';
+import 'package:musics/presentation/widget/drawer/drawer.dart';
+import 'package:musics/controller/core/core.dart';
+import 'package:musics/controller/music_controller/getallsongcontroller.dart';
+import 'package:musics/presentation/screens/explorescreen/explore.dart';
+import 'package:musics/presentation/widget/appbar/appbar.dart';
+import 'package:musics/presentation/widget/mniplayer.dart';
+import 'package:musics/presentation/screens/mostlyplayed/mostplayed.dart';
 import 'allmusic/allmusic.dart';
 
 // ignore: must_be_immutable

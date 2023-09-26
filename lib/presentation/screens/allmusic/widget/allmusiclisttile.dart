@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musica/presentation/widget/main_listtile.dart';
+import 'package:musics/presentation/widget/main_listtile.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 // ignore: must_be_immutable

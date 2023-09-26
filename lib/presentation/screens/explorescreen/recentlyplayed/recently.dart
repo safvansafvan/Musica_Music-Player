@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/provider/recently__provider/recently_provider.dart';
-import 'package:musica/presentation/widget/main_listtile.dart';
-import 'package:musica/presentation/widget/not_found_widget.dart';
+import 'package:musics/controller/provider/recently__provider/recently_provider.dart';
+import 'package:musics/presentation/widget/main_listtile.dart';
+import 'package:musics/presentation/widget/not_found_widget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 

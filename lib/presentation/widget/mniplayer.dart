@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/presentation/screens/nowplaying/nowplaying.dart';
+import 'package:musics/controller/core/core.dart';
+import 'package:musics/controller/music_controller/getallsongcontroller.dart';
+import 'package:musics/presentation/screens/nowplaying/nowplaying.dart';
 import 'package:text_scroll/text_scroll.dart';
 
 class Miniplayers extends StatefulWidget {

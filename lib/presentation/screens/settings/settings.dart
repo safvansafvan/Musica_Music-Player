@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/presentation/screens/settings/screens/termsandcontitions.dart';
-import 'package:musica/presentation/widget/appbar/appbar.dart';
-import 'package:musica/presentation/screens/settings/screens/aboutmusica.dart';
+import 'package:musics/controller/core/core.dart';
+import 'package:musics/presentation/screens/settings/screens/termsandcontitions.dart';
+import 'package:musics/presentation/widget/appbar/appbar.dart';
+import 'package:musics/presentation/screens/settings/screens/aboutmusica.dart';
 import 'screens/privacyandpolicy.dart';
 
 class Settings extends StatelessWidget {

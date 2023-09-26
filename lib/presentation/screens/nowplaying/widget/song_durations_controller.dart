@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/controller/provider/nowplaying_provider/nowplay_provider.dart';
+import 'package:musics/controller/core/core.dart';
+import 'package:musics/controller/provider/nowplaying_provider/nowplay_provider.dart';
 import 'package:provider/provider.dart';
 
 class SongDurationsController extends StatelessWidget {

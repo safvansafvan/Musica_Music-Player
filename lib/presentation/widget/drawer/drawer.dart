@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:musica/model/profile_model/model/model.dart';
-import 'package:musica/presentation/screens/profile/profile.dart';
-import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
-import 'package:musica/presentation/screens/favourites/favorites.dart';
-import 'package:musica/presentation/screens/explorescreen/playlist/playlist.dart';
-import 'package:musica/presentation/screens/settings/settings.dart';
-import 'package:musica/presentation/widget/snack_bar.dart';
+import 'package:musics/model/profile_model/model/model.dart';
+import 'package:musics/presentation/screens/profile/profile.dart';
+import 'package:musics/controller/provider/profile_provider/profile_provider.dart';
+import 'package:musics/presentation/screens/favourites/favorites.dart';
+import 'package:musics/presentation/screens/explorescreen/playlist/playlist.dart';
+import 'package:musics/presentation/screens/settings/settings.dart';
+import 'package:musics/presentation/widget/snack_bar.dart';
 import 'package:provider/provider.dart';
 import '../../../controller/core/core.dart';
 
@@ -138,6 +138,30 @@ class Drawerwidget extends StatelessWidget {
             Container(
               width: 285,
               decoration: BoxDecoration(
+                  border: Border.all(color: kbackcolor),
+                  borderRadius: BorderRadius.circular(15)),
+              child: ListTile(
+                leading: const Icon(Icons.playlist_play_rounded,
+                    size: 27, color: kbackcolor),
+                title: const Text(
+                  'Playlist',
+                  style: TextStyle(fontSize: 17, color: kbackcolor),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Playlistwidget(),
+                      ));
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Container(
+              width: 285,
+              decoration: BoxDecoration(
                 border: Border.all(color: kbackcolor),
                 borderRadius: BorderRadius.circular(15),
               ),
@@ -155,30 +179,6 @@ class Drawerwidget extends StatelessWidget {
                       builder: (context) => const Favoriteswidget(),
                     ),
                   );
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Container(
-              width: 285,
-              decoration: BoxDecoration(
-                  border: Border.all(color: kbackcolor),
-                  borderRadius: BorderRadius.circular(15)),
-              child: ListTile(
-                leading: const Icon(Icons.playlist_play_rounded,
-                    size: 27, color: kbackcolor),
-                title: const Text(
-                  'Playlist',
-                  style: TextStyle(fontSize: 17, color: kbackcolor),
-                ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Playlistwidget(),
-                      ));
                 },
               ),
             ),
@@ -212,7 +212,7 @@ class Drawerwidget extends StatelessWidget {
               style: TextStyle(color: kbackcolor, fontWeight: FontWeight.w500),
             ),
             const Text(
-              '1.1v ',
+              '1.2v ',
               style: TextStyle(color: kbackcolor, fontWeight: FontWeight.w500),
             )
           ],

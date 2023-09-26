@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/controller/music_controller/getallsongcontroller.dart';
-import 'package:musica/controller/provider/nowplaying_provider/nowplay_provider.dart';
+import 'package:musics/controller/core/core.dart';
+import 'package:musics/controller/music_controller/getallsongcontroller.dart';
+import 'package:musics/controller/provider/nowplaying_provider/nowplay_provider.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 

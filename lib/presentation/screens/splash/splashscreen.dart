@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/provider/splash_provider/splash_provider.dart';
+import 'package:musics/controller/provider/splash_provider/splash_provider.dart';
 import 'package:provider/provider.dart';
 
 class Splashscreemwidgets extends StatelessWidget {

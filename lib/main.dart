@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:musica/presentation/screens/splash/splashscreen.dart';
+import 'package:musics/presentation/screens/splash/splashscreen.dart';
 import 'package:provider/provider.dart';
 import 'controller/provider/allmusic_provider/allmusic_provider.dart';
 import 'controller/provider/favourite_provider/favourit_provider.dart';

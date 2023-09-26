@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musica/presentation/screens/homeallsongs.dart';
+import 'package:musics/presentation/screens/homeallsongs.dart';
 
 class SplashProvider extends ChangeNotifier {
   Future<void> navigatetohome(ctx) async {

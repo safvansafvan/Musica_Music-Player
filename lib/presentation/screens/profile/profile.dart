@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/controller/provider/profile_provider/profile_provider.dart';
-import 'package:musica/model/profile_model/model/model.dart';
-import 'package:musica/presentation/widget/appbar/appbar.dart';
-import 'package:musica/presentation/widget/snack_bar.dart';
+import 'package:musics/controller/core/core.dart';
+import 'package:musics/controller/provider/profile_provider/profile_provider.dart';
+import 'package:musics/model/profile_model/model/model.dart';
+import 'package:musics/presentation/widget/appbar/appbar.dart';
+import 'package:musics/presentation/widget/snack_bar.dart';
 import 'package:provider/provider.dart';
 
 class Profiewidget extends StatelessWidget {

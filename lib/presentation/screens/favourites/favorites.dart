@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
-import 'package:musica/presentation/screens/allmusic/widget/allmusiclisttile.dart';
-import 'package:musica/presentation/widget/not_found_widget.dart';
+import 'package:musics/controller/provider/favourite_provider/favourit_provider.dart';
+import 'package:musics/presentation/screens/allmusic/widget/allmusiclisttile.dart';
+import 'package:musics/presentation/widget/not_found_widget.dart';
 import 'package:provider/provider.dart';
 import '../../widget/appbar/appbar.dart';
 

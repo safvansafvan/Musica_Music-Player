@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:musica/controller/core/core.dart';
-import 'package:musica/controller/provider/favourite_provider/favourit_provider.dart';
-import 'package:musica/presentation/widget/snack_bar.dart';
+import 'package:musics/controller/core/core.dart';
+import 'package:musics/controller/provider/favourite_provider/favourit_provider.dart';
+import 'package:musics/presentation/widget/snack_bar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 import 'playlis_dialog.dart';
