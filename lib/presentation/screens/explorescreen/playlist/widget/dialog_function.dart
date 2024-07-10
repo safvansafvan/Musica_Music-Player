@@ -19,12 +19,12 @@ void newplaylist(BuildContext context, formkey) {
             Radius.circular(10),
           ),
         ),
-        backgroundColor: dialogcolor,
         children: [
           SimpleDialogOption(
             child: Text(
               'New Playlist',
-              style: textStyleFuc(size: 18, clr: white70, bld: FontWeight.w500),
+              style: textStyleFuc(
+                  size: 16, clr: Colors.black87, bld: FontWeight.w500),
             ),
           ),
           const SizedBox(
@@ -44,7 +44,7 @@ void newplaylist(BuildContext context, formkey) {
                     ),
                     hintText: 'Playlist Name',
                     labelStyle: const TextStyle(
-                      color: white70,
+                      color: Colors.black87,
                     ),
                     fillColor: Colors.white70.withOpacity(0.6),
                     filled: true),
@@ -61,24 +61,27 @@ void newplaylist(BuildContext context, formkey) {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              TextButton(
+              ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                     playlistnamecontroller.clear();
                   },
                   child: const Text(
                     'CANCEL',
-                    style: TextStyle(color: white70),
+                    style: TextStyle(color: Colors.black87, fontSize: 14),
                   )),
-              TextButton(
-                onPressed: () {
-                  if (formkey.currentState!.validate()) {
-                    okbuttompressing(context);
-                  }
-                },
-                child: const Text(
-                  'OK',
-                  style: TextStyle(color: white70),
+              Padding(
+                padding: const EdgeInsets.only(right: 10, left: 10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (formkey.currentState!.validate()) {
+                      okbuttompressing(context);
+                    }
+                  },
+                  child: const Text(
+                    'OK',
+                    style: TextStyle(color: Colors.black87, fontSize: 14),
+                  ),
                 ),
               )
             ],

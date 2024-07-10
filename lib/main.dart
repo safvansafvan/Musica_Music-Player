@@ -3,7 +3,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:musics/presentation/screens/splash/splashscreen.dart';
 import 'package:provider/provider.dart';
-import 'controller/provider/allmusic_provider/allmusic_provider.dart';
 import 'controller/provider/favourite_provider/favourit_provider.dart';
 import 'controller/provider/mostly_p_provider/mostly_provider.dart';
 import 'controller/provider/nowplaying_provider/nowplay_provider.dart';
@@ -12,7 +11,6 @@ import 'controller/provider/profile_provider/profile_provider.dart';
 import 'controller/provider/provider_nowp_image/songmodelprovider.dart';
 import 'controller/provider/recently__provider/recently_provider.dart';
 import 'controller/provider/search_provider/search_provider.dart';
-import 'controller/provider/splash_provider/splash_provider.dart';
 import 'model/model/model.dart';
 import 'model/profile_model/model/model.dart';
 
@@ -42,8 +40,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AllMusicProvider()),
-        ChangeNotifierProvider(create: (context) => SplashProvider()),
         ChangeNotifierProvider(create: (context) => FavouriteProvider()),
         ChangeNotifierProvider(create: (context) => RecentlyProvider()),
         ChangeNotifierProvider(create: (context) => MostlyPlayedProvider()),
@@ -58,7 +54,7 @@ class MyApp extends StatelessWidget {
         ),
         title: 'Music Player',
         debugShowCheckedModeBanner: false,
-        home: const Splashscreemwidgets(),
+        home: const SplashScreen(),
       ),
     );
   }

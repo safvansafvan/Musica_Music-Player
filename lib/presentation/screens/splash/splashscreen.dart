@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:musics/controller/provider/splash_provider/splash_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:musics/presentation/screens/homeallsongs.dart';
 
-class Splashscreemwidgets extends StatelessWidget {
-  const Splashscreemwidgets({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  Future<void> navigatetohome(ctx) async {
+    await Future.delayed(const Duration(seconds: 2), () {});
+    Navigator.pushReplacement(
+      ctx,
+      MaterialPageRoute(
+        builder: (context) => const Allsongs(),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    navigatetohome(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     var meadiaquery = MediaQuery.of(context);
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Provider.of<SplashProvider>(context, listen: false)
-          .navigatetohome(context);
-    });
+
     return Scaffold(
       body: Container(
         width: double.infinity,

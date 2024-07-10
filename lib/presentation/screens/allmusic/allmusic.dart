@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:musics/controller/music_controller/getallsongcontroller.dart';
-import 'package:musics/controller/provider/allmusic_provider/allmusic_provider.dart';
 import 'package:musics/controller/provider/favourite_provider/favourit_provider.dart';
 import 'package:musics/presentation/screens/explorescreen/playlist/widget/songadd_toplaylist.dart';
 import 'package:musics/presentation/screens/allmusic/widget/allmusiclisttile.dart';
@@ -18,9 +17,6 @@ class Allsongswidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<AllMusicProvider>(context, listen: false).requestPermission();
-    });
     return FutureBuilder<List<SongModel>>(
       future: audioquery.querySongs(
           sortType: null,

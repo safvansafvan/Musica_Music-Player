@@ -6,9 +6,9 @@ import 'package:musics/presentation/screens/explorescreen/explore.dart';
 import 'package:musics/presentation/widget/appbar/appbar.dart';
 import 'package:musics/presentation/widget/mniplayer.dart';
 import 'package:musics/presentation/screens/mostlyplayed/mostplayed.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 import 'allmusic/allmusic.dart';
 
-// ignore: must_be_immutable
 class Allsongs extends StatefulWidget {
   const Allsongs({super.key});
 
@@ -18,6 +18,22 @@ class Allsongs extends StatefulWidget {
 
 class _AllsongsState extends State<Allsongs> {
   int bottomNavigationIndexnum = 0;
+
+  @override
+  void initState() {
+    requestPermission();
+    super.initState();
+  }
+
+  void requestPermission() async {
+    final OnAudioQuery audioQuery = OnAudioQuery();
+    bool status = await audioQuery.permissionsStatus();
+
+    if (!status) {
+      await audioQuery.permissionsRequest();
+    }
+  }
+
   List tabbarwidget = [Allsongswidget(), Mostplayed(), const Explorescreen()];
 
   @override

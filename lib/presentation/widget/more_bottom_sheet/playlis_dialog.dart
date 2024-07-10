@@ -11,10 +11,14 @@ showPlayListDialogNowPlayScreen(ctx, SongModel songModel) {
   showDialog(
     context: ctx,
     builder: (context) => AlertDialog(
-      backgroundColor: dialogcolor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
       title: const Text(
         'Select Your Playlist',
-        style: TextStyle(color: white70),
+        style: TextStyle(color: Colors.black87, fontSize: 16),
       ),
       content: SizedBox(
         height: 200,
@@ -22,62 +26,69 @@ showPlayListDialogNowPlayScreen(ctx, SongModel songModel) {
         child: ValueListenableBuilder(
           valueListenable: Hive.box<Playermodel>('playlistdata').listenable(),
           builder: (context, Box<Playermodel> musiclist, child) {
-            return Hive.box<Playermodel>('playlistdata').isEmpty
-                ? const Center(
-                    child: Text(
-                      'No Playlist Found',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600, color: white70),
-                    ),
-                  )
-                : ListView.builder(
-                    itemCount: musiclist.length,
-                    itemBuilder: (context, index) {
-                      final data = musiclist.values.toList()[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white38,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: blueclr),
-                          ),
-                          child: ListTile(
-                            onTap: () {
-                              songaddtoplaylist(
-                                  songModel, data, data.name, ctx);
-                              Navigator.pop(context);
-                            },
-                            title: Text(
-                              data.name,
-                              style: const TextStyle(
-                                  color: white70, fontWeight: FontWeight.w500),
-                            ),
-                            trailing: const Icon(Icons.add, color: white70),
-                          ),
+            if (musiclist.isEmpty) {
+              return const Center(
+                child: Text(
+                  'No Playlist Found',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600, color: Colors.black87),
+                ),
+              );
+            } else {
+              return SingleChildScrollView(
+                child: Column(
+                  children:
+                      musiclist.values.toList().asMap().entries.map((entry) {
+                    Playermodel data = entry.value;
+                    return Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white38,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: blueclr),
                         ),
-                      );
-                    },
-                  );
+                        child: ListTile(
+                          onTap: () {
+                            songaddtoplaylist(songModel, data, data.name, ctx);
+                            Navigator.pop(context);
+                          },
+                          title: Text(
+                            data.name,
+                            style: const TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          trailing:
+                              const Icon(Icons.add, color: Colors.black87),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              );
+            }
           },
         ),
       ),
       actions: [
-        Wrap(
-          children: [
-            TextButton(
-                onPressed: () {
-                  Navigator.pop(ctx);
-                },
-                child: const Text('Cancel')),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-                newplaylist(ctx, formkey);
-              },
-              child: const Text('New Playlist'),
-            )
-          ],
+        ElevatedButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+            },
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: Colors.black87, fontSize: 14),
+            )),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.pop(ctx);
+            newplaylist(ctx, formkey);
+          },
+          child: const Text(
+            'New Playlist',
+            style: TextStyle(color: Colors.black87, fontSize: 14),
+          ),
         )
       ],
     ),
